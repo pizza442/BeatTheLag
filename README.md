@@ -6,7 +6,8 @@ PIZZA is aiming to provide tools to increase the productivity of people’s live
 
 ## Problem Statement :
 ***Jet lag***, a sleeping disorder caused by a mismatch between our body’s natural
- circadian rhythm and an external environment, is a problem for lots of travelers around the world as the sudden change in time zones bring a heavy toll onto our bodies. This introduces sleeping problems that lead to a decrease in productivity as well as many, potentially long-lasting, health concerns. According to the following [study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3086113/?fbclid=IwAR0I4Nit5D_0zMN2F7MjTTrMZBrpSNLGg-mULRDVSOHkzNtqE2atMGBVsEI), the symptoms of jet lag “may include disturbed sleep, daytime fatigue, decreased ability to perform mental and physical tasks, reduced alertness, and headaches” (Choy). The possible long-term consequences can include cognitive deficits, heart disease and even increase the risk of getting cancer.  
+ circadian rhythm and an external environment, is a problem for lots of travelers around the world as the sudden change in time zones bring a heavy toll onto our bodies. This introduces sleeping problems that lead to a decrease in productivity as well as many, potentially long-lasting, health concerns.
+ According to the following [study](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3086113/?fbclid=IwAR0I4Nit5D_0zMN2F7MjTTrMZBrpSNLGg-mULRDVSOHkzNtqE2atMGBVsEI), the symptoms of jet lag “may include disturbed sleep, daytime fatigue, decreased ability to perform mental and physical tasks, reduced alertness, and headaches” (Choy). The possible long-term consequences can include cognitive deficits, heart disease and even increase the risk of getting cancer.  
 In the time which technology is sufficient enough to solve issue like this, traveler shouldn’t suffer from this problem.  
 That’s why their ought to be a way that helps people get their sleep by operating on a given sleep schedule.
 

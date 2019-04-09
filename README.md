@@ -12,9 +12,7 @@ In the time which technology is sufficient enough to solve issue like this, trav
 That’s why their ought to be a way that helps people get their sleep by operating on a given sleep schedule.
 
 ## Roles:
-	- Leader -  Vanely
-	- Marketing -  Vanely
-	- Project management - Sandy
-	- Design - Vanely, Sandy
-	- Engineering -  Ali, Shakeel
-	- Support - Shakeel
+	- Vanely : Leader, Marketing, Design
+    - Ali : Engineering
+    - Shakeel : Engineering, Support
+	- Sandy : Project management, Design

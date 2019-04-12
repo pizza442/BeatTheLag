@@ -15,4 +15,4 @@ That’s why their ought to be a way that helps people get their sleep by operat
 	- Vanely : Leader, Marketing, Design
     - Ali : Engineering
     - Shakeel : Engineering, Support
-	- Sandy : Project management, Design
+	- Sandy : Project management, Marketing, Design

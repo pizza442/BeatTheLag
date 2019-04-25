@@ -22,7 +22,8 @@
 
     - Arrival date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`  
     - Departure date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`
-        - The required format will present above the input box so user can know how to type the correct input.
+        - These two box will be the input text box that require user to type in.
+        - The required format will present above the input box (next to caption) so user can know how to type the correct input.
         - If user put down the wrong format (e.g. YYYY/MM/DD or DD/MM/YY) or any invalid input (e.g. put down letter), the text box will turn to red and there will be the alert message telling user "***Wrong format, please use DD/MM/YYYY for this input***".
 
 

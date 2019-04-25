@@ -20,15 +20,15 @@
         - The order of item in the dropdown list will be in alphabetical order from A to Z
         - The default value for both dropdown lists will be set to blank
 
- - Arrival date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`  
- - Departure date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`
-    - These two date boxes for `DD/MM/YYYY` will be the input text box that require user to type in.
-    - The required format will present above the input box (next to caption) so user can know how to type the correct input.
-    - If user put down the wrong format (e.g. YYYY/MM/DD or DD/MM/YY) or any invalid input (e.g. put down letter), right after they move to the other input box, the text box for date will turn to red and there will be the alert message telling user "***Wrong format, please use DD/MM/YYYY for this input***".
-    - The input boxes for selecting `hour:minute` will be the dropdown list with default value blank.
-    - Hour drop down will have selected value from 1 to 12.
-    - Minute drop down will have selected value from 00 to 50 divided by 10 minutes interval (e.g. 10, 20, 30).
-    - The input boxes for selecting `AM` or `PM` will be the dropdown list with default value blank.
+     - Arrival date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`  
+     - Departure date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`
+        - These two date boxes for `DD/MM/YYYY` will be the input text box that require user to type in.
+        - The required format will present above the input box (next to caption) so user can know how to type the correct input.
+        - If user put down the wrong format (e.g. YYYY/MM/DD or DD/MM/YY) or any invalid input (e.g. put down letter), right after they move to the other input box, the text box for date will turn to red and there will be the alert message telling user "***Wrong format, please use DD/MM/YYYY for this input***".
+        - The input boxes for selecting `hour:minute` will be the dropdown list with default value blank.
+        - Hour drop down will have selected value from 1 to 12.
+        - Minute drop down will have selected value from 00 to 50 divided by 10 minutes interval (e.g. 10, 20, 30).
+        - The input boxes for selecting `AM` or `PM` will be the dropdown list with default value blank.
 
 
 - Users must be able to put in their sleeping schedule information, these include:

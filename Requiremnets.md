@@ -36,7 +36,7 @@
         - The default value for all drop down list above will be set to blank
 
 - User must input all the information above in order to get their sleeping schedule.
-- If any input is blank or invalid, when user click the “Get my schedule” button, the system will show the error message at the middle with red text “***Error: Your form is incomplete or you have the invalid input, please check your form again” after 1 second.***"
+- If any input is blank or invalid, when user click the “Get my schedule” button, the system will show the error message at the middle with red text “***Error: Your form is incomplete or you have the invalid input, please check your form again***” after 1 second.
 
 - If all the inputs is filled and it’s in the correct format, when user click the “Get my schedule” button, the waiting animation will be shown at the middle of the page for about 5 second (this is the time when system is generating the sleeping schedule)
 - After that 5 second, there will have a green check icon and the message show up: “***Your sleeping schedule has been updated on your google calendar!”***

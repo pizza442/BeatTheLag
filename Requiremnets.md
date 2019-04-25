@@ -1,6 +1,6 @@
 # Requirements
 ## Login page
-- When users open the system, they will see two `textbox` inputs in the middle of the page. These text boxes will require them to input their **email** and **password** with caption “email” and “password”.
+- When users open the system, they will see two `textbox` inputs in the middle of the page. These text boxes will require them to input their email and password with caption “**Email**” and “**Password**”.
 - The red * will be next to the caption to inform user they must enter the required information.
 - Below the text boxes, there will be two big buttons. One labeled “Sign in” and the other labeled “Sign up”. Users are able to click them at anytime.
 - If user click the "Sign in" button before entering any input, the system will display a red message “Please fill in all required input” in the middle of the login page in about 1 second.

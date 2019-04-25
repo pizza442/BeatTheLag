@@ -1,4 +1,4 @@
-# Requirement
+# Requirements
 ## Login page
 - When users open the system, they will see two `textbox` inputs in the middle of the page. These text boxes will require them to input their **email** and **password** with caption “email” and “password”.
 - The red * will be next to the caption to inform user they must enter the required information.

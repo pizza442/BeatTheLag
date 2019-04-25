@@ -20,10 +20,10 @@
         - The order of item in the dropdown list will follow the alphabetical order from A to Z
         - The default value for both dropdown lists will be set to blank
 
- - Arrival date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`  
- - Departure date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`
-    - The required format will present above the input box so user can know how to type the correct input.
-    - If user put down the wrong format (e.g. YYYY/MM/DD or DD/MM/YY) or any invalid input (e.g. put down letter), the text box will turn to red and there will be the alert message telling user "***Wrong format, please use DD/MM/YYYY for this input***".
+    - Arrival date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`  
+    - Departure date & time: in format of: `DD/MM/YYYY`, `hour:minute`, `AM`, `PM`
+        - The required format will present above the input box so user can know how to type the correct input.
+        - If user put down the wrong format (e.g. YYYY/MM/DD or DD/MM/YY) or any invalid input (e.g. put down letter), the text box will turn to red and there will be the alert message telling user "***Wrong format, please use DD/MM/YYYY for this input***".
 
 
 - User must be able to put in their sleeping schedule information, these include:

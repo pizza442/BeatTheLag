@@ -4,8 +4,8 @@
 - The red * will be next to the caption to inform user they must put in the require information.
 - Below the text boxes, there will be two big buttons. One with text “Sign in” and the other with text “Sign up”. Users are able to click them at anytime.
 - If user click either buttons before they put down any input, the system will show the red message “Please fill in all required input” on the middle of the login page in about 1 second.
-- If user put the thing that’s not the email inside of the email box, the system will show the red message “this is not an email, please type an email here.” on the middle of the login page in about 1 second.
-- If user put the mismatch email and password and then they click the “sign in” button, above the text box, the system will show the message “Incorrect password or email, please try it again.” on the middle of the login page in about 1 second.  
+- If user put the thing that’s not the email inside of the email box, the system will show the red message “***this is not an email, please type an email here.***” on the middle of the login page in about 1 second.
+- If user put the mismatch email and password and then they click the “sign in” button, above the text box, the system will show the message “***Incorrect password or email, please try it again.***” on the middle of the login page in about 1 second.  
 - If users has put down the correct email which match their password, after they click the “sign in” button, they will go to the input page in between 0.5 to 2 second.
 - If user click the “sign up” button, they should able to fill their email and the password they create and after that they should go to the input page
 

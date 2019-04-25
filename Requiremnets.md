@@ -46,4 +46,4 @@
 - The sleeping schedule will end at user’s departure date.
 - After the sleeping schedule was added, user will also get the notification before 10 minutes they should go to sleep from the day schedule is started until the day of departure.    
 
-- If user has use our service before and have a old schedule, if they make a new schedule, the old schedule will be directly updated to the new schedule
+- If user has use our service before and have an old schedule, if they make a new schedule on to the google calendar, the old schedule will be directly updated to the new schedule

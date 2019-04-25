@@ -4,7 +4,7 @@
 - The red * will be next to the caption to inform user they must enter the required information.
 - Below the text boxes, there will be two big buttons. One labeled “Sign in” and the other labeled “Sign up”. Users are able to click them at anytime.
 - If user click the "Sign in" button before entering any input, the system will display a red message “Please fill in all required input” in the middle of the login page in about 1 second.
-- If users enter an text which is not email-like inside of the email box, after they click the “sign in” button, above the email box, the system will display the message with red text “***this is not an email, please type an email here.***” in about 1 second.
+- If users enter an text which is not email-like inside of the email box, after they click the “sign in” button, above the email box, the system will display the message with red text “***This is not an email, please type an email here.***” in about 1 second.
 - If user enter an email not registered with an account inside of the email box, after they click the “sign in” button, above the email box, the system will display the message with red text “***Account not found, please try again.***” in about 1 second.
 - If the user enters an incorrect email and password combination and then click the “sign in” button, above the email box, the system will display the message with red text “***Incorrect password or email, please try again.***” in about 1 second.  
 - If users entered a correct email and password combination, after clicking the “sign in” button, user will be shown the input page in 0.5 to 2 second.

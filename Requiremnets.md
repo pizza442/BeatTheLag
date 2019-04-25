@@ -40,7 +40,7 @@
 
 - If all the inputs is filled and it’s in the correct format, when user click the “Get my schedule” button, the waiting animation will be shown at the middle of the page for about 5 second (this is the time when system is generating the sleeping schedule)
 - After that 5 second, there will have a green check icon and the message show up: “***Your sleeping schedule has been updated on your google calendar!”***
-- The sleeping schedule produced by the system should be follow the principles in [research]("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/") over here.
+- The sleeping schedule produced by the system should be follow the principles in [research](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) over here.
 - The sleeping schedule produced by the system will be added onto user’s google calendar with the title “Sleeping time”.
 - The sleeping schedule will start at the day depend on user’s flight and sleeping formation (again, follow the principles above).
 - The sleeping schedule will end at user’s departure date.

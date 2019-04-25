@@ -44,6 +44,7 @@
 - The sleeping schedule produced by the system will be added onto user’s google calendar with the title “Sleeping time”.
 - The sleeping schedule will start at the day depend on user’s flight and sleeping formation (again, follow the principles above).
 - The sleeping schedule will end at user’s departure date.
-- After the sleeping schedule was added, user will also get the notification before 10 minutes they should go to sleep from the day schedule is started until the day of departure.    
+- After the sleeping schedule was added, user will also get the notification 10 minutes before the time they should go to sleep.
+- The notification will start notifying user from the day schedule get started until the day of departure.    
 
 - If user has use our service before and have an old schedule, if they make a new schedule on to the google calendar, the old schedule will be directly updated to the new schedule

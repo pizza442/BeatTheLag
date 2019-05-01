@@ -10,6 +10,7 @@ We have decided to solve this problem through an online application that we have
 ### How it works:  
 #### Login page
 ![login page](https://i.imgur.com/Zz64Eco.png)
+- BeatTheLag logo will show up at the top middle of the page.
 - When users open the system, they will see two `textbox` inputs in the middle of the page. These text boxes will require them to input their email and password with caption “**Email**” and “**Password**”.
 - The red * will be next to the caption to inform user they must enter the required information.
 - Below the text boxes, there will be two big buttons. One labeled “Sign in” and the other labeled “Sign up”. Users are able to click them at anytime.

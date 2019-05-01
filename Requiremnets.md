@@ -1,12 +1,15 @@
 # Requirements
+- This software will be a webpage. 
 ## Login page
 - When users open the system, they will see two `textbox` inputs in the middle of the page. These text boxes will require them to input their email and password with caption “**Email**” and “**Password**”.
 - The red * will be next to the caption to inform user they must enter the required information.
 - Below the text boxes, there will be two big buttons. One labeled “Sign in” and the other labeled “Sign up”. Users are able to click them at anytime.
 - If user click the "Sign in" button before entering any input, the system will display a red message “Please fill in all required input” in the middle of the login page in about 1 second.
 - If users enter an invalid input (e.g. number) or text which is not email-like (e.g. their name) inside of the email box, after they click the “sign in” button, above the email box, the system will display the message with red text “***This is not an email, please type an email here.***” in about 1 second.
+- If user enter an email which is not a Google email, after they click the “sign in” button, above the email box, the system will display the message with red text “***Not a Google email, please try it again***” in about 1 second.
 - If user enter an email not registered with an account inside of the email box, after they click the “sign in” button, above the email box, the system will display the message with red text “***Account not found, please try again.***” in about 1 second.
 - If the user enters an incorrect email and password combination and then click the “sign in” button, above the email box, the system will display the message with red text “***Incorrect password or email, please try again.***” in about 1 second.  
+- If user entered a correct email and password combination, the system will use the Google login and retrieve information onto input page.
 - If users entered a correct email and password combination, after clicking the “sign in” button, user will be shown the input page in 0.5 to 2 second.
 - If user click the “sign up” button, they should able to fill their email and the password they create and after that they should go to the input page
 

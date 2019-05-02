@@ -33,7 +33,7 @@ output:
 #### Property
 
 | Property | Type | Description|
-| ---      | ---  |
+|----------|------|------------|
 |departureLocation|String|the departure location|
 |departureTime|String|the time of departure|
 |departureDate|String|the date of departure|
@@ -46,9 +46,9 @@ output:
 
 #### Functionality
 
-| Method | Parameter | Return | Description
-| --- | --- |
-| getSchedule() | none | none| Retrieve the lists of flight and sleeping information from `flightInfo` and 'sleepInfo'. Creates the schedule that the user would follow.|
+| Method | Parameter | Return | Description|
+|--------|-----------|--------|-------------|
+| getSchedule() | none | none| Retrieve the lists of flight and sleeping information from `flightInfo` and `sleepInfo`. Creates the schedule that the user would follow.|
 | formJSON() | none | JSON object | Returns the JSON object containing the schedule data.|
 
 

@@ -44,13 +44,13 @@ Displays the input form for the users flight and sleep information. Receive and 
     -   Have these data fields be stored as variables as string types and then put them in a map dictionary so the schedule maker component has easier time to process the data given.
 
 ### Connections
-#### Inputs
+##### Inputs
 - `userInfo`- It takes the already established information (raw data) of the user from the Login component
 
-#### Outputs
+##### Outputs
 - `organizedData`- After taking in the user data as string objects and organizing them in a Map data structure, it then sends that organized data to the `ScheduleGenerator` to produce the schedules
 
-#### Functionality
+### Functionality
 
 | Method | Parameter | Return | Description|
 |--------|-----------|--------|-------------|
@@ -77,7 +77,7 @@ Receive user input form Input and generates a sleeping schedule.
 ##### Outputs  
 - `sleepingSchedule` - Provide the number of `scheduleStartDate`,  `scheduleEndDate`, `sleepTime`, `WakeUpTime` to ScheduleToCalendar
 
-#### Property
+### Property
 
 | Property | Type | Description|
 |----------|------|------------|
@@ -91,7 +91,7 @@ Receive user input form Input and generates a sleeping schedule.
 |normalWakeTime|String|Time that the user normally wakes up.|
 |scheduleData| Array{String} |data structure that contains the data for the calendar|
 
-#### Functionality
+### Functionality
 
 | Method | Parameter | Return | Description|
 |--------|-----------|--------|-------------|

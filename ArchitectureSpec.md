@@ -50,7 +50,7 @@ Receive user input form Input and generates a sleeping schedule.
 | Method | Parameter | Return | Description|
 |--------|-----------|--------|-------------|
 | getSchedule() | none | none| Retrieve the lists of flight and sleeping information from `flightInfo` and `sleepInfo`. Creates the schedule that the user would follow.|
-| formJSON() | none | JSON object | Returns the JSON object containing the schedule data.|
+| formJSON() | none | JSON object | Returns the JSON object which represent the user's sleeping schedule|
 
 ## ScheduleToCalendar
 Adds the sleeping schedule to user’s Google calendar

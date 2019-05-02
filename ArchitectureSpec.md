@@ -24,11 +24,12 @@ Receive user input form Input and generates a sleeping schedule.
 
 #### Connections
 
-Inputs
+##### Inputs
 - `flightInfo` - Call to retrieve am `Array<string>` of user's selection about their fight date, time and location
 - `sleepInfo` - Call to retrieve am `Array<string>` of user's selection about their sleeping and waking time
 
-output:  
+##### Outputs  
+- `sleepingSchedule` - Provide the number of `scheduleStartDate`,  `scheduleEndDate`, `sleepTime`, `WakeUpTime` to ScheduleToCalendar
 
 #### Property
 
@@ -50,8 +51,6 @@ output:
 |--------|-----------|--------|-------------|
 | getSchedule() | none | none| Retrieve the lists of flight and sleeping information from `flightInfo` and `sleepInfo`. Creates the schedule that the user would follow.|
 | formJSON() | none | JSON object | Returns the JSON object containing the schedule data.|
-
-
 
 ## ScheduleToCalendar
 Adds the sleeping schedule to user’s Google calendar

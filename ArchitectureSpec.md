@@ -28,16 +28,18 @@ Displays the input form for the users flight and sleep information. Receive and 
 - `organizedData`: After taking in the user data as string objects and organizing them in a Map data structure, it then sends that organized data to the `ScheduleGenerator` to produce the schedules
 
 
-#### Functionality    
-| Method | Parameter | Return | Description|
+#### Property    
+| Property | Type | Description|
 |----------|------|------------|
-|isValid| none |Boolean| Retrieve `userInput` and decide if what the user inserts is relevant or possible to use by using regex expression. If fails, sends an error message through google chrome window. Otherwise call out `organize()`.|
-|allAirports|none |Array{String}|Checks the users query against the Airport API. If not there then is `isValid` is called. Otherwise return the list of airports and their cities|
+|isValid |Boolean| Retrieve `userInput` and decide if what the user inserts is relevant or possible to use by using regex expression. If fails, sends an error message through google chrome window. Otherwise call out `organize()`.|
+|allAirports |Array{String}|Checks the users query against the Airport API. If not there then is `isValid` is called. Otherwise return the list of airports and their cities|
+
+#### Functionality
+
+| Method | Parameter | Return | Description|
+|--------|-----------|--------|-------------|
 |organize()|none|Map data structured| information and sorts and organizes everything in a map which then sends that to the schedule maker.|
 |renderValid()|none|JSX|Returns the JSX that will show success of the information being used and validated. If not it will render, the blank form again which then will ask for re-entry of data.
-
-Outputs: After taking in the user data as string objects and organizing them in a Map data structure, it then sends that organized data to the Schedule maker to produce the schedules
-|
 
 ## ScheduleGenerator
 Receive user input form Input and generates a sleeping schedule. 	

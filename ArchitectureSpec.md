@@ -3,10 +3,33 @@
 ## LoginHandler
 Manages the login screen, displays the login page which includes the BeatTheLag description and login form. Menage all the user login information, connecting the information from their Google account
 
+### Responsibility
+- Use FirebaseUI to render login page UI elements  to get Email and Password from a user
+- Send user account/password to Google API to retrieve access to their calendar
+- Wait to see if user data is valid
+- Allow/deny access toward our application to get the calendar data
+- If valid, store the calendar data as a variable within a map data structure that will then be given to the Input page
+
+### Functionality
+| Method | Parameter | Return | Description|
+|--------|-----------|--------|-------------|
+|Onload()|none|JSX/boolean state|render the state in which the user has not entered any login information or is in the process of doing so.|
+|Afterload()|none|JSX|Renders the web page contents after the login information is successful or unsuccessful.|
+|isSuccesful()| none|Boolean|Updates the state of webpage with newly validated login information and gives a login success sign. If not successful, requires the user to re-input their data and then gives an error message through google chrome window|
+
+### Connections
+##### Inputs
+- `userInfo - `Connects to the firebase api to retrieve all necessary data.
+
+##### Outputs
+- `userInfo` - Puts out the raw information for what they currently have and gives it to the Input component
+
+
+
 ## InputHandler
 Displays the input form for the users flight and sleep information. Receive and manage all user input, connecting user input to Schedule Maker.  
 
-#### Responsibility
+### Responsibility
 - Render form on the screen:
     - All UI elements
         - Use react forms, cards and fragments to create input areas for the user to insert their DNA
@@ -20,31 +43,26 @@ Displays the input form for the users flight and sleep information. Receive and 
         - If input is invalid, show error message with window in google chrome showing up
     -   Have these data fields be stored as variables as string types and then put them in a map dictionary so the schedule maker component has easier time to process the data given.
 
-#### Connections
-##### Inputs
-- `userInfo`: It takes the already established information of the user from the Login component
+### Connections
+#### Inputs
+- `userInfo`- It takes the already established information (raw data) of the user from the Login component
 
 #### Outputs
-- `organizedData`: After taking in the user data as string objects and organizing them in a Map data structure, it then sends that organized data to the `ScheduleGenerator` to produce the schedules
-
-
-#### Property    
-| Property | Type | Description|
-|----------|------|------------|
-|isValid |Boolean| Retrieve `userInput` and decide if what the user inserts is relevant or possible to use by using regex expression. If fails, sends an error message through google chrome window. Otherwise call out `organize()`.|
-|allAirports |Array{String}|Checks the users query against the Airport API. If not there then is `isValid` is called. Otherwise return the list of airports and their cities|
+- `organizedData`- After taking in the user data as string objects and organizing them in a Map data structure, it then sends that organized data to the `ScheduleGenerator` to produce the schedules
 
 #### Functionality
 
 | Method | Parameter | Return | Description|
 |--------|-----------|--------|-------------|
+|isValid |none|Boolean| Retrieve `userInput` and decide if what the user inserts is relevant or possible to use by using regex expression. If fails, sends an error message through google chrome window. Otherwise call out `organize()`.|
+|allAirports |none| Array{String}|Checks the users query against the Airport API. If not there then is `isValid` is called. Otherwise return the list of airports and their cities|
 |organize()|none|Map data structured| information and sorts and organizes everything in a map which then sends that to the schedule maker.|
 |renderValid()|none|JSX|Returns the JSX that will show success of the information being used and validated. If not it will render, the blank form again which then will ask for re-entry of data.
 
 ## ScheduleGenerator
 Receive user input form Input and generates a sleeping schedule. 	
 
-#### Responsibility:
+### Responsibility:
 - Gets the time zones from arrival/departure location (airport) - [API call](https://developer.flightstats.com/api-docs/airports/v1)
 - Creates a list of sleep and wake up times for individual days
 - Calculate the starting day for sleeping schedule.
@@ -52,8 +70,7 @@ Receive user input form Input and generates a sleeping schedule.
 - End the schedule at departure day
 - Package the schedule in a 2D array where’s it’s length will be the number of days, and the columns will contain the sleep and awaken times respectively. to give to Google API.
 
-#### Connections
-
+### Connections
 ##### Inputs
 - `organizedData` - Retrieve the organized data produce by InputHandler to make a sleeping schedule for user
 

@@ -4,7 +4,7 @@
 Manages the login screen, displays the login page which includes the **BeatTheLag** description and login form. Manage all the user login information, connecting the information from their Google account
 
 ### Responsibility
-- Use FirebaseUI to render login page UI elements  to get Email and Password from a user
+- Use FirebaseUI to render login page UI elements to get user to sign in using their Google account 
 - Send user account/password to Google API to retrieve access to their calendar
 - Wait to see if user data is valid
 - Allow/deny access toward our application to get the calendar data

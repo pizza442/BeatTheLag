@@ -1,5 +1,5 @@
 # Requirements
-- This software will be a webpage. 
+- This software will be a webpage.
 ## Login page
 - When users open the system, they will see two `textbox` inputs in the middle of the page. These text boxes will require them to input their email and password with caption “**Email**” and “**Password**”.
 - The red * will be next to the caption to inform user they must enter the required information.

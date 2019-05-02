@@ -45,6 +45,7 @@ output:
 |scheduleData| Array[string] |data structure that contains the data for the calendar|
 
 #### Functionality
+
 | Method | Parameter | Return | Description
 | --- | --- |
 | getSchedule() | none | none| Retrieve the lists of flight and sleeping information from `flightInfo` and 'sleepInfo'. Creates the schedule that the user would follow.|

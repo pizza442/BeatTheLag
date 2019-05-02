@@ -19,7 +19,7 @@ Manages the login screen, displays the login page which includes the BeatTheLag 
 
 ### Connections
 ##### Inputs
-- `userInfo - `Connects to the firebase api to retrieve all necessary data.
+- `userInfo` - Connects to the firebase api to retrieve all necessary data.
 
 ##### Outputs
 - `userInfo` - Puts out the raw information for what they currently have and gives it to the Input component

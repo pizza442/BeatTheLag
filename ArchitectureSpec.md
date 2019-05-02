@@ -35,12 +35,12 @@ Receive user input form Input and generates a sleeping schedule.
 
 | Property | Type | Description|
 |----------|------|------------|
-|departureLocation|String|the departure location|
-|departureTime|String|the time of departure|
-|departureDate|String|the date of departure|
-|destinationLocation|String|the arrival location|
-|destinationTime|String|the time of arrival|
-|destinationDate|String|the date of arrival|
+|departureLocation|String|User's departure location|
+|departureTime|String|Represent user's time of departure|
+|departureDate|String|Represent user's date of departure|
+|destinationLocation|String|User's arrival location|
+|destinationTime|String|Represent user's time of arrival|
+|destinationDate|String|Represent user's date of arrival|
 |normalSleepTime|String|Time that the user normally goes to sleep|
 |normalWakeTime|String|Time that the user normally wakes up.|
 |scheduleData| Array[string] |data structure that contains the data for the calendar|

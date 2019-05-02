@@ -25,8 +25,8 @@ Receive user input form Input and generates a sleeping schedule.
 #### Connections
 
 ##### Inputs
-- `flightInfo` - Call to retrieve am `Array<string>` of user's selection about their fight date, time and location
-- `sleepInfo` - Call to retrieve am `Array<string>` of user's selection about their sleeping and waking time
+- `flightInfo` - Call to retrieve an `Array<string>` of user's input about their fight date, time and location
+- `sleepInfo` - Call to retrieve an `Array<string>` of user's input about their sleeping and waking time
 
 ##### Outputs  
 - `sleepingSchedule` - Provide the number of `scheduleStartDate`,  `scheduleEndDate`, `sleepTime`, `WakeUpTime` to ScheduleToCalendar

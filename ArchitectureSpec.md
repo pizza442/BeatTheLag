@@ -3,8 +3,8 @@
 ## LoginHandler
 Manages the login screen, displays the login page which includes the BeatTheLag description and login form. Menage all the user login information, connecting the information from their Google account
 
-| Method | Input | Output | Description |Connector|
-|--------|-------|--------|-------------|---------|
+| Method | Parameter | Return | Description |
+|--------|-------|--------|-------------|
 | displayLogin() | none | | List all new or modified files |
 | getLoginInfo() | none || Show file differences that haven't been staged |
 

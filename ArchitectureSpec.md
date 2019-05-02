@@ -38,9 +38,9 @@ Receive user input form Input and generates a sleeping schedule.
 |departureLocation|String|User's departure location|
 |departureTime|String|Represent user's time of departure|
 |departureDate|String|Represent user's date of departure|
-|destinationLocation|String|User's arrival location|
-|destinationTime|String|Represent user's time of arrival|
-|destinationDate|String|Represent user's date of arrival|
+|arrivalLocation|String|User's arrival location|
+|arrivalTime|String|Represent user's time of arrival|
+|arrivalDate|String|Represent user's date of arrival|
 |normalSleepTime|String|Time that the user normally goes to sleep|
 |normalWakeTime|String|Time that the user normally wakes up.|
 |scheduleData| Array[string] |data structure that contains the data for the calendar|

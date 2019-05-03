@@ -144,7 +144,7 @@ Stores the events added to the user’s Google Calendar
 ### Properties
 | Property | Type | Description|
 |----------|------|------------|
-| database | Firebase RealTime Database | 
+| database | Firebase RealTime Database | Stores list of event IDs for every user
 
 ### Functionality
 | Method | Parameter | Return | Description|

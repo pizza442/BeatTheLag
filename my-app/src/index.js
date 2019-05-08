@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import firebase from 'firebase/app';
+import 'firebase/auth'; 
+import 'firebase/database';
+import 'firebase/storage';
 
 // Initialize Firebase
 var config = {

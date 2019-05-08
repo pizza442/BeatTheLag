@@ -20,6 +20,9 @@ export class Schedule {
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
 
+        //2D array, where [i][0] is start time, [i][1] is end time
+        this.calendar = [];
+
         // totalDays = DepartureDate - ArriveDate
         // sleepingLength =  NormalWakeTime - NormalSleepTime
         // length of schedule array should be totalDays
@@ -31,6 +34,38 @@ export class Schedule {
         // } else {
         //   "You don't need this page what are you doing"
         // }
+
+    }
+
+    create() {
+        let totalDays = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
+        
+        let sleepingLength = this.NormalWakeTime - this.NormalSleepTime; //Don't know if we're going to need this
+        
+        //Might want to put this in the constructor depending on how many times
+        //this is called after initial construction.
+        for (let i = 0; i < totalDays; i++) {
+            this.calendar.push([]);
+        }
+
+        let startTime = this.NormalSleepTime;
+        let endTime = this.NormalWakeTime;
+
+
+        if (totalDays > 0) {
+            for (let i = 0; i < totalDays; i++) {
+                this.calendar[i][0] = startTime--;
+                this.calendar[i][1] = endTime--;
+            }
+        } else if (totalDays < 0) {
+            for (let i = 0; i < totalDays; i++) {
+                this.calendar[i][0] = startTime++;
+                this.calendar[i][1] = endTime++;
+            }
+        } else {
+            alert("You don't need this page what are you doing, you fool");
+        }
+
 
     }
 }

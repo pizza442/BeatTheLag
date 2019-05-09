@@ -6,16 +6,9 @@ import firebase from 'firebase/app';
 import 'firebase/auth'; 
 import 'firebase/database';
 import 'firebase/storage';
+import config from 'firebaseconfig';
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyDGFApTkLg7HaIRjBrATMk3z-INzvUsIis",
-  authDomain: "beatthelag-info442.firebaseapp.com",
-  databaseURL: "https://beatthelag-info442.firebaseio.com",
-  projectId: "beatthelag-info442",
-  storageBucket: "beatthelag-info442.appspot.com",
-  messagingSenderId: "214643886468"
-};
 firebase.initializeApp(config);
 
 ReactDOM.render(

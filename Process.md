@@ -8,13 +8,13 @@
     - If someone ask question, other has to response in 8 hour
 - On Friday - Sunday:
     - If someone ask question, other has to response in 24 hour
-- If someone can't response, he/she need to inform the team in advance and tell team member when he/she can be able to response again
+- If someone can't response in a day, he/she need to inform the team in advance and tell team member when he/she can be able to response again
 
 ## What coordination and planning practices will you follow?
 - Our team will have a in person meeting every Tuesday after class:
     - We will discuss about what have to be finished in the week based on members' weekly schedule.
     - We will start doing the goal we set for the week in the meeting to see if there are some potential problems so we can try to fix/discuss it in person.
-    - The meeting will be in between 30 min to 1 hour, after that we should all know what to do in that week 
+    - The meeting will be in between 30 min to 1 hour, after that we should all know what to do in that week
 
 - If there is something happen and someone can’t make to the meeting:
     - Have to inform team members three hours before meeting

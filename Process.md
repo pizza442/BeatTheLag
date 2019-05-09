@@ -21,7 +21,7 @@
         - figure out the jet lag algorithm, test if possible
     - Next week:
         - put everything together and debug/test
-        - make sure thing won't break 
+        - make sure thing won't break
 
 ## Who will own each of the components in your architecture?
 - Ali:
@@ -43,4 +43,3 @@
 - If doesn't response/ doesn't report without reason:
     - First time: Warning on Facebook group
     - Second time: Bring this up in Tuesday meeting, talk about the issue
-    - Third time:  

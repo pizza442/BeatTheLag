@@ -39,9 +39,9 @@ export class Schedule {
 
     create() {
         let totalDays = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
-        
+
         let sleepingLength = this.NormalWakeTime - this.NormalSleepTime; //Don't know if we're going to need this
-        
+
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
         for (let i = 0; i < totalDays; i++) {
@@ -65,7 +65,7 @@ export class Schedule {
         } else {
             alert("You don't need this page what are you doing, you fool");
         }
-
+        // Should we return the JSON array?
 
     }
 }

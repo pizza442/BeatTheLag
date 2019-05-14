@@ -1,5 +1,24 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+body, h1 {
+    font-family: 'Acumin Pro', sans-serif;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+}
+
+ strong {
+     font-weight: 500;
+ }
+
+ h1 {
+     font-family: 'Rajdhani', sans-serif;
+     font-weight: 500;
+     color: #EF5600;
+ }
+
+ h2 {
+    font-weight: 400;
+    color: #007BAF;
+ }

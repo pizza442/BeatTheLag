@@ -4,7 +4,14 @@ import firebaseui from 'firebaseui';
 
 class Login extends Component {
 
+    /**
+     * Handles Google Sign in
+     * If sign in is successfull, (TODO) redirects to schedule input form 
+     * 
+     * Uses code from Google's documentation https://firebase.google.com/docs/auth/web/firebaseui?authuser=0
+     */
     signIn() {
+        // uiConfig code 
         let uiConfig = {
             callbacks: {
               signInSuccessWithAuthResult: function(authResult, redirectUrl) {
@@ -16,11 +23,10 @@ class Login extends Component {
               uiShown: function() {
                 // The widget is rendered.
                 // Hide the loader.
-                document.getElementById('loader').style.display = 'none';
+                //document.getElementById('loader').style.display = 'none';
               }
             },
-            // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-            signInFlow: 'popup',
+            // TODO: Change redirect url to schedule input form
             signInSuccessUrl: '<url-to-redirect-to-on-success>',
             signInOptions: [
               // Leave the lines as is for the providers you want to offer your users.
@@ -32,7 +38,7 @@ class Login extends Component {
     }
 
     render() {
-        signIn();
+        this.signIn();
         return(
             <div id="firebaseui-auth-container"></div>
         );

@@ -10,7 +10,10 @@ class App extends Component {
           <h1>BeatTheLag</h1>
         </div>
         <p className="App-description">
-          hellloooo
+        With <strong>BeatTheLag</strong>, you can create your own personalized jet lag plans and arrive at 
+        your best. Whether you’re traveling for business, going on vacation, or competing in a sports 
+        event abroad, <strong>BeatTheLag</strong> will help optimize your performance, enjoyment, and 
+        health when traveling.
         </p>
         
         <Login></Login>

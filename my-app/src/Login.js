@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import firebaseui from 'firebaseui';
+import Input from './Input';
 
 class Login extends Component {
 
@@ -10,6 +11,11 @@ class Login extends Component {
      * 
      * Uses code from Google's documentation https://firebase.google.com/docs/auth/web/firebaseui?authuser=0
      */
+    openInNewTab =(url)=> {
+      var win = window.open(url, '_blank');
+      win.focus();
+    }
+
     signIn() {
         // uiConfig code 
         let uiConfig = {

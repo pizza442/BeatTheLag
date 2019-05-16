@@ -8,7 +8,7 @@ Make sure if user didn't put down the input, our system shows up the error
 
     - if the input HTML date object: The form fields that are required should have messages with green check icon above them that say “***Your sleeping schedule has been updated on your google calendar!”***” or ***You don't need to change your sleeping schedule!”*** based on the date they put down (see next test).
 
-    - if input is null: The input fields (either departure or arrival date) that are required should have red error messages below them that say “Error: Your form is incomplete or you have the invalid input, please check your form again”.
+    - if input is null: The input fields (either departure or arrival date/ sleeping or awake time) that are required should have red error messages below them that say “Error: Your form is incomplete or you have the invalid input, please check your form again”.
 
 ## ScheduleGenerator
 Make sure the difference between the departure and arrival date is more than 2 day

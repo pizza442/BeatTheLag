@@ -11,6 +11,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "watch": "watch 'npm run build' src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

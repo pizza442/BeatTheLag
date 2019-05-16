@@ -36,6 +36,7 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
 - If any input is blank, when users click the “Get my schedule” button, the system will display an error message in the middle with red text “***Error: Your form is incomplete or you have the invalid input, please check your form again***” after 1 second.
 - When users click the “Get my schedule” button, the waiting animation will be shown in the middle of the page for about 5 second (this is the time when system is generating the sleeping schedule)
 - After those 5 seconds, there will have a green check icon and the message “***Your sleeping schedule has been updated on your google calendar!”*** is displayed.
+- If user's arrival date and departure date is at the same date, there will have a green check icon and the message “***You don't need to change your sleeping schedule!”*** is displayed. 
 - The sleeping schedule produced by the system should be follow the principles in [research](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) over here.
 - The sleeping schedule produced by the system will be added onto the user’s google calendar with the title “Sleeping time”.
 - The sleeping schedule will start on the day depending on user’s flight and sleeping information (again, follow the principles above).

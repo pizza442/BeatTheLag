@@ -66,6 +66,7 @@ export class Schedule {
             alert("You don't need this page what are you doing, you fool");
         }
         // Should we return the JSON array?
+        // output should have: start-time, end-time, start-date, end-date, 
 
     }
 }

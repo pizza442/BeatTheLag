@@ -23,7 +23,7 @@ class Login extends Component {
       win.focus();
     }
 
-    signIn() {
+    componentDidMount() {
         // uiConfig code 
         let uiConfig = {
             callbacks: {

@@ -2,8 +2,8 @@
 This is the design requirement for BeatTheLag. BeatTheLag is the web application that allow user to create their own personalized jet lag plans.
 
 ## Login page
-- When open up our page, user will see the big button with text "sign in with Google" in between 2-5 second.
-- If user click the "sign in with Google" button, they will get direct to the Google api sign in in 1 second. At there, they will see the form showing "***Choose an account to continue to beatthelag-info442.firebaseapp.com***" and they should able to choose their google account to sign in with our system.
+- When open up our page, user will see the big button with text "sign in with Google" in between 1-5 second.
+- If user click the "sign in with Google" button, they will get direct to the Google api sign in. At there, they will see the form showing "***Choose an account to continue to beatthelag-info442.firebaseapp.com***" and they should able to choose their google account to sign in with our system.
 - If user do not have a Google account, Google api should direct user to make an account with Google system.
 - After user sign in with their Google account successfully, they should be taken to input page in one second.
 

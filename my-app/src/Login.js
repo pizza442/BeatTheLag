@@ -7,8 +7,8 @@ class Login extends Component {
 
     /**
      * Handles Google Sign in
-     * If sign in is successfull, (TODO) redirects to schedule input form 
-     * 
+     * If sign in is successfull, (TODO) redirects to schedule input form
+     *
      * Uses code from Google's documentation https://firebase.google.com/docs/auth/web/firebaseui?authuser=0
      */
     openInNewTab =(url)=> {
@@ -17,7 +17,7 @@ class Login extends Component {
     }
 
     signIn() {
-        // uiConfig code 
+        // uiConfig code
         let uiConfig = {
             callbacks: {
               signInSuccessWithAuthResult: function(authResult, redirectUrl) {
@@ -29,7 +29,7 @@ class Login extends Component {
               uiShown: function() {
                 // The widget is rendered.
                 // Hide the loader.
-                //document.getElementById('loader').style.display = 'none';
+                // document.getElementById('loader').style.display = 'none';
               }
             },
             // TODO: Change redirect url to schedule input form

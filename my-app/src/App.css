@@ -1,24 +1,83 @@
 .App {
-  text-align: center;
+    margin-left: 3em;
+    margin-right: 3em;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
+    height: 150px;
+    padding: 20px;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+body {
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+body, h2, input {
+    font-family: 'Acumin Pro', sans-serif;
+}
+
+h1 {
+    color: #EF5600;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 400;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 400;
+    color: #007BAF;
+}
+
+strong {
+    font-weight: 500;
+}
+
+/* Small devices, phones */
+@media (min-width: 576px) {
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Medium devices, tablets */
+@media (min-width: 768px) {
+    .App {
+        margin-left: 5em;
+        margin-right: 5em;
+    }
+    
+    h1 {
+        font-size: 3rem;
+    }
+}
+
+/* Large devices, desktops */
+@media (min-width: 992px) {
+    .App {
+        margin-left: 10em;
+        margin-right: 10em;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+    }
+}
+
+/* Extra-large devices, large desktops*/
+@media (min-width: 1200px) {
+    .App {
+        margin-left: 20em;
+        margin-right: 20em;
+    }
 }

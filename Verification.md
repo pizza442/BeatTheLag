@@ -1,24 +1,34 @@
 # Plan verification
 
 ## LoginHandler
-- Testing requirement: When open up our page, user will see the big button with text "sign in with Google" in between 1-5 second
-- Test: After we have deployed our page onto GitHub, we will put our page link onto
+- **Testing requirement**: When open up our page, user will see the big button with text "sign in with Google" in between 1-5 second
+- **Test**: After we have deployed our page onto GitHub, we will put our page link onto [Google pagespeed insight](https://tools.pingdom.com/#5ab7276ce5000000) to see how many second it takes to load our page.
 
+- **Testing requirement**: If user click the "sign in with Google" button, they will get direct to the Google api sign in. At there, they will see the form showing "***Choose an account to continue to beatthelag-info442.firebaseapp.com***" and they should able to choose their google account to sign in with our system.
+- **Test**: We will manually test by clicking the button on our own machine and inspect the page to see if out system has direct to Google sign in.
+
+- **Testing requirement**: If user do not have a Google account, Google api should direct user to make an account with Google system. they should able to choose their google account to sign in with our system.
+- **Test**: We will manually test by clicking "Create an account" shows up in Google sign in page and inspect can in create the account and sign in.
+
+- **Testing requirement**: After user sign in with their Google account successfully, they should be taken to input page.
+- **Test**: We will inspect our page to see if our system have successfully take user to input page.
 
 ## InputHandler
 Make sure if user didn't put down the input, our system shows up the error
-- Testing requirement: If any input is blank, when users click the “Get my schedule” button, the system will display an error message in the middle with red text “Error: Your form is incomplete or you have the invalid input, please check your form again” after 1 second.
-- Input:
-    - (Since we are using HTML date object to let user pick their date, the only possible input we will get will be wither null or date object.)
+- **Testing requirement**: If any input is blank, when users click the “Get my schedule” button, the system will display an error message in the middle with red text “Error: Your form is incomplete or you have the invalid input, please check your form again” after 1 second.
+- **Test**
+    - Input:
+        - (Since we are using HTML date object to let user pick their date, the only possible input we will get will be wither null or date object.)
 
-    - if the input HTML date object: The form fields that are required should have messages with green check icon above them that say “***Your sleeping schedule has been updated on your google calendar!”***” or ***You don't need to change your sleeping schedule!”*** based on the date they put down (see next test).
+        - if the input HTML date object: The form fields that are required should have messages with green check icon above them that say “***Your sleeping schedule has been updated on your google calendar!”***” or ***You don't need to change your sleeping schedule!”*** based on the date they put down (see next test).
 
-    - if input is null: The input fields (either departure or arrival date/ sleeping or awake time) that are required should have red error messages below them that say “Error: Your form is incomplete or you have the invalid input, please check your form again”.
+        - if input is null: The input fields (either departure or arrival date/ sleeping or awake time) that are required should have red error messages below them that say “Error: Your form is incomplete or you have the invalid input, please check your form again”.
 
 
 ## ScheduleGenerator
 Make sure the difference between the departure and arrival date is more than 2 day
-- Testing requirement:  If user's arrival date and departure date is at the same date, there will have a green check icon and the message “***You don't need to change your sleeping schedule!***"" is displayed.
-- Input: two date object that represent arrival date and departure date  
-    - If difference between these two dates is less than two days, after user click the "get schedule" button, they should see "***You don't need to change your sleeping schedule!”***" above the form fields that are required.
-    - if difference these two date is more than or equal to two days, they should see "***Your sleeping schedule has been updated on your google calendar!”***" above the form fields that are required.
+- **Testing requirement**:  If user's arrival date and departure date is at the same date, there will have a green check icon and the message “***You don't need to change your sleeping schedule!***"" is displayed.
+- **Test**
+    - Input: two date object that represent arrival date and departure date  
+        - If difference between these two dates is less than two days, after user click the "get schedule" button, they should see "***You don't need to change your sleeping schedule!”***" above the form fields that are required.
+        - if difference these two date is more than or equal to two days, they should see "***Your sleeping schedule has been updated on your google calendar!”***" above the form fields that are required.

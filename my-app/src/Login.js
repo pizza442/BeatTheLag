@@ -5,6 +5,13 @@ import Input from './Input';
 
 class Login extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            token: ''
+        };
+    }
+
     /**
      * Handles Google Sign in
      * If sign in is successfull, (TODO) redirects to schedule input form
@@ -16,7 +23,7 @@ class Login extends Component {
       win.focus();
     }
 
-    signIn() {
+    componentDidMount() {
         // uiConfig code
         let uiConfig = {
             callbacks: {
@@ -24,16 +31,26 @@ class Login extends Component {
                 // User successfully signed in.
                 // Return type determines whether we continue the redirect automatically
                 // or whether we leave that to developer to handle.
+
+                if (authResult.credential) {
+                    console.log(authResult.credential.accessToken);
+                    // https://firebase.google.com/docs/auth/web/google-signin
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+
+                    //var accessToken = authResult.credential.accessToken;
+                    //this.setState({ token: accessToken });
+                }
+
                 return true;
               },
               uiShown: function() {
                 // The widget is rendered.
                 // Hide the loader.
-                // document.getElementById('loader').style.display = 'none';
+                //document.getElementById('loader').style.display = 'none';
               }
             },
             // TODO: Change redirect url to schedule input form
-            signInSuccessUrl: '<url-to-redirect-to-on-success>',
+            signInSuccessUrl: "input",
             signInOptions: [
               // Leave the lines as is for the providers you want to offer your users.
               firebase.auth.GoogleAuthProvider.PROVIDER_ID
@@ -44,7 +61,6 @@ class Login extends Component {
     }
 
     render() {
-        this.signIn();
         return(
             <div id="firebaseui-auth-container"></div>
         );

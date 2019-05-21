@@ -100,9 +100,12 @@ export class Schedule {
 
     }
 
-    packageJSON(): JSON {
+    // packageJSON(): JSON {
+        
+    //     // let voorhees: any = {"Dates" : ["day" : 1]};
+
         
         
-        return this.packageJSON(); //Placeholder
-    }
+    //     // return JSON; //Placeholder
+    // }
 }

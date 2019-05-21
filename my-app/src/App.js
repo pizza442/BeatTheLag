@@ -16,7 +16,7 @@ class App extends Component {
         health when traveling.
         </p>
         
-        <Login></Login>
+        <Login className="Login"></Login>
       </div>
     );
   }

@@ -5,6 +5,19 @@
 
 export class Schedule {
 
+    private DepartureLocation: string;
+    private DepartureTime: Date; //Mean't to be the time. use .getHours() and .getMinutes().
+    private DepartureDate: Date; //Date use .getDate().
+
+    private ArrivalLocation: string;
+    private ArrivalTime: Date; //Mean't to be the time. use .getHours() and .getMinutes().
+    private ArrivalDate: Date; //Date use .getDate().
+
+    private NormalSleepTime: Date;
+    private NormalWakeTime: Date;
+
+    private calendar: number[][];
+    
     constructor (DepartureLocation, DepartureTime, DepartureDate,
                  ArrivalLocation, ArrivalTime, ArriveDate,
                  NormalSleepTime, NormalWakeTime) {
@@ -15,7 +28,7 @@ export class Schedule {
 
         this.ArrivalLocation = ArrivalLocation;
         this.ArrivalTime = ArrivalTime;
-        this.ArriveDate = ArriveDate;
+        this.ArrivalDate = ArriveDate;
 
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
@@ -38,9 +51,9 @@ export class Schedule {
     }
 
     create() {
-        let totalDays = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
+        let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
 
-        let sleepingLength = this.NormalWakeTime - this.NormalSleepTime; //Don't know if we're going to need this
+        let sleepingLength: number = this.NormalWakeTime - this.NormalSleepTime; //Don't know if we're going to need this
 
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
@@ -66,7 +79,6 @@ export class Schedule {
             alert("You don't need this page what are you doing, you fool");
         }
         // Should we return the JSON array?
-        // output should have: start-time, end-time, start-date, end-date, 
 
     }
 }

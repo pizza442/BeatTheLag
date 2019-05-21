@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import firebaseui from 'firebaseui';
+import Input from './Input';
 
 class Login extends Component {
 
@@ -17,8 +18,12 @@ class Login extends Component {
      * 
      * Uses code from Google's documentation https://firebase.google.com/docs/auth/web/firebaseui?authuser=0
      */
-    componentDidMount() {
+    openInNewTab =(url)=> {
+      var win = window.open(url, '_blank');
+      win.focus();
+    }
 
+    signIn() {
         // uiConfig code 
         let uiConfig = {
             callbacks: {
@@ -31,7 +36,7 @@ class Login extends Component {
                     console.log(authResult.credential.accessToken);
                     // https://firebase.google.com/docs/auth/web/google-signin
                     // This gives you a Google Access Token. You can use it to access the Google API.
-                    
+
                     //var accessToken = authResult.credential.accessToken;
                     //this.setState({ token: accessToken });
                 }

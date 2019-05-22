@@ -23,7 +23,7 @@ export class Schedule {
     private NormalWakeTime: Date;
 
     private calendar: number[][];
-    
+
     constructor (DepartureLocation, DepartureTime, DepartureDate,
                  ArrivalLocation, ArrivalTime, ArriveDate,
                  NormalSleepTime, NormalWakeTime) {
@@ -66,7 +66,7 @@ export class Schedule {
 
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
-        
+
         //Doesn't account for:
         //  *Months with 31 days.
         //  *Months with < 30 days.
@@ -75,7 +75,7 @@ export class Schedule {
                 totalDays += 30;
             }
         }
-        
+
         for (let i = 0; i < totalDays; i++) {
             this.calendar.push([]);
         }
@@ -100,12 +100,25 @@ export class Schedule {
 
     }
 
+    var result = {
+        "start": {
+            "dateTime": "2019-05-24T09:00:00-07:00",
+            "timeZone": "America/Los_Angeles"
+        },
+        "end": {
+            "dateTime": "2019-05-30T09:00:00-07:00",
+            "timeZone": "America/New_York"
+        }
+
+    }
+
+    return result;
     // packageJSON(): JSON {
-        
+
     //     // let voorhees: any = {"Dates" : ["day" : 1]};
 
-        
-        
+
+
     //     // return JSON; //Placeholder
     // }
 }

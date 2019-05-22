@@ -11,10 +11,13 @@
 - **Test**: We will manually test by clicking "Create an account" shows up in Google sign in page and inspect can in create the account and sign in.
 
 - **Testing requirement**: After user sign in with their Google account successfully, they should be taken to input page.
-- **Test**: We will inspect our page to see if our system have successfully take user to input page.
+- **Test**: We will manually inspect our page to see if our system have successfully take user to input page.
 
 ## InputHandler
-Make sure if user didn't put down the input, our system shows up the error
+- **Testing requirements**:
+    - When user gets to the input-page, they will see the form which requires them to enter their flight and sleeping information and there's a button labeled “Get my schedule” to get their sleeping schedule.
+- **Test**: We will manually inspect our page to see if there is a form after we sign in.
+
 - **Testing requirement**: If any input is blank, when users click the “Get my schedule” button, the system will display an error message in the middle with red text “Error: Your form is incomplete or you have the invalid input, please check your form again” after 1 second.
 - **Test**
     - Input:

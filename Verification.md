@@ -23,12 +23,14 @@
         - Departure date & time: in format of: `YYYY/MM/DD`
         - Time usually get to sleep: `hour:minute`
         - Time usually wake up: `hour:minute`
+    - These inputs will be the dropdown menu with the default value of blank
+    - When users click the “Get my schedule” button, the waiting animation will be shown in the middle of the page for about 5 second (this is the time when system is generating the sleeping schedule)
+    -
 - **Test**: We will manually inspect our page to see if there is a form after we sign in.
 
-- **Testing requirement**: 
-- **Test**:
-
-- **Testing requirement**: If any input is blank, when users click the “Get my schedule” button, the system will display an error message in the middle with red text “Error: Your form is incomplete or you have the invalid input, please check your form again” after 1 second.
+- **Testing requirement**:
+    - Users must input all the information above in order to get their sleeping schedule.
+    - If any input is blank, when users click the “Get my schedule” button, the system will display an error message in the middle with red text “Error: Your form is incomplete or you have the invalid input, please check your form again” after 1 second.
 - **Test**
     - Input:
         - (Since we are using HTML date object to let user pick their date, the only possible input we will get will be wither null or date object.)
@@ -37,11 +39,55 @@
 
         - if input is null: The input fields (either departure or arrival date/ sleeping or awake time) that are required should have red error messages below them that say “Error: Your form is incomplete or you have the invalid input, please check your form again”.
 
-
-## ScheduleGenerator
-Make sure the difference between the departure and arrival date is more than 2 day
 - **Testing requirement**:  If user's arrival date and departure date is at the same date, there will have a green check icon and the message “***You don't need to change your sleeping schedule!***"" is displayed.
 - **Test**
     - Input: two date object that represent arrival date and departure date  
-        - If difference between these two dates is less than two days, after user click the "get schedule" button, they should see "***You don't need to change your sleeping schedule!”***" above the form fields that are required.
-        - if difference these two date is more than or equal to two days, they should see "***Your sleeping schedule has been updated on your google calendar!”***" above the form fields that are required.
+        - If difference between these two dates is less than two days (arrivalDate -departureDate < 2), after user click the "get schedule" button, they should see "***You don't need to change your sleeping schedule!”***" above the form fields that are required.
+        - if difference these two date is more than or equal to two days(arrivalDate -departureDate >= 2), they should see "***Your sleeping schedule has been updated on your google calendar!”***" above the form fields that are required.
+
+- **Testing requirement**: The sleeping schedule produced by the system should be follow the principles in [research](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) over here.
+- **Test**: We will manually calculate the output that suppose to generate by our system (which fit the result) and test it by input the value and compare the schedule that output by our system  
+    - What we input in our system:
+        - Departure location: [`Las Vegas`, `US`]
+        - Arrival location: [`New York City`, `US`]
+        - Arrival date & time: in format of: `2019/07/23`  
+        - Departure date & time: in format of: `2019/07/20`
+        - Time usually get to sleep: `23:00`
+        - Time usually wake up: `07:30`
+    - Expect Output: JSON object
+        -
+        ```js
+        {
+            {
+                "start": {
+                    "dateTime": "2019-07-17T022:00:00-07:30",
+                    "timeZone": "America/Los_Angeles"
+                },
+                "end": {
+                    "dateTime": "2019-07-18T06:00:00-07:00",
+                    "timeZone": "America/Los_Angeles"
+                }
+
+            },
+            {
+                "start": {
+                    "dateTime": "2019-07-18T022:00:00-07:30",
+                    "timeZone": "America/Los_Angeles"
+                },
+                "end": {
+                    "dateTime": "2019-07-19T06:00:00-07:00",
+                    "timeZone": "America/Los_Angeles"
+                }
+            },
+            {
+                "start": {
+                    "dateTime": "2019-07-19T022:00:00-07:30",
+                    "timeZone": "America/Los_Angeles"
+                },
+                "end": {
+                    "dateTime": "2019-07-20T06:00:00-07:00",
+                    "timeZone": "America/Los_Angeles"
+                }
+            }    
+        }
+        ```

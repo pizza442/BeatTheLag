@@ -61,7 +61,6 @@
         - Time usually get to sleep: `23:00`
         - Time usually wake up: `07:30`
     - Expect Output: JSON object
-        -
         ```js
         {
             {

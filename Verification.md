@@ -27,7 +27,6 @@
         - Time usually wake up: `hour:minute`
     - These inputs will be the dropdown menu with the default value of blank
     - When users click the “Get my schedule” button, the waiting animation will be shown in the middle of the page for about 5 second (this is the time when system is generating the sleeping schedule)
-    -
 - **Test**: We will manually inspect our page to see if there is a form after we sign in.
 
 #### **Testing requirement**:

@@ -40,6 +40,5 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
 - The sleeping schedule produced by the system should be follow the principles in [research](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) over here.
 - The sleeping schedule produced by the system will be added onto the user’s google calendar with the title “Sleeping time”.
 - The sleeping schedule will start on the day depending on user’s flight and sleeping information (again, follow the principles above).
-- The sleeping schedule will end at user’s departure date.
-- After the sleeping schedule was added, user will also get a notification 10 minutes before they should go to sleep from the day schedule is started until the day of departure.    
+- The sleeping schedule will end at user’s departure date. 
 - If user has used our service before and have an old schedule, if they make a new schedule, the old schedule will be directly updated to the new schedule

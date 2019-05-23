@@ -16,7 +16,17 @@
 ## InputHandler
 - **Testing requirements**:
     - When user gets to the input-page, they will see the form which requires them to enter their flight and sleeping information and there's a button labeled “Get my schedule” to get their sleeping schedule.
+    - User must be able to put in their flight information, includes:
+        - Departure location: [`City`, `Nation`]
+        - Arrival location: [`City`, `Nation`]
+        - Arrival date & time: in format of: `YYYY/MM/DD`  
+        - Departure date & time: in format of: `YYYY/MM/DD`
+        - Time usually get to sleep: `hour:minute`
+        - Time usually wake up: `hour:minute`
 - **Test**: We will manually inspect our page to see if there is a form after we sign in.
+
+- **Testing requirement**: 
+- **Test**:
 
 - **Testing requirement**: If any input is blank, when users click the “Get my schedule” button, the system will display an error message in the middle with red text “Error: Your form is incomplete or you have the invalid input, please check your form again” after 1 second.
 - **Test**

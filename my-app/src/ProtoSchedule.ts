@@ -117,8 +117,6 @@ export class Schedule {
 
     //     // let voorhees: any = {"Dates" : ["day" : 1]};
 
-
-
     //     // return JSON; //Placeholder
     // }
 }

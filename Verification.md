@@ -19,15 +19,14 @@
 #### **Testing requirements**:
     - When user gets to the input-page, they will see the form which requires them to enter their flight and sleeping information and there's a button labeled “Get my schedule” to get their sleeping schedule.
     - User must be able to put in their flight information, includes:
-        - Departure location: [`City`, `Nation`]
-        - Arrival location: [`City`, `Nation`]
+        - Departure time zone: [`timezone`]
+        - Arrival time zone: [`timezone`]
         - Arrival date & time: in format of: `YYYY/MM/DD`  
         - Departure date & time: in format of: `YYYY/MM/DD`
-        - Time usually get to sleep: `hour:minute`
-        - Time usually wake up: `hour:minute`
+        - Usual sleeping hour: `how many hours user usually sleep`
     - These inputs will be the dropdown menu with the default value of blank
     - When users click the “Get my schedule” button, the waiting animation will be shown in the middle of the page for about 5 second (this is the time when system is generating the sleeping schedule)
-    
+
 - **Test**: We will manually inspect our page to see if there is a form after we sign in.
 
 #### **Testing requirement**:
@@ -48,6 +47,13 @@
         - If difference between these two dates is less than two days (arrivalDate -departureDate < 2), after user click the "get schedule" button, they should see "***You don't need to change your sleeping schedule!”***" above the form fields that are required.
         - if difference these two date is more than or equal to two days(arrivalDate -departureDate >= 2), they should see "***Your sleeping schedule has been updated on your google calendar!”***" above the form fields that are required.
 
+#### **Testing requirement**:  
+    - If user has the same awake time and sleep time, the system will output the error.
+- **Test**
+    - Input: two time number (double) that represent awake time and sleep time  
+        - If number of sleeping hour (awake time - sleep time) is less than 1 hour, after user click the "get schedule" button, they should see "***You need more sleep, get a life.***" above the form fields that are required.
+        - Otherwise, user should see "***Your sleeping schedule has been updated on your google calendar!”***" above the form fields that are required.
+
 #### **Testing requirement**:
     - The sleeping schedule produced by the system should be follow the principles in [research](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) over here.
     - The sleeping schedule will start on the day depending on user’s flight and sleeping information (again, follow the principles above).
@@ -65,32 +71,32 @@
         {
             {
                 "start": {
-                    "dateTime": "2019-07-17T022:00:00-07:00",
+                    "dateTime": "2019-07-17T022:00:00-00:00",
                     "timeZone": "America/Los_Angeles"
                 },
                 "end": {
-                    "dateTime": "2019-07-18T06:00:00-07:00",
+                    "dateTime": "2019-07-18T06:00:00-00:00",
                     "timeZone": "America/Los_Angeles"
                 }
 
             },
             {
                 "start": {
-                    "dateTime": "2019-07-18T021:00:00-07:00",
+                    "dateTime": "2019-07-18T021:00:00-00:00",
                     "timeZone": "America/Los_Angeles"
                 },
                 "end": {
-                    "dateTime": "2019-07-19T06:00:00-07:00",
+                    "dateTime": "2019-07-19T06:00:00-00:00",
                     "timeZone": "America/Los_Angeles"
                 }
             },
             {
                 "start": {
-                    "dateTime": "2019-07-19T022:00:00-07:00",
+                    "dateTime": "2019-07-19T022:00:00-00:00",
                     "timeZone": "America/Los_Angeles"
                 },
                 "end": {
-                    "dateTime": "2019-07-20T06:00:00-07:00",
+                    "dateTime": "2019-07-20T06:00:00-00:00",
                     "timeZone": "America/Los_Angeles"
                 }
             }    

@@ -45,7 +45,7 @@
 - **Test**
     - Input: two date object that represent arrival date and departure date  
         - If difference between these two dates is less than two days (arrivalDate -departureDate < 2), after user click the "get schedule" button, they should see "***You don't need to change your sleeping schedule!”***" above the form fields that are required.
-        - if difference these two date is more than or equal to two days(arrivalDate -departureDate >= 2), they should see "***Your sleeping schedule has been updated on your google calendar!”***" above the form fields that are required.
+        - If difference between these two date is more than or equal to two days(arrivalDate -departureDate >= 2), they should see "***Your sleeping schedule has been updated on your google calendar!”***" above the form fields that are required.
 
 #### **Testing requirement**:  
     - If user has the same awake time and sleep time, the system will output the error.

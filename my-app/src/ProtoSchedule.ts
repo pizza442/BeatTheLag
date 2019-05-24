@@ -23,6 +23,7 @@ export class Schedule {
     private NormalWakeTime: Date;
 
     private calendar: number[][];
+    private timeZoneMap: Map<string, any[]>;
 
     constructor (DepartureLocation, DepartureTime, DepartureDate,
                  ArrivalLocation, ArrivalTime, ArriveDate,
@@ -41,6 +42,8 @@ export class Schedule {
 
         //2D array, where [i][0] is start time, [i][1] is end time
         this.calendar = [];
+
+        this.timeZoneMap = new Map();
 
         // totalDays = DepartureDate - ArriveDate
         // sleepingLength =  NormalWakeTime - NormalSleepTime
@@ -98,6 +101,10 @@ export class Schedule {
         }
         // Should we return the JSON array?
 
+    }
+
+    populateTimeZones() {
+        
     }
 
 

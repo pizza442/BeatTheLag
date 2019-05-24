@@ -109,7 +109,7 @@ export class Schedule {
             "start": {
                 "dateTime": "2019-05-24T09:00:00-07:00",
                 "timeZone": "America/Los_Angeles"
-            },
+            }, 
             "end": {
                 "dateTime": "2019-05-30T09:00:00-07:00",
                 "timeZone": "America/New_York"

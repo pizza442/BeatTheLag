@@ -5,14 +5,14 @@
 
 export class Schedule {
 
-    private DepartureLocation: string;
+    private DepartureTimeZone: string;
     private DepartureTime: Date; //Mean't to be the time. use .getHours() and .getMinutes().
     private DepartureDate: Date; //Date use .getDate().
     private DepartureMonth: number;
     private DepartureDay: number;
     private DepartureYear: number;
 
-    private ArrivalLocation: string;
+    private ArrivalTimeZone: string;
     private ArrivalTime: Date; //Mean't to be the time. use .getHours() and .getMinutes().
     private ArrivalDate: Date; //Date use .getDate().
     private ArrivalMonth?: number;
@@ -22,6 +22,8 @@ export class Schedule {
     private NormalSleepTime: Date;
     private NormalWakeTime: Date;
 
+    private totalDays: number;
+
     private calendar: number[][];
     private timeZoneMap: Map<string, any[]>;
 
@@ -29,20 +31,23 @@ export class Schedule {
                  ArrivalLocation, ArrivalTime, ArriveDate,
                  NormalSleepTime, NormalWakeTime) {
 
-        this.DepartureLocation = DepartureLocation;
+        this.DepartureTimeZone = DepartureTimeZone;
         this.DepartureTime = DepartureTime;
         this.DepartureDate = DepartureDate;
 
-        this.ArrivalLocation = ArrivalLocation;
+        this.ArrivalTimeZone = ArrivalTimeZone;
         this.ArrivalTime = ArrivalTime;
         this.ArrivalDate = ArriveDate;
 
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
 
+        this.stotalDays = Math.abs(this.DepartureTimeZone - this.ArrivalTimeZone);
         //2D array, where [i][0] is start time, [i][1] is end time
         this.calendar = [];
-
+        for (let i = 0; i < this.totalDays; i++) {
+            this.calendar.push([]);
+        }s
         this.timeZoneMap = new Map();
 
         // totalDays = DepartureDate - ArriveDate
@@ -61,7 +66,7 @@ export class Schedule {
 
     create() {
         let monthDiff: number = Math.abs(this.DepartureMonth - this.ArrivalMonth);
-        let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
+        //let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
         let totalDays: number = dayDiff;
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
 
@@ -103,7 +108,7 @@ export class Schedule {
 
     }
 
-
+    // for loop for
 
 
     //returns JSON... I guess.

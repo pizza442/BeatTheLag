@@ -47,7 +47,7 @@ export class Schedule {
         this.calendar = [];
         for (let i = 0; i < this.totalDays; i++) {
             this.calendar.push([]);
-        }s
+        }
         this.timeZoneMap = new Map();
 
         // totalDays = DepartureDate - ArriveDate

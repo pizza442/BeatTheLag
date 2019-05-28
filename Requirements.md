@@ -12,12 +12,11 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
 
 - User must be able to put in their flight information, these include:
 
-    - Departure location: [`City`, `Nation`]
-    - Arrival location: [`City`, `Nation`]
-        - Departure and arrival location will be presented as drop down list, so users are only allow to pick the value instead of entering the input.
-        - The order of item in the dropdown list will be in alphabetical order from A to Z
-        - The default value for both dropdown lists will be set to blank
-        - If user input the location that has no time zone difference
+    - Departure time zone: [`time zone`]
+    - Arrival time zone: [`time zone`]
+        - Departure and arrival time zone will be presented as drop down list, so users are only allow to pick the value instead of entering the input.
+        - The default value for both dropdown lists will be set to "UTC+0";
+        - If user input the time zone that has no difference, our system will show the error
 
      - Arrival date & time: in format of: `YYYY/MM/DD`  
      - Departure date & time: in format of: `YYYY/MM/DD`
@@ -28,7 +27,7 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
     - Time usually get to sleep: `hour:minute`
     - Time usually wake up: `hour:minute`
         - The input boxes for selecting `hour:minute` will be the dropdown list of military time with default value blank.
-        - If user has the same wake up and sleep time, the system will output the error. 
+        - If user has the same wake up and sleep time, the system will output the error.
         - Hour drop down will have selected value start from 00 to 23.
         - Minute drop down will have selected value start from 00 to 50 divided by 10 minutes interval (e.g. 10, 20, 30).
         - The input boxes for selecting `AM` or `PM` will be the dropdown list with default value blank.

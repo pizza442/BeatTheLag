@@ -13,8 +13,8 @@ class Login extends Component {
 
     /**
      * Handles Google Sign in
-     * If sign in is successfull, (TODO) redirects to schedule input form 
-     * 
+     * If sign in is successfull, (TODO) redirects to schedule input form
+     *
      * Uses code from Google's documentation https://firebase.google.com/docs/auth/web/firebaseui?authuser=0
      */
     openInNewTab =(url)=> {
@@ -85,7 +85,7 @@ class Login extends Component {
               }
             },
             // TODO: Change redirect url to schedule input form
-            signInSuccessUrl: "test.html",
+            signInSuccessUrl: "",
             signInOptions: [
               // Leave the lines as is for the providers you want to offer your users.
               firebase.auth.GoogleAuthProvider.PROVIDER_ID

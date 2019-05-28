@@ -7,9 +7,8 @@ class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            token: ''
-        };
+        this.state = {};
+        this.signInSuccessWithAuthResultCallback = this.signInSuccessWithAuthResultCallback.bind(this);
     }
 
     /**
@@ -23,26 +22,62 @@ class Login extends Component {
       win.focus();
     }
 
+    signInSuccessWithAuthResultCallback(authResult) {
+        // User successfully signed in.
+        var user = authResult.user;
+        var credential = authResult.credential;
+        var isNewUser = authResult.additionalUserInfo.isNewUser;
+        var userId = user.uid
+    
+        // for testing
+        console.log(authResult);
+
+        if (credential) {
+            // https://firebase.google.com/docs/auth/web/google-signin
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var accessToken = credential.accessToken;
+
+            // for testing
+            console.log(credential.accessToken);
+
+            if (isNewUser) {
+                // if the user has not signed in before
+                console.log('New user: ' + user.email);
+                
+                // store user in firebase
+                firebase.database().ref('users/' + userId).set({
+                    email: user.email,
+                    accessToken: accessToken
+                })
+            } else  {
+                // Returning user
+
+                // for testing
+                console.log('Returning user: ' + user.email);
+                console.log("Updating access token for current user...");
+                
+                // update the access token for the current user
+                let userRef = firebase.database().ref('users').child(userId);
+                userRef.update({ accessToken: accessToken })
+            }
+            // set the access token for the current user
+            this.setState({token: accessToken});
+        }
+        // Return type determines whether we continue the redirect automatically
+        // or whether we leave that to developer to handle.
+        // Do something with the returned AuthResult.
+        return true;
+      }
+
     componentDidMount() {
-        // uiConfig code
+        var loginThis = this;
+        
+        // uiConfig code 
         let uiConfig = {
             callbacks: {
-              signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-                // User successfully signed in.
-                // Return type determines whether we continue the redirect automatically
-                // or whether we leave that to developer to handle.
-
-                if (authResult.credential) {
-                    console.log(authResult.credential.accessToken);
-                    // https://firebase.google.com/docs/auth/web/google-signin
-                    // This gives you a Google Access Token. You can use it to access the Google API.
-
-                    //var accessToken = authResult.credential.accessToken;
-                    //this.setState({ token: accessToken });
-                }
-
-                return true;
-              },
+                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                loginThis.signInSuccessWithAuthResultCallback(authResult);
+            }, 
               uiShown: function() {
                 // The widget is rendered.
                 // Hide the loader.
@@ -50,7 +85,7 @@ class Login extends Component {
               }
             },
             // TODO: Change redirect url to schedule input form
-            signInSuccessUrl: "input",
+            signInSuccessUrl: "",
             signInOptions: [
               // Leave the lines as is for the providers you want to offer your users.
               firebase.auth.GoogleAuthProvider.PROVIDER_ID

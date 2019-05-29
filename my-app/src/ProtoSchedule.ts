@@ -27,8 +27,8 @@ export class Schedule {
     private calendar: number[][];
     private timeZoneMap: Map<string, any[]>;
 
-    constructor (DepartureLocation, DepartureTime, DepartureDate,
-                 ArrivalLocation, ArrivalTime, ArriveDate,
+    constructor (DepartureTimeZone, DepartureTime, DepartureDate,
+                 ArrivalTimeZone, ArrivalTime, ArriveDate,
                  NormalSleepTime, NormalWakeTime) {
 
         this.DepartureTimeZone = DepartureTimeZone;
@@ -42,7 +42,7 @@ export class Schedule {
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
 
-        this.stotalDays = Math.abs(this.DepartureTimeZone - this.ArrivalTimeZone);
+        this.totalDays = Math.abs(parseInt(this.DepartureTimeZone.substring(3)) - parseInt(this.ArrivalTimeZone.substring(3)));
         //2D array, where [i][0] is start time, [i][1] is end time
         this.calendar = [];
         for (let i = 0; i < this.totalDays; i++) {
@@ -67,7 +67,6 @@ export class Schedule {
     create() {
         let monthDiff: number = Math.abs(this.DepartureMonth - this.ArrivalMonth);
         //let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
-        let totalDays: number = dayDiff;
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
 
         let sleepingLength: number = Math.abs(this.NormalWakeTime.getHours() - this.NormalSleepTime.getHours()); //Don't know if we're going to need this
@@ -80,24 +79,24 @@ export class Schedule {
         //  *Months with < 30 days.
         if (monthDiff > 0) {
             for (let i = 0; i < monthDiff; i++) {
-                totalDays += 30;
+                this.totalDays += 30;
             }
         }
 
-        for (let i = 0; i < totalDays; i++) {
+        for (let i = 0; i < this.totalDays; i++) {
             this.calendar.push([]);
         }
 
         let startTime = this.NormalSleepTime.getHours();
         let endTime = this.NormalWakeTime.getHours(); //Change to numbers if Ali does it as expected.
 
-        if (totalDays > 0) {
-            for (let i = 0; i < totalDays; i++) {
+        if (this.totalDays > 0) {
+            for (let i = 0; i < this.totalDays; i++) {
                 this.calendar[i][0] = startTime--;
                 this.calendar[i][1] = endTime--;
             }
-        } else if (totalDays < 0) {
-            for (let i = 0; i < totalDays; i++) {
+        } else if (this.totalDays < 0) {
+            for (let i = 0; i < this.totalDays; i++) {
                 this.calendar[i][0] = startTime++;
                 this.calendar[i][1] = endTime++;
             }
@@ -105,11 +104,7 @@ export class Schedule {
             alert("You don't need this page what are you doing, you ugly");
         }
         // Should we return the JSON array?
-
     }
-
-    // for loop for
-
 
     //returns JSON... I guess.
     packageJSON(): any {

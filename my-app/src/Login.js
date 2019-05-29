@@ -85,7 +85,7 @@ class Login extends Component {
               }
             },
             // TODO: Change redirect url to schedule input form
-            signInSuccessUrl: "",
+            signInSuccessUrl: "test.html",
             signInOptions: [
               // Leave the lines as is for the providers you want to offer your users.
               firebase.auth.GoogleAuthProvider.PROVIDER_ID

@@ -88,15 +88,27 @@ export class Schedule {
         }
 
         let startTime = this.NormalSleepTime.getHours();
-        let endTime = this.NormalWakeTime.getHours(); //Change to numbers if Ali does it as expected.
+        let endTime = this.NormalWakeTime.getHours(); 
 
         if (this.totalDays > 0) {
             for (let i = 0; i < this.totalDays; i++) {
+                if (this.calendar[i][0] < 0) {
+                    startTime = 25;
+                }
+                if (this.calendar[i][1] < 0) {
+                    endTime = 25;
+                }
                 this.calendar[i][0] = startTime--;
                 this.calendar[i][1] = endTime--;
             }
         } else if (this.totalDays < 0) {
             for (let i = 0; i < this.totalDays; i++) {
+                if (this.calendar[i][0] > 24) {
+                    startTime = -1;
+                }
+                if (this.calendar[i][1] > 24) {
+                    endTime = -1;
+                }
                 this.calendar[i][0] = startTime++;
                 this.calendar[i][1] = endTime++;
             }

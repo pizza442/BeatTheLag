@@ -134,3 +134,4 @@ export class Schedule {
         }
         return result;
     }
+}

@@ -77,15 +77,15 @@ export class Schedule {
         //Doesn't account for:
         //  *Months with 31 days.
         //  *Months with < 30 days.
-        if (monthDiff > 0) {
-            for (let i = 0; i < monthDiff; i++) {
-                this.totalDays += 30;
-            }
-        }
+        // if (monthDiff > 0) {
+        //     for (let i = 0; i < monthDiff; i++) {
+        //         this.totalDays += 30;
+        //     }
+        // }
 
-        for (let i = 0; i < this.totalDays; i++) {
-            this.calendar.push([]);
-        }
+        // for (let i = 0; i < this.totalDays; i++) {
+        //     this.calendar.push([]);
+        // }
 
         let startTime = this.NormalSleepTime.getHours();
         let endTime = this.NormalWakeTime.getHours(); 
@@ -116,6 +116,23 @@ export class Schedule {
             alert("You don't need this page what are you doing, you ugly");
         }
         // Should we return the JSON array?
+    }
+
+    test(): any {
+        console.log("it's connected. Ali looks like Elmer FUdd");
+    }
+
+    calculateStartMonth(): number {
+        let startDay: number;
+        let startMonth: number;
+        startDay = this.DepartureDay - this.totalDays;
+        if (startDay <= 0) {
+            startDay = Math.abs(startDay) - 1;
+            if (startDay == 0) {
+                startDay += 1;
+            }
+        }
+        return 0;
     }
 
     //returns JSON... I guess.

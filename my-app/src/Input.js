@@ -66,6 +66,7 @@ class Input extends Component {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); 
     var yyyy = today.getFullYear();          
     today = yyyy+ '-' + mm + '-' + dd;
+    this.setState({startDate: today});
     return today;
     //2019-05-28
   }
@@ -76,7 +77,7 @@ class Input extends Component {
     var mm = String(today.getMonth() + 1).padStart(2,'0'); 
     var yyyy = today.getFullYear();
     today = yyyy+ '-' + mm + '-' + dd;
-    //this.setState({startDate: 'placeholder'});
+    this.setState({endDate: today});
     return String(today);
   }
 
@@ -87,84 +88,85 @@ class Input extends Component {
     var mm = String(update.getMonth() + 1).padStart(2,'0'); 
     var yyyy = update.getFullYear();
     update = yyyy+ '-' + mm + '-' + dd;
+    this.setState({endDate: update});
     return String(update);
   }
 
   sendData(){
     //sends to their component
     //redirect to another page
-    console.log(this.state.startDate);
+    console.log(this.state.);
   }
 
 
 
   render() {
     return (
-      <div className="content">
-        <form name="input" target="_self">
-            <label>
-            Pick your current timezone:
-            <select onChange={this.handleCurrentZone}>
-                { this.state.timezone.map(zone =>{
-                const current= [
-                <option value={zone}>{zone}</option>
-                ];
-                return current;              
-                })
-                }
-            
-            </select>
-            </label>
-            <br />
-            <label>
-            Pick your destination timezone:
-            <select onChange={this.handleTargetZone}>
-                { this.state.timezone.map(zone =>{
-                const current= [
-                <option value={zone}>{zone}</option>
-                ];
-                return current;              
-                })
-                }
-            
-            </select>
-            </label>
-            <br />        
-            <label>Bed time:
-                <input type="time" defaultValue="22:00" onChange={this.handleBedTime}></input>
-            </label>
-            <br />
-            <label>Wake Up time:
-                <input type="time" defaultValue="08:00" onChange={this.handleWakeTime}></input>
-            </label>
-            <br />
-            <label>Start date:  
-            <input type="date" defaultValue={this.getDATE()} min={this.getDATE()} onChange={this.handleStartDate}></input>
-            </label>
-            <br />
-            <label>End date:  
-            {
-                this.state.clicked === false ? (            
-                <input type="date" defaultValue={this.getDATEArrive()} min={this.getDATEArrive()} onChange={this.handleEndDate}></input>) 
-                : (<input type="date" defaultValue={this.updateArrive()} min={this.updateArrive()} onChange={this.handleEndDate}></input>)
+    <div>
+      <form>
+         <label>
+          Pick your current timezone:
+          <select onChange={this.handleCurrentZone}>
+            { this.state.timezone.map(zone =>{
+              const current= [
+              <option value={zone}>{zone}</option>
+              ];
+              return current;              
+            })
             }
-            </label>
-            <br />
-            <label>
-            Number of hours of sleep:
-            <input
-                type="number"
-                value={this.state.numberOfHours}
-                onChange={this.handleInputChange} />
-            </label>
-            <br />
-        </form>
-        
-        <button className="btn" type="submit" form="input" onClick={()=> this.sendData()}>Submit</button>
-
+           
+          </select>
+        </label>
+        <br />
+        <label>
+          Pick your destination timezone:
+          <select onChange={this.handleTargetZone}>
+            { this.state.timezone.map(zone =>{
+              const current= [
+              <option value={zone}>{zone}</option>
+              ];
+              return current;              
+            })
+            }
+           
+          </select>
+        </label>
+        <br />        
+        <label>Bed time:
+            <input type="time" defaultValue="22:00" onChange={this.handleBedTime}></input>
+        </label>
+        <br />
+        <label>Wake Up time:
+            <input type="time" defaultValue="08:00" onChange={this.handleWakeTime}></input>
+        </label>
+        <br />
+        <label>Start date:  
+          <input type="date" defaultValue={this.getDATE()} min={this.getDATE()} onChange={this.handleStartDate}></input>
+        </label>
+        <br />
+        <label>End date:  
+          {
+            this.state.clicked ==false ? (            
+              <input type="date" defaultValue={this.getDATEArrive()} min={this.getDATEArrive()} onChange={this.handleEndDate}></input>) 
+              : (<input type="date" defaultValue={this.updateArrive()} min={this.updateArrive()} onChange={this.handleEndDate}></input>)
+          }
+        </label>
+        <br />
+        <label>
+          Number of hours of sleep:
+          <input
+            type="number"
+            value={this.state.numberOfHours}
+            onChange={this.handleInputChange} />
+        </label>
+        <br />
+      </form>
+      <div>
+        <button onClick={()=> this.sendData()}>Submit</button>
       </div>
+    </div>
     );
   }
 }
 
-export default Input;
+  export default Input;

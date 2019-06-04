@@ -7,7 +7,9 @@ class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+          loading: false
+        };
         this.signInSuccessWithAuthResultCallback = this.signInSuccessWithAuthResultCallback.bind(this);
     }
 
@@ -62,6 +64,7 @@ class Login extends Component {
             }
             // set the access token for the current user
             this.setState({token: accessToken});
+            this.setState({loading: true});
         }
         // Return type determines whether we continue the redirect automatically
         // or whether we leave that to developer to handle.
@@ -77,7 +80,12 @@ class Login extends Component {
             callbacks: {
                 signInSuccessWithAuthResult: function(authResult, redirectUrl) {
                 loginThis.signInSuccessWithAuthResultCallback(authResult);
+<<<<<<< HEAD
             },
+=======
+                
+            }, 
+>>>>>>> b30ad8c92d2df25ef2c2f24569caff1bc4cba297
               uiShown: function() {
                 // The widget is rendered.
                 // Hide the loader.
@@ -85,7 +93,7 @@ class Login extends Component {
               }
             },
             // TODO: Change redirect url to schedule input form
-            signInSuccessUrl: "",
+            signInSuccessUrl: './input.js',
             signInOptions: [
               // Leave the lines as is for the providers you want to offer your users.
               firebase.auth.GoogleAuthProvider.PROVIDER_ID
@@ -96,9 +104,15 @@ class Login extends Component {
     }
 
     render() {
+      if(this.state.loading){
         return(
+          <Input className="Input"></Input>
+          );
+        }else{
+          return(
             <div id="firebaseui-auth-container"></div>
         );
+      }
     }
 }
 

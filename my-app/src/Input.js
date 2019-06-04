@@ -76,6 +76,7 @@ class Input extends Component {
     var mm = String(today.getMonth() + 1).padStart(2,'0'); 
     var yyyy = today.getFullYear();
     today = yyyy+ '-' + mm + '-' + dd;
+    this.setState({startDate: });
     return String(today);
   }
 
@@ -86,20 +87,20 @@ class Input extends Component {
     var mm = String(update.getMonth() + 1).padStart(2,'0'); 
     var yyyy = update.getFullYear();
     update = yyyy+ '-' + mm + '-' + dd;
-    console.log(String(update));
     return String(update);
   }
 
   sendData(){
     //sends to their component
     //redirect to another page
-    console.log("bichhhhhh");
+    console.log(this.state.startDate);
   }
 
 
 
   render() {
     return (
+    <div>
       <form>
          <label>
           Pick your current timezone:
@@ -157,8 +158,11 @@ class Input extends Component {
             onChange={this.handleInputChange} />
         </label>
         <br />
-        <button onClick={()=> this.sendData()}>Submit</button>
       </form>
+      <div>
+        <button onClick={()=> this.sendData()}>Submit</button>
+      </div>
+    </div>
     );
   }
 }

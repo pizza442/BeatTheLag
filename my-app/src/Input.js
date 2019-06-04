@@ -95,7 +95,7 @@ class Input extends Component {
   sendData(){
     //sends to their component
     //redirect to another page
-    console.log(this.state.);
+    console.log("hello");
   }
 
 

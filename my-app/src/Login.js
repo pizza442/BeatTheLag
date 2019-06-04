@@ -7,7 +7,9 @@ class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+          loading: false
+        };
         this.signInSuccessWithAuthResultCallback = this.signInSuccessWithAuthResultCallback.bind(this);
     }
 
@@ -61,7 +63,8 @@ class Login extends Component {
                 userRef.update({ accessToken: accessToken })
             }
             // set the access token for the current user
-            this.setState({ token: accessToken });
+            this.setState({token: accessToken});
+            this.setState({loading: true});
         }
         // Return type determines whether we continue the redirect automatically
         // or whether we leave that to developer to handle.
@@ -73,21 +76,21 @@ class Login extends Component {
     componentDidMount() {
         var loginThis = this;
 
-        // uiConfig code 
+        // uiConfig code
         let uiConfig = {
             callbacks: {
-                signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-                    loginThis.signInSuccessWithAuthResultCallback(authResult, redirectUrl);
-                    console.log(redirectUrl);
-                },
-                uiShown: function () {
-                    // The widget is rendered.
-                    // Hide the loader.
-                    //document.getElementById('loader').style.display = 'none';
-                }
+                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                loginThis.signInSuccessWithAuthResultCallback(authResult);
+
+            },
+              uiShown: function() {
+                // The widget is rendered.
+                // Hide the loader.
+                //document.getElementById('loader').style.display = 'none';
+              }
             },
             // TODO: Change redirect url to schedule input form
-            signInSuccessUrl: 'test',
+            signInSuccessUrl: './input.js',
             signInOptions: [
                 // Leave the lines as is for the providers you want to offer your users.
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID
@@ -98,13 +101,15 @@ class Login extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <div id="firebaseui-auth-container"></div>
-                <Input></Input>
-
-            </div>
+      if(this.state.loading){
+        return(
+          <Input className="Input"></Input>
+          );
+        }else{
+          return(
+            <div id="firebaseui-auth-container"></div>
         );
+      }
     }
 }
 

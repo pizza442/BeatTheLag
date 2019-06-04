@@ -12,16 +12,17 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
 
 - User must be able to put in their flight information, these include:
 
-    - Departure time zone: [`time zone`]
-    - Arrival time zone: [`time zone`]
+    - Pick your departure time zone: [`time zone`]
+    - Pick your arrival time zone: [`time zone`]
         - Departure and arrival time zone will be presented as drop down list, so users are only allow to pick the value instead of entering the input.
         - The default value for both dropdown lists will be set to "UTC+0";
-        - If user input the time zone that has no difference, our system will show the error
+        - `revive`: Our system won't allow user to click the same value for arrival time zone and departure time zone. (Why we revive this requirement is because that we found out this feature is easier to build and it can be more user friendly than merely outputting the error)
 
-     - Arrival date & time: in format of: `YYYY/MM/DD`  
-     - Departure date & time: in format of: `YYYY/MM/DD`
-        - These two date boxes for `DD/MM/YYYY` will be the html `date` object that allow user to pick a date in calendar like UI.
-        - The default value for date will be blank for data input.  
+     - `revive`: The reason why we change the requirement of this part of requirement is because (1) we figure out that the actual format of html date object is the `mm/dd/yyyy` rather than `YYYY/MM/DD`. (2) We want to prevent the user from picking the past date so it can be
+     - Arrival date & time: in format of: `mm/dd/yyyy`  
+     - Departure date & time: in format of: `mm/dd/yyyy`
+        - These two date boxes for `mm/dd/yyyy` will be the html `date` object that allow user to pick a date in a calendar-like UI.
+        - The default value for arrival date will be today date and the default value for departure date will be `mm/dd/yyyy`.  
 
 - Users must be able to put in their sleeping schedule information, these include:
     - Time usually get to sleep: `hour:minute`

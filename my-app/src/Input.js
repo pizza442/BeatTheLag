@@ -76,6 +76,7 @@ class Input extends Component {
     var mm = String(today.getMonth() + 1).padStart(2,'0'); 
     var yyyy = today.getFullYear();
     today = yyyy+ '-' + mm + '-' + dd;
+    //this.setState({startDate: 'placeholder'});
     return String(today);
   }
 
@@ -86,15 +87,13 @@ class Input extends Component {
     var mm = String(update.getMonth() + 1).padStart(2,'0'); 
     var yyyy = update.getFullYear();
     update = yyyy+ '-' + mm + '-' + dd;
-    console.log(String(update));
     return String(update);
   }
 
-  sendData(data){
+  sendData(){
     //sends to their component
     //redirect to another page
-    console.log("bichhhhhh");
-    console.log(data);
+    console.log(this.state.startDate);
   }
 
 
@@ -161,7 +160,7 @@ class Input extends Component {
             <br />
         </form>
         
-        <button className="btn" type="submit" form="input" onClick={(data)=> this.sendData(data)}>Submit</button>
+        <button className="btn" type="submit" form="input" onClick={()=> this.sendData()}>Submit</button>
 
       </div>
     );

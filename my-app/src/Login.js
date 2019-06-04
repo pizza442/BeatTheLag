@@ -80,12 +80,8 @@ class Login extends Component {
             callbacks: {
                 signInSuccessWithAuthResult: function(authResult, redirectUrl) {
                 loginThis.signInSuccessWithAuthResultCallback(authResult);
-<<<<<<< HEAD
+
             },
-=======
-                
-            }, 
->>>>>>> b30ad8c92d2df25ef2c2f24569caff1bc4cba297
               uiShown: function() {
                 // The widget is rendered.
                 // Hide the loader.

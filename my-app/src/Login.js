@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-//import Input from './Input';
 
 class Login extends Component {
 
@@ -12,19 +11,6 @@ class Login extends Component {
 
         this.signIn = this.signIn.bind(this);
     }
-
-    componentDidMount() {
-        //this.signIn();
-    }
-
-    /*redirect() {
-        if (this.state.signedIn) {
-            // got to input page
-            //<Input accessToken={this.state.accessToken}></Input>
-        } else {
-            this.signIn();
-        }
-    }*/
 
     /**
      * Handles Google Sign in

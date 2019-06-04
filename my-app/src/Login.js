@@ -1,115 +1,154 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import firebaseui from 'firebaseui';
-import Input from './Input';
+//import Input from './Input';
 
 class Login extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          loading: false
+            accessToken: ""
         };
-        this.signInSuccessWithAuthResultCallback = this.signInSuccessWithAuthResultCallback.bind(this);
-    }
 
-    openInNewTab = (url) => {
-        var win = window.open(url, '_blank');
-        win.focus();
-    }
-
-    /**
-     * Handles Google Sign in
-     * If sign in is successfull, (TODO) redirects to schedule input form
-     *
-     * Uses code from Google's documentation https://firebase.google.com/docs/auth/web/firebaseui?authuser=0
-     */
-    signInSuccessWithAuthResultCallback(authResult, redirectUrl) {
-        // User successfully signed in.
-        var user = authResult.user;
-        var credential = authResult.credential;
-        var isNewUser = authResult.additionalUserInfo.isNewUser;
-        var userId = user.uid
-
-        // for testing
-        console.log(authResult);
-
-        if (credential) {
-            // https://firebase.google.com/docs/auth/web/google-signin
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var accessToken = credential.accessToken;
-
-            // for testing
-            console.log(credential.accessToken);
-
-            if (isNewUser) {
-                // if the user has not signed in before
-                console.log('New user: ' + user.email);
-
-                // store user in firebase
-                firebase.database().ref('users/' + userId).set({
-                    email: user.email,
-                    accessToken: accessToken
-                })
-            } else {
-                // Returning user
-
-                // for testing
-                console.log('Returning user: ' + user.email);
-                console.log("Updating access token for current user...");
-
-                // update the access token for the current user
-                let userRef = firebase.database().ref('users').child(userId);
-                userRef.update({ accessToken: accessToken })
-            }
-            // set the access token for the current user
-            this.setState({token: accessToken});
-            this.setState({loading: true});
-        }
-        // Return type determines whether we continue the redirect automatically
-        // or whether we leave that to developer to handle.
-        // Do something with the returned AuthResult.
-
-        return true;
+        this.signIn = this.signIn.bind(this);
     }
 
     componentDidMount() {
-        var loginThis = this;
+        //this.signIn();
+    }
 
-        // uiConfig code
-        let uiConfig = {
-            callbacks: {
-                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-                loginThis.signInSuccessWithAuthResultCallback(authResult);
+    /*redirect() {
+        if (this.state.signedIn) {
+            // got to input page
+            //<Input accessToken={this.state.accessToken}></Input>
+        } else {
+            this.signIn();
+        }
+    }*/
 
-            },
-              uiShown: function() {
-                // The widget is rendered.
-                // Hide the loader.
-                //document.getElementById('loader').style.display = 'none';
-              }
-            },
-            // TODO: Change redirect url to schedule input form
-            signInSuccessUrl: './input.js',
-            signInOptions: [
-                // Leave the lines as is for the providers you want to offer your users.
-                firebase.auth.GoogleAuthProvider.PROVIDER_ID
-            ]
-        };
-        let ui = new firebaseui.auth.AuthUI(firebase.auth());
-        ui.start('#firebaseui-auth-container', uiConfig);
+    /**
+     * Handles Google Sign in
+     */
+    signIn() {
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+        // Ask to for permission to to access user's Google calendar
+        // See, edit, share, and permanently delete all the calendars on Google Calendar 
+        provider.addScope('https://www.googleapis.com/auth/calendar');
+
+        firebase.auth().signInWithRedirect(provider)
+
+        firebase.auth().getRedirectResult().then(function (authResult) {
+            var credential = authResult.credential;
+
+            // for testing
+            console.log(`Getting redirect result... ${authResult}`);
+
+            if (credential) {
+                // User successfully signed in.
+                //this.handleSuccessfulSignIn(authResult);
+                var user = authResult.user;
+                var isNewUser = authResult.additionalUserInfo.isNewUser;
+
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var accessToken = credential.accessToken;
+                
+                // set the access token for the current user
+                //this.setState({ signIn: true, accessToken: accessToken });
+                this.props.signInCallback(accessToken);
+
+                // for testing
+                console.log(credential.accessToken);
+
+                // Adds new users or updates returning users info on firebase
+                if (isNewUser) {
+                    // if the user has not signed in before
+                    console.log('New user: ' + user.email);
+        
+                    // store user in firebase
+                    firebase.database().ref('users/' + user.uid).set({
+                        email: user.email,
+                        accessToken: accessToken
+                    });
+                } else {
+                    // Returning user
+        
+                    // for testing
+                    console.log('Returning user: ' + user.email);
+                    console.log("Updating access token for current user...");
+        
+                    // update the access token for the current user
+                    let userRef = firebase.database().ref('users').child(user.uid);
+                    userRef.update({ accessToken: accessToken });
+                }
+                
+                
+            }
+
+        }).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+
+            console.log(`${errorCode}:  ${errorMessage} \nemail:${email}\ncredential: ${credential}`);
+        });
+    }
+
+    handleSuccessfulSignIn(authResult) {
+        var credential = authResult.credential;
+        var user = authResult.user;
+        var isNewUser = authResult.additionalUserInfo.isNewUser;
+
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var accessToken = credential.accessToken;
+
+        // for testing
+        console.log(credential.accessToken);
+
+        // Adds new users or updates returning users info on firebase
+        this.updateFirebase(isNewUser, user, accessToken);
+        
+        // set the access token for the current user
+        //this.setState({ signIn: true, accessToken: accessToken });
+        this.props.signInCallback(accessToken);
+    }
+
+    updateFirebase(isNewUser, user, accessToken) {
+        if (isNewUser) {
+            // if the user has not signed in before
+            console.log('New user: ' + user.email);
+
+            // store user in firebase
+            firebase.database().ref('users/' + user.id).set({
+                email: user.email,
+                accessToken: accessToken
+            });
+        } else {
+            // Returning user
+
+            // for testing
+            console.log('Returning user: ' + user.email);
+            console.log("Updating access token for current user...");
+
+            // update the access token for the current user
+            let userRef = firebase.database().ref('users').child(user.id);
+            userRef.update({ accessToken: accessToken });
+        }
     }
 
     render() {
-      if(this.state.loading){
-        return(
-          <Input className="Input"></Input>
-          );
-        }else{
-          return(
-            <div id="firebaseui-auth-container"></div>
+
+
+        return (
+            <div className="content">
+                <button id="login-btn" className="btn" onClick={() => this.signIn()}>Sign in with Google</button>
+                
+            </div>
         );
-      }
     }
 }
 

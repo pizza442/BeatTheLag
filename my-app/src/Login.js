@@ -30,7 +30,7 @@ class Login extends Component {
         var credential = authResult.credential;
         var isNewUser = authResult.additionalUserInfo.isNewUser;
         var userId = user.uid
-    
+
         // for testing
         console.log(authResult);
 
@@ -45,7 +45,7 @@ class Login extends Component {
             if (isNewUser) {
                 // if the user has not signed in before
                 console.log('New user: ' + user.email);
-                
+
                 // store user in firebase
                 firebase.database().ref('users/' + userId).set({
                     email: user.email,
@@ -57,7 +57,7 @@ class Login extends Component {
                 // for testing
                 console.log('Returning user: ' + user.email);
                 console.log("Updating access token for current user...");
-                
+
                 // update the access token for the current user
                 let userRef = firebase.database().ref('users').child(userId);
                 userRef.update({ accessToken: accessToken })
@@ -74,14 +74,14 @@ class Login extends Component {
 
     componentDidMount() {
         var loginThis = this;
-        
-        // uiConfig code 
+
+        // uiConfig code
         let uiConfig = {
             callbacks: {
                 signInSuccessWithAuthResult: function(authResult, redirectUrl) {
                 loginThis.signInSuccessWithAuthResultCallback(authResult);
-                
-            }, 
+
+            },
               uiShown: function() {
                 // The widget is rendered.
                 // Hide the loader.

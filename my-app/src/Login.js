@@ -11,24 +11,24 @@ class Login extends Component {
         this.signInSuccessWithAuthResultCallback = this.signInSuccessWithAuthResultCallback.bind(this);
     }
 
+    openInNewTab = (url) => {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
+
     /**
      * Handles Google Sign in
      * If sign in is successfull, (TODO) redirects to schedule input form
      *
      * Uses code from Google's documentation https://firebase.google.com/docs/auth/web/firebaseui?authuser=0
      */
-    openInNewTab =(url)=> {
-      var win = window.open(url, '_blank');
-      win.focus();
-    }
-
-    signInSuccessWithAuthResultCallback(authResult) {
+    signInSuccessWithAuthResultCallback(authResult, redirectUrl) {
         // User successfully signed in.
         var user = authResult.user;
         var credential = authResult.credential;
         var isNewUser = authResult.additionalUserInfo.isNewUser;
         var userId = user.uid
-    
+
         // for testing
         console.log(authResult);
 
@@ -43,61 +43,67 @@ class Login extends Component {
             if (isNewUser) {
                 // if the user has not signed in before
                 console.log('New user: ' + user.email);
-                
+
                 // store user in firebase
                 firebase.database().ref('users/' + userId).set({
                     email: user.email,
                     accessToken: accessToken
                 })
-            } else  {
+            } else {
                 // Returning user
 
                 // for testing
                 console.log('Returning user: ' + user.email);
                 console.log("Updating access token for current user...");
-                
+
                 // update the access token for the current user
                 let userRef = firebase.database().ref('users').child(userId);
                 userRef.update({ accessToken: accessToken })
             }
             // set the access token for the current user
-            this.setState({token: accessToken});
+            this.setState({ token: accessToken });
         }
         // Return type determines whether we continue the redirect automatically
         // or whether we leave that to developer to handle.
         // Do something with the returned AuthResult.
+
         return true;
-      }
+    }
 
     componentDidMount() {
         var loginThis = this;
-        
+
         // uiConfig code 
         let uiConfig = {
             callbacks: {
-                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-                loginThis.signInSuccessWithAuthResultCallback(authResult);
-            }, 
-              uiShown: function() {
-                // The widget is rendered.
-                // Hide the loader.
-                //document.getElementById('loader').style.display = 'none';
-              }
+                signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+                    loginThis.signInSuccessWithAuthResultCallback(authResult, redirectUrl);
+                    console.log(redirectUrl);
+                },
+                uiShown: function () {
+                    // The widget is rendered.
+                    // Hide the loader.
+                    //document.getElementById('loader').style.display = 'none';
+                }
             },
             // TODO: Change redirect url to schedule input form
-            signInSuccessUrl: "test.html",
+            signInSuccessUrl: 'test',
             signInOptions: [
-              // Leave the lines as is for the providers you want to offer your users.
-              firebase.auth.GoogleAuthProvider.PROVIDER_ID
+                // Leave the lines as is for the providers you want to offer your users.
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID
             ]
-          };
+        };
         let ui = new firebaseui.auth.AuthUI(firebase.auth());
         ui.start('#firebaseui-auth-container', uiConfig);
     }
 
     render() {
-        return(
-            <div id="firebaseui-auth-container"></div>
+        return (
+            <div>
+                <div id="firebaseui-auth-container"></div>
+                <Input></Input>
+
+            </div>
         );
     }
 }

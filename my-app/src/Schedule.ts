@@ -115,30 +115,26 @@ export class Schedule {
         console.log("it's connected. Ali looks like Elmer FUdd");
     }
 
-    calculateStartMonth(): number {
-        let startDay: number;
-        let startMonth: number;
-        startDay = this.DepartureDay - this.totalDays;
-        if (startDay <= 0) {
-            startDay = Math.abs(startDay) - 1;
-            if (startDay == 0) {
-                startDay += 1;
-            }
-        }
-        return 0;
+    calculateStartMonth(): Date {
+        let startDay = new Date(this.DepartureDate);
+        startDay.setDate(startDay.getDate() - this.totalDays);
+        return startDay;
     }
-    
+
+
     //returns JSON... I guess.
     packageJSON(): any {
-
-        let result = {
-            "start": {
-                "dateTime": "2019-05-24T09:00:00-07:00",
-            },
-            "end": {
-                "dateTime": "2019-05-30T09:00:00-07:00",
-            }
-
+        let result = Array();
+        for ( let i = 0; i < this.calendar.length; i++) {
+            var event = {
+                "start": {
+                    "dateTime": "2019-05-24T09:00:00-07:00" // can we put variable here 
+                },
+                "end": {
+                    "dateTime": "2019-05-30T09:00:00-07:00"
+                }
+            } ;
+            result.push(event);
         }
         return result;
     }

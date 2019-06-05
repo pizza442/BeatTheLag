@@ -14,10 +14,6 @@ class Calendar {
 
     }
 
-    addEvent(event: JSON) {
-
-    }
-
 }
 
 /*

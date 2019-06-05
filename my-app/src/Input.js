@@ -105,14 +105,13 @@ class Input extends Component {
     return String(update);
   }
 
-  sendData(){
+  sendData() {
     if(this.state.startDate == ""){
       window.alert("Please pick a start date");
     }
     //redirect to another page
-    console.log(this.state.startDate);
-    var testSchedule = new Schedule(this.state.currentZone, 0, this.state.startDate,
-                                      this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
+    var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,
+                                    this.state.targetZone, this.state.endDate, this.state.bedTime, this.state.wakeUpTime);
     testSchedule.test();
   }
 

@@ -127,7 +127,7 @@ export class Schedule {
         }
         return 0;
     }
-
+    
     //returns JSON... I guess.
     packageJSON(): any {
 

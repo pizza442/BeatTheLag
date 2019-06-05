@@ -110,9 +110,6 @@ class Input extends Component {
       window.alert("Please pick a start date");
     }
     //redirect to another page
-    var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,
-                                    this.state.targetZone, this.state.endDate, this.state.bedTime, this.state.wakeUpTime);
-    testSchedule.test();
     else if(this.state.currentZone == this.state.targetZone){
       window.alert("Your current timezone and the abroad timezone cannot be the same");
     }
@@ -132,13 +129,13 @@ class Input extends Component {
       window.alert("Please pick a wake up time");
     }
     else{
+      var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,
+                                      this.state.targetZone, this.state.endDate, this.state.bedTime, this.state.wakeUpTime);
+      testSchedule.test();
       console.log(this.state.wakeUpTime);
       //redirect to another page
       console.log(this.state.startDate);
-      var testSchedule = new Schedule(this.state.currentZone, 0, this.state.startDate,
-                                        this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
-      testSchedule.test();
-    }
+     
 
   }
     

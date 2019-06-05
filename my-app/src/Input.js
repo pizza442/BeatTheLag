@@ -8,10 +8,10 @@ class Input extends Component {
       timezone:["UTC -12", "UTC -11", "UTC -10", "UTC -9", "UTC -8", "UTC -7", "UTC -6", "UTC -5", "UTC -4", "UTC -3", "UTC -2", "UTC -1", 
       "UTC 0", "UTC 1", "UTC 2", "UTC 3", "UTC 4", "UTC 5", "UTC 6", "UTC 7", "UTC 8", "UTC 9", "UTC 10", "UTC 11", "UTC 12"],
       numberOfHours: 2,
-      currentZone: "",
-      targetZone: "",
-      bedTime: "",
-      wakeUpTime: "",
+      currentZone: "UTC -12",
+      targetZone: "UTC -12",
+      bedTime: "22:00",
+      wakeUpTime: "08:00",
       startDate: "",
       endDate: "",
       clicked: false
@@ -108,9 +108,30 @@ class Input extends Component {
     if(this.state.startDate == ""){
       window.alert("Please pick a start date");
     }
-    //redirect to another page
-    console.log(this.state.startDate);
+    else if(this.state.currentZone == this.state.targetZone){
+      window.alert("Your current timezone and the abroad timezone cannot be the same");
+    }
+    else if(this.state.bedTime == this.state.wakeUpTime){
+      window.alert("Your bed time and wake up time cannot be the same")
+    }
+    else if(this.state.currentZone == ""){
+      window.alert("Please pick timezone");
+    }
+    else if(this.state.targetZone == ""){
+      window.alert("Please pick a destination timezone");
+    }
+    else if(this.state.bedTime == ""){
+      window.alert("Please pick a bedtime");
+    }
+    else if(this.state.wakeUpTime == ""){
+      window.alert("Please pick a wake up time");
+    }
+    else{
+      console.log(this.state.wakeUpTime);
+    }
+
   }
+    //redirect to another page
 
 
 

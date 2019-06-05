@@ -129,15 +129,15 @@ class Input extends Component {
     }
     else{
       console.log(this.state.wakeUpTime);
+      //redirect to another page
+      console.log(this.state.startDate);
+      var testSchedule = new Schedule(this.state.currentZone, 0, this.state.startDate,
+                                        this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
+      testSchedule.test();
     }
 
-    //redirect to another page
-    console.log(this.state.startDate);
-    var testSchedule = new Schedule(this.state.currentZone, 0, this.state.startDate,
-                                      this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
-    testSchedule.test();
   }
-    //redirect to another page
+    
 
 
 

@@ -27,6 +27,12 @@ class Input extends Component {
     
   }
 
+  componentDidMount(){
+    this.setState({startDate: this.getDATE(), endDate: this.getDATEArrive()}, ()=>{
+      console.log(this.state.startDate);
+    });
+  }
+
   handleInputChange(event) {
     this.setState({numberOfHours: event.target.value});
   }
@@ -66,6 +72,9 @@ class Input extends Component {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); 
     var yyyy = today.getFullYear();          
     today = yyyy+ '-' + mm + '-' + dd;
+    /*this.setState({startDate: today}, ()=>{
+      console.log(`startdate: ${this.state.startDate}`);
+    });*/
     return today;
     //2019-05-28
   }
@@ -76,7 +85,9 @@ class Input extends Component {
     var mm = String(today.getMonth() + 1).padStart(2,'0'); 
     var yyyy = today.getFullYear();
     today = yyyy+ '-' + mm + '-' + dd;
-    //this.setState({startDate: 'placeholder'});
+    /*this.setState({endDate: today}, ()=>{
+      console.log(`enddate: ${this.state.endDate}`);
+    });*/
     return String(today);
   }
 
@@ -87,11 +98,16 @@ class Input extends Component {
     var mm = String(update.getMonth() + 1).padStart(2,'0'); 
     var yyyy = update.getFullYear();
     update = yyyy+ '-' + mm + '-' + dd;
+    /*this.state.setState({endDate: update}, ()=>{
+      console.log(`enddate: ${this.state.endDate}`);
+    });*/
     return String(update);
   }
 
   sendData(){
-    //sends to their component
+    if(this.state.startDate == ""){
+      window.alert("Please pick a start date");
+    }
     //redirect to another page
     console.log(this.state.startDate);
   }
@@ -99,6 +115,7 @@ class Input extends Component {
 
 
   render() {
+    
     return (
       <div className="content">
         <form name="input" target="_self">
@@ -160,7 +177,7 @@ class Input extends Component {
             <br />
         </form>
         
-        <button className="btn" type="submit" form="input" onClick={()=> this.sendData()}>Submit</button>
+        <button className="btn"  onClick={()=> this.sendData()}>Submit</button>
 
       </div>
     );

@@ -13,11 +13,6 @@ export class Schedule {
     private DepartureYear: number;
 
     private ArrivalTimeZone: string;
-    private ArrivalTime: Date; //Mean't to be the time. use .getHours() and .getMinutes().
-    private ArrivalDate: Date; //Date use .getDate().
-    private ArrivalMonth?: number;
-    private ArrivalDay?: number;
-    private ArrivalYear?: number;
 
     private NormalSleepTime: Date;
     private NormalWakeTime: Date;
@@ -26,6 +21,7 @@ export class Schedule {
 
     private calendar: number[][];
     private timeZoneMap: Map<string, any[]>;
+
 
     constructor (DepartureTimeZone, DepartureTime, DepartureDate,
                  ArrivalTimeZone, ArrivalTime, ArriveDate,
@@ -36,8 +32,6 @@ export class Schedule {
         this.DepartureDate = DepartureDate;
 
         this.ArrivalTimeZone = ArrivalTimeZone;
-        this.ArrivalTime = ArrivalTime;
-        this.ArrivalDate = ArriveDate;
 
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
@@ -65,7 +59,6 @@ export class Schedule {
     }
 
     create() {
-        let monthDiff: number = Math.abs(this.DepartureMonth - this.ArrivalMonth);
         //let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
 
@@ -104,10 +97,10 @@ export class Schedule {
         } else if (this.totalDays < 0) {
             for (let i = 0; i < this.totalDays; i++) {
                 if (this.calendar[i][0] > 24) {
-                    startTime = -1;
+                    startTime = 0;
                 }
                 if (this.calendar[i][1] > 24) {
-                    endTime = -1;
+                    endTime = 0;
                 }
                 this.calendar[i][0] = startTime++;
                 this.calendar[i][1] = endTime++;

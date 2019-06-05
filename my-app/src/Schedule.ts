@@ -24,7 +24,7 @@ export class Schedule {
 
 
     constructor (DepartureTimeZone, DepartureTime, DepartureDate,
-                 ArrivalTimeZone, ArrivalTime, ArriveDate,
+                 ArrivalTimeZone,
                  NormalSleepTime, NormalWakeTime) {
 
         this.DepartureTimeZone = DepartureTimeZone;

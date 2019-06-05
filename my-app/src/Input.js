@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+const { Schedule } = require('./Schedule');
 
 class Input extends Component {
   constructor(props) {
@@ -110,6 +111,9 @@ class Input extends Component {
     }
     //redirect to another page
     console.log(this.state.startDate);
+    var testSchedule = new Schedule(this.state.currentZone, 0, this.state.startDate,
+                                      this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
+    testSchedule.test();
   }
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
-import {Schedule} from './ProtoSchedule';
+import {Schedule} from './Schedule';
 
 class Calendar {
     private scopes: string;

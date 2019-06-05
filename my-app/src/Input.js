@@ -113,7 +113,7 @@ class Input extends Component {
     console.log(this.state.startDate);
     var testSchedule = new Schedule(this.state.currentZone, 0, this.state.startDate,
                                       this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
-    console.log(testSchedule.test());
+    testSchedule.test();
   }
 
 

@@ -115,12 +115,26 @@ export class Schedule {
         console.log("it's connected. Ali looks like Elmer FUdd");
     }
 
-    calculateStartMonth(): Date {
+    calculateStartDate(): Date {
         let startDay = new Date(this.DepartureDate);
         startDay.setDate(startDay.getDate() - this.totalDays);
         return startDay;
     }
 
+    translateDatetoString(): any {
+        let date = this.calculateStartDate();
+        let dateArray = Array();
+        for(let i = 0; i < this.totalDays; i++ ) {
+            let month = (date.getMonth()+1).toString();
+            let day = date.getDate().toString();
+            let year = date.getFullYear().toString();
+            
+            let dateStr = year + "-" + month + "-" + day;
+            dateArray.push(dateStr);
+            date.setDate(date.getDate()+1);
+        }
+        return dateArray;
+    }
 
     //returns JSON... I guess.
     packageJSON(): any {

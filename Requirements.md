@@ -25,14 +25,14 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
         - These two date boxes for `mm/dd/yyyy` will be the html `date` object that allow user to pick a date in a calendar-like UI.
         - The default value for arrival date will be today date's and the default value for departure date will be two day after today's date.  
 
-- **revive**: The reason why we change the requirement of input time in requirement is because (1) html `input` object with type `time` is not a dropdown list but a .
+- **revive**: The reason why we change the requirement of input time in requirement is because (1) html `input` object with type `time` is not a dropdown list but a input slot.
 - Users must be able to put in their sleeping schedule information, these include:
     - Time usually get to sleep: `hour:minute`
+    - Time usually wake up: `hour:minute`
         - `revive`: The input boxes for selecting `hour:minute` will be the slots to enter hours and minutes of military time with default value blank.
         - If user has the same wake up and sleep time, the system will output the error.
         - Hour drop down will have selected value start from 00 to 23.
         - Minute drop down will have selected value start from 00 to 50 divided by 10 minutes interval (e.g. 10, 20, 30).
-        - The input boxes for selecting `AM` or `PM` will be the dropdown list with default value blank.
 
 - Users must input all the information above in order to get their sleeping schedule.
 - If any input is blank, when users click the “Get my schedule” button, the system will display an error message in the middle with red text “***Error: Your form is incomplete or you have the invalid input, please check your form again***” after 1 second.

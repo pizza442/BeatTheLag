@@ -67,7 +67,7 @@ class Input extends Component {
 
 
 
-  getDATE(){
+  getDATE() {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); 
@@ -128,19 +128,13 @@ class Input extends Component {
     else if(this.state.wakeUpTime == ""){
       window.alert("Please pick a wake up time");
     }
-    else{
+    else {
       var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,
                                       this.state.targetZone, this.state.endDate, this.state.bedTime, this.state.wakeUpTime);
-      testSchedule.test();
-      console.log(this.state.wakeUpTime);
-      //redirect to another page
-      console.log(this.state.startDate);
-     
+      console.log(this.state.targetZone);
+    }
 
-  }
-    
-
-
+  }  
 
   render() {
     
@@ -208,8 +202,7 @@ class Input extends Component {
         <button className="btn"  onClick={()=> this.sendData()}>Submit</button>
 
       </div>
-    );
-  }
+    ); 
+  }   
 }
-
 export default Input;

@@ -45,18 +45,6 @@ export class Schedule {
         }
         this.timeZoneMap = new Map();
 
-        // totalDays = DepartureDate - ArriveDate
-        // sleepingLength =  NormalWakeTime - NormalSleepTime
-        // length of schedule array should be totalDays
-        // secheduleStartTime = NormalSleepTime
-        // if (totalDays > 0) {
-        //    User will sleep earlier and earlier: 11 -> 10 -> 9
-        // } else if (totalDays < 0) {
-        //    User will sleep earlier and earlier: 11 -> 12 -> 1
-        // } else {
-        //   "You don't need this page what are you doing"
-        // }
-
     }
 
     create() {

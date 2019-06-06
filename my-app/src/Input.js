@@ -133,7 +133,7 @@ class Input extends Component {
                                       this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
       let d = testSchedule.packageJSON();
 
-      console.log(d);
+      window.alert("Your Schedule has been generated!")
     }
 
   }  
@@ -145,6 +145,7 @@ class Input extends Component {
         <form name="input" target="_self">
             <label>
             Pick your current timezone:
+            <br />
             <select onChange={this.handleCurrentZone}>
                 { this.state.timezone.map(zone =>{
                 const current= [
@@ -159,6 +160,7 @@ class Input extends Component {
             <br />
             <label>
             Pick your destination timezone:
+            <br />
             <select onChange={this.handleTargetZone}>
                 { this.state.timezone.map(zone =>{
                 const current= [
@@ -171,32 +173,28 @@ class Input extends Component {
             </select>
             </label>
             <br />        
-            <label>Bed time:
+            <label>Please enter your bed time:
+              <br />
                 <input type="time" defaultValue="22:00" onChange={this.handleBedTime}></input>
             </label>
             <br />
-            <label>Wake Up time:
+            <label>Please enter your wake Up time:
+              <br />
                 <input type="time" defaultValue="08:00" onChange={this.handleWakeTime}></input>
             </label>
             <br />
-            <label>Start date:  
+            <label>Please enter your trip start date:  
+            <br />
             <input type="date" defaultValue={this.getDATE()} min={this.getDATE()} onChange={this.handleStartDate}></input>
             </label>
             <br />
-            <label>End date:  
+            <label>Please enter your trip start end date:  
+            <br />
             {
                 this.state.clicked === false ? (            
                 <input type="date" defaultValue={this.getDATEArrive()} min={this.getDATEArrive()} onChange={this.handleEndDate}></input>) 
                 : (<input type="date" defaultValue={this.updateArrive()} min={this.updateArrive()} onChange={this.handleEndDate}></input>)
             }
-            </label>
-            <br />
-            <label>
-            Number of hours of sleep:
-            <input
-                type="number"
-                value={this.state.numberOfHours}
-                onChange={this.handleInputChange} />
             </label>
             <br />
         </form>

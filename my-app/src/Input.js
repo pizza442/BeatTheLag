@@ -203,6 +203,8 @@ class Input extends Component {
         
         <button className="btn"  onClick={()=> this.sendData()}>Submit</button>
 
+        <button id="signout-btn" className="btn" onClick={() => this.props.signOutCallback()}>Sign out</button>
+
       </div>
     ); 
   }   

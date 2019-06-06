@@ -152,7 +152,7 @@ var Schedule = /** @class */ (function () {
             };
             result.push(event);
         }
-        return result;
+        return JSON.stringify(result);
     };
     return Schedule;
 }());

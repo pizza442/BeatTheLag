@@ -140,6 +140,8 @@ export class Schedule {
         return dateArray; // array format: [first date, second date... late date (should be departure date)]
     }
 
+    // return string for number 
+    // if absolute valur of number is smaller than 10, will add a 0 in front of it 
     addZero(num): any {
         let result = "";
         let input = Math.abs(num);
@@ -151,10 +153,13 @@ export class Schedule {
         return result;
     }
 
+    // return string that repsent date in the format what google api want
     getWhatGoogleApiNeed(date,hour, minute, timeZone): any {
         return date + "T" + hour + minute + ":00"+ timeZone + ":00";
     }
 
+    // return string that represent time zone 
+    // for example: "+09" or "-10"
     makeTimeZone(timeZoneStr) {
         let result = ""
         if(timeZoneStr < 0) {

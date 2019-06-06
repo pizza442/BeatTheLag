@@ -178,7 +178,7 @@ export class Schedule {
             } ;
             result.push(event);
         }
-        return JSON.stringify(result);
+        return result;
     }
 }
 

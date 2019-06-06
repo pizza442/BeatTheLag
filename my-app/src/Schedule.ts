@@ -190,7 +190,7 @@ export class Schedule {
             } ;
             result.push(event);
         }
-        return result;
+        return JSON.stringify(result);
     }
 }
 

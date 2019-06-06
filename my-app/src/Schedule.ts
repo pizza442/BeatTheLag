@@ -7,9 +7,6 @@ export class Schedule {
 
     private DepartureTimeZone: string;
     private DepartureDate: Date; //Date use .getDate().
-    private DepartureMonth: number;
-    private DepartureDay: number;
-    private DepartureYear: number;
 
     private ArrivalTimeZone: string;
 
@@ -194,5 +191,23 @@ export class Schedule {
             result.push(event);
         }
         return result;
+    }
+}
+
+export class Event {
+    private start: Object;
+    private end: Object;
+
+    constructor (startTime: string, endTime: string) {
+        this.start = {
+            "dateTime" : startTime
+        },
+        this.end = {
+            "dateTime": endTime
+        }
+    } 
+
+    eventJSON(): string {
+        return JSON.stringify(this);
     }
 }

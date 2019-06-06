@@ -102,6 +102,8 @@ var Schedule = /** @class */ (function () {
         }
         return dateArray; // array format: [first date, second date... late date (should be departure date)]
     };
+    // return string for number 
+    // if absolute valur of number is smaller than 10, will add a 0 in front of it 
     Schedule.prototype.addZero = function (num) {
         var result = "";
         var input = Math.abs(num);
@@ -113,9 +115,12 @@ var Schedule = /** @class */ (function () {
         }
         return result;
     };
+    // return string that repsent date in the format what google api want
     Schedule.prototype.getWhatGoogleApiNeed = function (date, hour, minute, timeZone) {
         return date + "T" + hour + minute + ":00" + timeZone + ":00";
     };
+    // return string that represent time zone 
+    // for example: "+09" or "-10"
     Schedule.prototype.makeTimeZone = function (timeZoneStr) {
         var result = "";
         if (timeZoneStr < 0) {
@@ -152,3 +157,18 @@ var Schedule = /** @class */ (function () {
     return Schedule;
 }());
 exports.Schedule = Schedule;
+var Event = /** @class */ (function () {
+    function Event(startTime, endTime) {
+        this.start = {
+            "dateTime": startTime
+        },
+            this.end = {
+                "dateTime": endTime
+            };
+    }
+    Event.prototype.eventJSON = function () {
+        return JSON.stringify(this);
+    };
+    return Event;
+}());
+exports.Event = Event;

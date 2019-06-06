@@ -5,9 +5,8 @@
  */
 exports.__esModule = true;
 var Schedule = /** @class */ (function () {
-    function Schedule(DepartureTimeZone, DepartureTime, DepartureDate, ArrivalTimeZone, NormalSleepTime, NormalWakeTime) {
+    function Schedule(DepartureTimeZone, DepartureDate, ArrivalTimeZone, NormalSleepTime, NormalWakeTime) {
         this.DepartureTimeZone = DepartureTimeZone;
-        this.DepartureTime = DepartureTime;
         this.DepartureDate = DepartureDate;
         this.ArrivalTimeZone = ArrivalTimeZone;
         this.NormalSleepTime = NormalSleepTime;
@@ -34,7 +33,6 @@ var Schedule = /** @class */ (function () {
     Schedule.prototype.create = function () {
         //let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
-        var sleepingLength = Math.abs(this.NormalWakeTime.getHours() - this.NormalSleepTime.getHours()); //Don't know if we're going to need this
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
         //Doesn't account for:
@@ -82,20 +80,31 @@ var Schedule = /** @class */ (function () {
     Schedule.prototype.test = function () {
         console.log("it's connected. Ali looks like Elmer FUdd");
     };
+    // return the date that shold be the start date of the sechedule
     Schedule.prototype.calculateStartDate = function () {
         var startDay = new Date(this.DepartureDate);
-        startDay.setDate(startDay.getDate() - this.totalDays);
+        startDay.setDate(startDay.getDate() - this.totalDays + 1);
         return startDay;
     };
+    // return array of object with format:
+    // {
+    //      "sleepDate": "2019-04-02",
+    //      "wakeDate": "2019-04-03"
+    // }
     Schedule.prototype.translateDatetoString = function () {
         var date = this.calculateStartDate();
         var dateArray = Array();
         for (var i = 0; i < this.totalDays; i++) {
             var month = (date.getMonth() + 1).toString();
-            var day = date.getDate().toString();
+            var day = date.getDate();
             var year = date.getFullYear().toString();
-            var dateStr = year + "-" + month + "-" + day;
-            dateArray.push(dateStr);
+            var dateStr = year + "-" + month + "-" + day.toString();
+            var tmrStr = year + "-" + month + "-" + (parseInt(day) + 1).toString();
+            var output = {
+                "sleepDate": dateStr,
+                "wakeDate": tmrStr
+            };
+            dateArray.push(output);
             date.setDate(date.getDate() + 1);
         }
         return dateArray; // array format: [first date, second date... late date (should be departure date)]
@@ -107,10 +116,10 @@ var Schedule = /** @class */ (function () {
         for (var i = 0; i < this.calendar.length; i++) {
             var event = {
                 "start": {
-                    "dateTime": date[i] + this.calendar[i][0] // can we put variable here 
+                    "dateTime": date[i]["sleepDate"] + "T" + this.calendar[i][0] // can we put variable here 
                 },
                 "end": {
-                    "dateTime": date[i] + this.calendar[i][1]
+                    "dateTime": date[i]["wakeDate"] + "T" + this.calendar[i][0]
                 }
             };
             result.push(event);

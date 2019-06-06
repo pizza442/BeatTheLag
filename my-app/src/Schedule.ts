@@ -23,16 +23,15 @@ export class Schedule {
     private timeZoneMap: Map<string, any[]>;
 
 
-    constructor (DepartureTimeZone, DepartureTime, DepartureDate,
+    constructor (DepartureTimeZone, DepartureDate,
                  ArrivalTimeZone,
                  NormalSleepTime, NormalWakeTime) {
 
         this.DepartureTimeZone = DepartureTimeZone;
-        this.DepartureTime = DepartureTime;
         this.DepartureDate = DepartureDate;
 
         this.ArrivalTimeZone = ArrivalTimeZone;
-
+        
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
 
@@ -61,9 +60,6 @@ export class Schedule {
     create() {
         //let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
-
-        let sleepingLength: number = Math.abs(this.NormalWakeTime.getHours() - this.NormalSleepTime.getHours()); //Don't know if we're going to need this
-
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
 
@@ -115,22 +111,34 @@ export class Schedule {
         console.log("it's connected. Ali looks like Elmer FUdd");
     }
 
-    calculateStartDate(): Date {
+    // return the date that shold be the start date of the sechedule
+    calculateStartDate(): any {
         let startDay = new Date(this.DepartureDate);
-        startDay.setDate(startDay.getDate() - this.totalDays);
+        startDay.setDate(startDay.getDate() - this.totalDays + 1);
         return startDay;
     }
 
+    // return array of object with format:
+    // {
+    //      "sleepDate": "2019-04-02",
+    //      "wakeDate": "2019-04-03"
+    // }
     translateDatetoString(): any {
         let date = this.calculateStartDate();
         let dateArray = Array();
         for(let i = 0; i < this.totalDays; i++ ) {
             let month = (date.getMonth()+1).toString();
-            let day = date.getDate().toString();
+            let day = date.getDate();
             let year = date.getFullYear().toString();
             
-            let dateStr = year + "-" + month + "-" + day;
-            dateArray.push(dateStr);
+            let dateStr = year + "-" + month + "-" + day.toString();
+            let tmrStr = year + "-" + month + "-" + (parseInt(day) + 1).toString();
+            
+            let output = {
+                "sleepDate": dateStr,
+                "wakeDate": tmrStr
+            };
+            dateArray.push(output);
             date.setDate(date.getDate()+1); 
         }
         return dateArray; // array format: [first date, second date... late date (should be departure date)]
@@ -143,10 +151,10 @@ export class Schedule {
         for ( let i = 0; i < this.calendar.length; i++) {
             var event = {
                 "start": {
-                    "dateTime": date[i] + this.calendar[i][0] // can we put variable here 
+                    "dateTime": date[i]["sleepDate"] + "T" + this.calendar[i][0] // can we put variable here 
                 },
                 "end": {
-                    "dateTime": date[i] + this.calendar[i][1]
+                    "dateTime": date[i]["wakeDate"] + "T" + this.calendar[i][0] 
                 }
             } ;
             result.push(event);

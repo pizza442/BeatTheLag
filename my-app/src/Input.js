@@ -130,8 +130,9 @@ class Input extends Component {
     }
     else {
       var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,
-                                      this.state.targetZone, this.state.endDate, this.state.bedTime, this.state.wakeUpTime);
-      console.log(this.state.targetZone);
+                                      this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
+      let d = testSchedule.packageJSON();
+      console.log(d);
     }
 
   }  

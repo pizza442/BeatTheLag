@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import Login from './Login';
 import './App.css';
 import Input from './Input';
-import Calendar from './calendar';
+import Calendar from './CalendarComponent';
 
 class App extends Component {
     constructor(props) {
@@ -96,8 +96,9 @@ class App extends Component {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-
-            console.log(`${errorCode}:  ${errorMessage} \nemail:${email}\ncredential: ${credential}`);
+            
+            console.log(error);
+            //console.log(`${errorCode}:  ${errorMessage} \nemail:${email}\ncredential: ${credential}`);
         });
     }
 
@@ -128,13 +129,14 @@ class App extends Component {
         let content = '';
 
         if (this.state.signedIn) {
+            // show input form and signout button
             content = 
             <div>
-                <Input accessToken={this.state.accessToken} ></Input>
-                <Calendar accessToken={this.state.accessToken}></Calendar>
-                <button id="signout-btn" className="btn" onClick={() => this.handleSignOut()}>Sign out</button>
+                <Input accessToken={this.state.accessToken} signOutCallback={() => this.handleSignOut()}></Input>
+                
             </div>;
         } else {
+            // show sign in button
             content = <Login signInCallback={(token) => this.handleSignIn(token)}></Login>;
         }
 

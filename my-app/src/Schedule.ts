@@ -36,7 +36,7 @@ export class Schedule {
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
 
-        this.totalDays = Math.abs(parseInt(this.DepartureTimeZone.substring(3)) - parseInt(this.ArrivalTimeZone.substring(3)));
+        this.totalDays = Math.abs(parseInt(this.DepartureTimeZone.substring(4)) - parseInt(this.ArrivalTimeZone.substring(4)));
         //2D array, where [i][0] is start time, [i][1] is end time
         this.calendar = [];
         for (let i = 0; i < this.totalDays; i++) {

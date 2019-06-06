@@ -6,37 +6,35 @@
 export class Schedule {
 
     private DepartureTimeZone: string;
-    private DepartureTime: Date; //Mean't to be the time. use .getHours() and .getMinutes().
     private DepartureDate: Date; //Date use .getDate().
-    private DepartureMonth: number;
-    private DepartureDay: number;
-    private DepartureYear: number;
 
     private ArrivalTimeZone: string;
 
-    private NormalSleepTime: Date;
-    private NormalWakeTime: Date;
+    private NormalSleepTime: string;
+    private NormalWakeTime: string;
 
+    private totalDaysNoAbs: number;
     private totalDays: number;
 
     private calendar: number[][];
     private timeZoneMap: Map<string, any[]>;
 
 
-    constructor (DepartureTimeZone, DepartureTime, DepartureDate,
+    constructor (DepartureTimeZone, DepartureDate,
                  ArrivalTimeZone,
                  NormalSleepTime, NormalWakeTime) {
 
         this.DepartureTimeZone = DepartureTimeZone;
-        this.DepartureTime = DepartureTime;
         this.DepartureDate = DepartureDate;
 
         this.ArrivalTimeZone = ArrivalTimeZone;
-
+        
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
 
-        this.totalDays = Math.abs(parseInt(this.DepartureTimeZone.substring(3)) - parseInt(this.ArrivalTimeZone.substring(3)));
+        this.totalDaysNoAbs = parseInt(this.DepartureTimeZone.substring(4)) - parseInt(this.ArrivalTimeZone.substring(4));
+        this.totalDays = Math.abs(this.totalDaysNoAbs);
+
         //2D array, where [i][0] is start time, [i][1] is end time
         this.calendar = [];
         for (let i = 0; i < this.totalDays; i++) {
@@ -61,49 +59,35 @@ export class Schedule {
     create() {
         //let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
-
-        let sleepingLength: number = Math.abs(this.NormalWakeTime.getHours() - this.NormalSleepTime.getHours()); //Don't know if we're going to need this
-
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
 
-        //Doesn't account for:
-        //  *Months with 31 days.
-        //  *Months with < 30 days.
-        // if (monthDiff > 0) {
-        //     for (let i = 0; i < monthDiff; i++) {
-        //         this.totalDays += 30;
-        //     }
-        // }
+        let startTime = parseInt(this.NormalSleepTime.substring(0,2));
+        let endTime = parseInt(this.NormalWakeTime.substring(0,2));
 
-        // for (let i = 0; i < this.totalDays; i++) {
-        //     this.calendar.push([]);
-        // }
-
-        let startTime = this.NormalSleepTime.getHours();
-        let endTime = this.NormalWakeTime.getHours();
-
-        if (this.totalDays > 0) {
+        if (this.totalDaysNoAbs > 0) {
             for (let i = 0; i < this.totalDays; i++) {
-                if (this.calendar[i][0] < 0) {
-                    startTime = 25;
-                }
-                if (this.calendar[i][1] < 0) {
-                    endTime = 25;
-                }
                 this.calendar[i][0] = startTime--;
                 this.calendar[i][1] = endTime--;
+                
+                if (this.calendar[i][0] < 0) {
+                    this.calendar[i][0] = 24;
+                }
+                if (this.calendar[i][1] < 0) {
+                    this.calendar[i][1] = 24;
+                }
             }
-        } else if (this.totalDays < 0) {
+        } else if (this.totalDaysNoAbs < 0) {
             for (let i = 0; i < this.totalDays; i++) {
-                if (this.calendar[i][0] > 24) {
-                    startTime = 0;
-                }
-                if (this.calendar[i][1] > 24) {
-                    endTime = 0;
-                }
                 this.calendar[i][0] = startTime++;
                 this.calendar[i][1] = endTime++;
+
+                if (this.calendar[i][0] >= 24) {
+                    this.calendar[i][0] = 0;
+                }
+                if (this.calendar[i][1] >= 24) {
+                    this.calendar[i][1] = 0;
+                }
             }
         } else {
             alert("You don't need this page what are you doing, you ugly");
@@ -111,35 +95,119 @@ export class Schedule {
         // Should we return the JSON array?
     }
 
-    test(): any {
-        console.log("it's connected. Ali looks like Elmer FUdd");
+    // return the date that shold be the start date of the sechedule
+    calculateStartDate(): any {
+        let startDay = new Date(this.DepartureDate);
+        startDay.setDate(startDay.getDate() - this.totalDays + 1);
+        return startDay;
     }
 
-    calculateStartMonth(): number {
-        let startDay: number;
-        let startMonth: number;
-        startDay = this.DepartureDay - this.totalDays;
-        if (startDay <= 0) {
-            startDay = Math.abs(startDay) - 1;
-            if (startDay == 0) {
-                startDay += 1;
-            }
+    // return array of object with format:
+    // {
+    //      "sleepDate": "2019-04-02",
+    //      "wakeDate": "2019-04-03"
+    // }
+    translateDatetoString(): any {
+        let date = this.calculateStartDate();
+        let dateArray = Array();
+        for(let i = 0; i < this.totalDays; i++ ) {
+            let month = this.addZero(parseInt(date.getMonth())+1);
+            let day = date.getDate();
+            let year = date.getFullYear().toString();
+            
+            let dateStr = year + "-" + month + "-" + this.addZero(parseInt(day));
+
+            // handling adding date for different month
+            let dateForTmr = new Date(dateStr);     
+            dateForTmr.setDate(dateForTmr.getDate() + 2); 
+            
+            let tmrMonth = this.addZero(dateForTmr.getMonth() + 1);         
+            let tmrDay = dateForTmr.getDate();
+            let tmrYear = dateForTmr.getFullYear().toString();
+            let tmrStr = tmrYear + "-" + tmrMonth + "-" + this.addZero(tmrDay);
+            
+            let output = {
+                "sleepDate": dateStr,
+                "wakeDate": tmrStr
+            };
+            dateArray.push(output);
+            date.setDate(date.getDate()+1); 
+
         }
-        return 0;
+        return dateArray; // array format: [first date, second date... late date (should be departure date)]
+    }
+
+    // return string for number 
+    // if absolute valur of number is smaller than 10, will add a 0 in front of it 
+    addZero(num): any {
+        let result = "";
+        let input = Math.abs(num);
+        if (input < 10) {
+            result = "0" + input.toString(); 
+        } else {
+            result = input.toString(); 
+        }
+        return result;
+    }
+
+    // return string that repsent date in the format what google api want
+    getWhatGoogleApiNeed(date,hour, minute, timeZone): any {
+        return date + "T" + hour + minute + ":00"+ timeZone + ":00";
+    }
+
+    // return string that represent time zone 
+    // for example: "+09" or "-10"
+    makeTimeZone(timeZoneStr) {
+        let result = ""
+        if(timeZoneStr < 0) {
+            result = "-" + this.addZero(timeZoneStr);
+        } else {
+            result = "+" + this.addZero(timeZoneStr);
+        }
+        return result;
     }
 
     //returns JSON... I guess.
     packageJSON(): any {
+        let result = Array();
+        let date = this.translateDatetoString(); 
+        this.create();
+        for ( let i = 0; i < this.calendar.length; i++) {
+            let sleepHour = this.calendar[i][0];
+            let wakeHour = this.calendar[i][1];
+            
+            let sleepHourStr = this.addZero(sleepHour);
+            let wakeHourStr = this.addZero(wakeHour);
+            let timeZone = this.makeTimeZone(parseInt(this.DepartureTimeZone.substring(4))); 
 
-        let result = {
-            "start": {
-                "dateTime": "2019-05-24T09:00:00-07:00",
-            },
-            "end": {
-                "dateTime": "2019-05-30T09:00:00-07:00",
-            }
-
+            var event = {
+                "start": {
+                    "dateTime": this.getWhatGoogleApiNeed(date[i]["sleepDate"], sleepHourStr, this.NormalSleepTime.substr(2), timeZone)
+                },
+                "end": {
+                    "dateTime": this.getWhatGoogleApiNeed(date[i]["wakeDate"], wakeHourStr, this.NormalWakeTime.substr(2), timeZone)
+                },
+            } ;
+            result.push(event);
         }
         return result;
+    }
+}
+
+export class Event {
+    private start: Object;
+    private end: Object;
+
+    constructor (startTime: string, endTime: string) {
+        this.start = {
+            "dateTime" : startTime
+        },
+        this.end = {
+            "dateTime": endTime
+        }
+    } 
+
+    eventJSON(): string {
+        return JSON.stringify(this);
     }
 }

@@ -5,14 +5,14 @@
  */
 exports.__esModule = true;
 var Schedule = /** @class */ (function () {
-    function Schedule(DepartureTimeZone, DepartureTime, DepartureDate, ArrivalTimeZone, NormalSleepTime, NormalWakeTime) {
+    function Schedule(DepartureTimeZone, DepartureDate, ArrivalTimeZone, NormalSleepTime, NormalWakeTime) {
         this.DepartureTimeZone = DepartureTimeZone;
-        this.DepartureTime = DepartureTime;
         this.DepartureDate = DepartureDate;
         this.ArrivalTimeZone = ArrivalTimeZone;
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
-        this.totalDays = Math.abs(parseInt(this.DepartureTimeZone.substring(3)) - parseInt(this.ArrivalTimeZone.substring(3)));
+        this.totalDaysNoAbs = parseInt(this.DepartureTimeZone.substring(4)) - parseInt(this.ArrivalTimeZone.substring(4));
+        this.totalDays = Math.abs(this.totalDaysNoAbs);
         //2D array, where [i][0] is start time, [i][1] is end time
         this.calendar = [];
         for (var i = 0; i < this.totalDays; i++) {
@@ -34,44 +34,32 @@ var Schedule = /** @class */ (function () {
     Schedule.prototype.create = function () {
         //let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
-        var sleepingLength = Math.abs(this.NormalWakeTime.getHours() - this.NormalSleepTime.getHours()); //Don't know if we're going to need this
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
-        //Doesn't account for:
-        //  *Months with 31 days.
-        //  *Months with < 30 days.
-        // if (monthDiff > 0) {
-        //     for (let i = 0; i < monthDiff; i++) {
-        //         this.totalDays += 30;
-        //     }
-        // }
-        // for (let i = 0; i < this.totalDays; i++) {
-        //     this.calendar.push([]);
-        // }
-        var startTime = this.NormalSleepTime.getHours();
-        var endTime = this.NormalWakeTime.getHours();
-        if (this.totalDays > 0) {
+        var startTime = parseInt(this.NormalSleepTime.substring(0, 2));
+        var endTime = parseInt(this.NormalWakeTime.substring(0, 2));
+        if (this.totalDaysNoAbs > 0) {
             for (var i = 0; i < this.totalDays; i++) {
-                if (this.calendar[i][0] < 0) {
-                    startTime = 25;
-                }
-                if (this.calendar[i][1] < 0) {
-                    endTime = 25;
-                }
                 this.calendar[i][0] = startTime--;
                 this.calendar[i][1] = endTime--;
+                if (this.calendar[i][0] < 0) {
+                    this.calendar[i][0] = 24;
+                }
+                if (this.calendar[i][1] < 0) {
+                    this.calendar[i][1] = 24;
+                }
             }
         }
-        else if (this.totalDays < 0) {
+        else if (this.totalDaysNoAbs < 0) {
             for (var i = 0; i < this.totalDays; i++) {
-                if (this.calendar[i][0] > 24) {
-                    startTime = 0;
-                }
-                if (this.calendar[i][1] > 24) {
-                    endTime = 0;
-                }
                 this.calendar[i][0] = startTime++;
                 this.calendar[i][1] = endTime++;
+                if (this.calendar[i][0] >= 24) {
+                    this.calendar[i][0] = 0;
+                }
+                if (this.calendar[i][1] >= 24) {
+                    this.calendar[i][1] = 0;
+                }
             }
         }
         else {
@@ -79,33 +67,108 @@ var Schedule = /** @class */ (function () {
         }
         // Should we return the JSON array?
     };
-    Schedule.prototype.test = function () {
-        console.log("it's connected. Ali looks like Elmer FUdd");
+    // return the date that shold be the start date of the sechedule
+    Schedule.prototype.calculateStartDate = function () {
+        var startDay = new Date(this.DepartureDate);
+        startDay.setDate(startDay.getDate() - this.totalDays + 1);
+        return startDay;
     };
-    Schedule.prototype.calculateStartMonth = function () {
-        var startDay;
-        var startMonth;
-        startDay = this.DepartureDay - this.totalDays;
-        if (startDay <= 0) {
-            startDay = Math.abs(startDay) - 1;
-            if (startDay == 0) {
-                startDay += 1;
-            }
+    // return array of object with format:
+    // {
+    //      "sleepDate": "2019-04-02",
+    //      "wakeDate": "2019-04-03"
+    // }
+    Schedule.prototype.translateDatetoString = function () {
+        var date = this.calculateStartDate();
+        var dateArray = Array();
+        for (var i = 0; i < this.totalDays; i++) {
+            var month = this.addZero(parseInt(date.getMonth()) + 1);
+            var day = date.getDate();
+            var year = date.getFullYear().toString();
+            var dateStr = year + "-" + month + "-" + this.addZero(parseInt(day));
+            // handling adding date for different month
+            var dateForTmr = new Date(dateStr);
+            dateForTmr.setDate(dateForTmr.getDate() + 2);
+            var tmrMonth = this.addZero(dateForTmr.getMonth() + 1);
+            var tmrDay = dateForTmr.getDate();
+            var tmrYear = dateForTmr.getFullYear().toString();
+            var tmrStr = tmrYear + "-" + tmrMonth + "-" + this.addZero(tmrDay);
+            var output = {
+                "sleepDate": dateStr,
+                "wakeDate": tmrStr
+            };
+            dateArray.push(output);
+            date.setDate(date.getDate() + 1);
         }
-        return 0;
+        return dateArray; // array format: [first date, second date... late date (should be departure date)]
+    };
+    // return string for number 
+    // if absolute valur of number is smaller than 10, will add a 0 in front of it 
+    Schedule.prototype.addZero = function (num) {
+        var result = "";
+        var input = Math.abs(num);
+        if (input < 10) {
+            result = "0" + input.toString();
+        }
+        else {
+            result = input.toString();
+        }
+        return result;
+    };
+    // return string that repsent date in the format what google api want
+    Schedule.prototype.getWhatGoogleApiNeed = function (date, hour, minute, timeZone) {
+        return date + "T" + hour + minute + ":00" + timeZone + ":00";
+    };
+    // return string that represent time zone 
+    // for example: "+09" or "-10"
+    Schedule.prototype.makeTimeZone = function (timeZoneStr) {
+        var result = "";
+        if (timeZoneStr < 0) {
+            result = "-" + this.addZero(timeZoneStr);
+        }
+        else {
+            result = "+" + this.addZero(timeZoneStr);
+        }
+        return result;
     };
     //returns JSON... I guess.
     Schedule.prototype.packageJSON = function () {
-        var result = {
-            "start": {
-                "dateTime": "2019-05-24T09:00:00-07:00"
-            },
-            "end": {
-                "dateTime": "2019-05-30T09:00:00-07:00"
-            }
-        };
+        var result = Array();
+        var date = this.translateDatetoString();
+        this.create();
+        for (var i = 0; i < this.calendar.length; i++) {
+            var sleepHour = this.calendar[i][0];
+            var wakeHour = this.calendar[i][1];
+            var sleepHourStr = this.addZero(sleepHour);
+            var wakeHourStr = this.addZero(wakeHour);
+            var timeZone = this.makeTimeZone(parseInt(this.DepartureTimeZone.substring(4)));
+            var event = {
+                "start": {
+                    "dateTime": this.getWhatGoogleApiNeed(date[i]["sleepDate"], sleepHourStr, this.NormalSleepTime.substr(2), timeZone)
+                },
+                "end": {
+                    "dateTime": this.getWhatGoogleApiNeed(date[i]["wakeDate"], wakeHourStr, this.NormalWakeTime.substr(2), timeZone)
+                }
+            };
+            result.push(event);
+        }
         return result;
     };
     return Schedule;
 }());
 exports.Schedule = Schedule;
+var Event = /** @class */ (function () {
+    function Event(startTime, endTime) {
+        this.start = {
+            "dateTime": startTime
+        },
+            this.end = {
+                "dateTime": endTime
+            };
+    }
+    Event.prototype.eventJSON = function () {
+        return JSON.stringify(this);
+    };
+    return Event;
+}());
+exports.Event = Event;

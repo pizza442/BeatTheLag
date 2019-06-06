@@ -131,21 +131,22 @@ export class Schedule {
             
             let dateStr = year + "-" + month + "-" + day;
             dateArray.push(dateStr);
-            date.setDate(date.getDate()+1);
+            date.setDate(date.getDate()+1); 
         }
-        return dateArray;
+        return dateArray; // array format: [first date, second date... late date (should be departure date)]
     }
 
     //returns JSON... I guess.
     packageJSON(): any {
         let result = Array();
+        let date = this.translateDatetoString(); 
         for ( let i = 0; i < this.calendar.length; i++) {
             var event = {
                 "start": {
-                    "dateTime": "2019-05-24T09:00:00-07:00" // can we put variable here 
+                    "dateTime": date[i] + this.calendar[i][0] // can we put variable here 
                 },
                 "end": {
-                    "dateTime": "2019-05-30T09:00:00-07:00"
+                    "dateTime": date[i] + this.calendar[i][1]
                 }
             } ;
             result.push(event);

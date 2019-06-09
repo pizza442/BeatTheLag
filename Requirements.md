@@ -3,7 +3,7 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
 
 ## Login page
 - When open up our page, user will see the big button with text "sign in with Google" in between 1-5 second.
-- If user click the "sign in with Google" button, they will get direct to the Google api sign in. At there, they will see the form showing "***Choose an account to continue to beatthelag-info442.firebaseapp.com***" and they should able to choose their google account to sign in with our system.
+- If user click the "sign in with Google" button, they will get direct to the Google api sign in. At there, they will see the form showing "***Choose an account to continue to beatthelag-info442.firebaseapp.com***" and they should able to choose their google account (or to type in) to sign in with our system.
 - If user do not have a Google account, Google api should direct user to make an account with Google system.
 - After user sign in with their Google account successfully, they should be taken to input page.
 
@@ -46,3 +46,7 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
 - The sleeping schedule will end at user’s departure date.
 
 - If user has used our service before and have an old schedule, if they make a new schedule, the old schedule will be directly updated to the new schedule
+- ```revive```: If google api call has hit the limit, our page show the message "" and the representation of our calendar
+
+- Due to limitation of Google API.
+- 

@@ -17,7 +17,6 @@ export class Schedule {
     private totalDays: number;
 
     private calendar: number[][];
-    private timeZoneMap: Map<string, any[]>;
 
 
     constructor (DepartureTimeZone, DepartureDate,
@@ -40,8 +39,6 @@ export class Schedule {
         for (let i = 0; i < this.totalDays; i++) {
             this.calendar.push([]);
         }
-        this.timeZoneMap = new Map();
-
         // totalDays = DepartureDate - ArriveDate
         // sleepingLength =  NormalWakeTime - NormalSleepTime
         // length of schedule array should be totalDays
@@ -97,7 +94,8 @@ export class Schedule {
 
     // return the date that shold be the start date of the sechedule
     calculateStartDate(): any {
-        let startDay = new Date(this.DepartureDate);
+        //changed to .getDate() because it was recieving TYPE errors.
+        let startDay = new Date(this.DepartureDate.getDate());
         startDay.setDate(startDay.getDate() - this.totalDays + 1);
         return startDay;
     }

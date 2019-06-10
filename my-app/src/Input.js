@@ -16,7 +16,9 @@ class Input extends Component {
       wakeUpTime: "08:00",
       startDate: "",
       endDate: "",
-      clicked: false
+      clicked: false,
+      generated: false,
+      schedule: []
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -134,7 +136,8 @@ class Input extends Component {
                                       this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
       let d = testSchedule.packageJSON();
       console.log(d); // **TEST**
-      console.log(testSchedule.getCalendar()); // **TEST**
+      var schedz = testSchedule.getCalendar() // **TEST**
+      this.setState({generated: true, schedule: schedz});
       window.alert("Your Schedule has been generated!")
     }
     
@@ -142,71 +145,90 @@ class Input extends Component {
 
   render() {
     
-    return (
-      <div className="content">
-        <form name="input" target="_self">
-            <label>
-            Pick your current timezone:
-            <br />
-            <select onChange={this.handleCurrentZone}>
-                { this.state.timezone.map(zone =>{
-                const current= [
-                <option value={zone}>{zone}</option>
-                ];
-                return current;              
-                })
-                }
-            
-            </select>
-            </label>
-            <br />
-            <label>
-            Pick your destination timezone:
-            <br />
-            <select onChange={this.handleTargetZone}>
-                { this.state.timezone.map(zone =>{
-                const current= [
-                <option value={zone}>{zone}</option>
-                ];
-                return current;              
-                })
-                }
-            
-            </select>
-            </label>
-            <br />        
-            <label>Please enter your bed time:
+    if(this.state.generated){
+      return(
+        <div className="content">
+          {  
+            this.state.schedule.map(day => {
+              const current =[
+                <p>{day}</p>
+              ];
+            return current;
+          })
+          }
+            <button id="signout-btn" className="btn" onClick={() => this.props.signOutCallback()}>Sign out</button>
+        </div>
+      );
+    }
+      
+      else{
+        return (       
+          <div className="content">
+          <form name="input" target="_self">
+              <label>
+              Pick your current timezone:
               <br />
-                <input type="time" defaultValue="22:00" onChange={this.handleBedTime}></input>
-            </label>
-            <br />
-            <label>Please enter your wake up time:
+              <select onChange={this.handleCurrentZone}>
+                  { this.state.timezone.map(zone =>{
+                  const current= [
+                  <option value={zone}>{zone}</option>
+                  ];
+                  return current;              
+                  })
+                  }
+              
+              </select>
+              </label>
               <br />
-                <input type="time" defaultValue="08:00" onChange={this.handleWakeTime}></input>
-            </label>
-            <br />
-            <label>Please enter your trip start date:  
-            <br />
-            <input type="date" defaultValue={this.getDATE()} min={this.getDATE()} onChange={this.handleStartDate}></input>
-            </label>
-            <br />
-            <label>Please enter your trip end date:  
-            <br />
-            {
-                this.state.clicked === false ? (            
-                <input type="date" defaultValue={this.getDATEArrive()} min={this.getDATEArrive()} onChange={this.handleEndDate}></input>) 
-                : (<input type="date" defaultValue={this.updateArrive()} min={this.updateArrive()} onChange={this.handleEndDate}></input>)
-            }
-            </label>
-            <br />
-        </form>
-        
-        <button className="btn"  onClick={()=> this.sendData()}>Submit</button>
-
-        <button id="signout-btn" className="btn" onClick={() => this.props.signOutCallback()}>Sign out</button>
-
-      </div>
-    ); 
+              <label>
+              Pick your destination timezone:
+              <br />
+              <select onChange={this.handleTargetZone}>
+                  { this.state.timezone.map(zone =>{
+                  const current= [
+                  <option value={zone}>{zone}</option>
+                  ];
+                  return current;              
+                  })
+                  }
+              
+              </select>
+              </label>
+              <br />        
+              <label>Please enter your bed time:
+                <br />
+                  <input type="time" defaultValue="22:00" onChange={this.handleBedTime}></input>
+              </label>
+              <br />
+              <label>Please enter your wake up time:
+                <br />
+                  <input type="time" defaultValue="08:00" onChange={this.handleWakeTime}></input>
+              </label>
+              <br />
+              <label>Please enter your trip start date:  
+              <br />
+              <input type="date" defaultValue={this.getDATE()} min={this.getDATE()} onChange={this.handleStartDate}></input>
+              </label>
+              <br />
+              <label>Please enter your trip end date:  
+              <br />
+              {
+                  this.state.clicked === false ? (            
+                  <input type="date" defaultValue={this.getDATEArrive()} min={this.getDATEArrive()} onChange={this.handleEndDate}></input>) 
+                  : (<input type="date" defaultValue={this.updateArrive()} min={this.updateArrive()} onChange={this.handleEndDate}></input>)
+              }
+              </label>
+              <br />
+          </form>
+          
+          <button className="btn"  onClick={()=> this.sendData()}>Submit</button>
+  
+          <button id="signout-btn" className="btn" onClick={() => this.props.signOutCallback()}>Sign out</button>
+  
+        </div>
+        ); 
+      }   
+    }
   }   
-}
-export default Input;
+            
+    export default Input;

@@ -27,21 +27,23 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
         -  `Revised`, `Complete:` For arrival date, user won't be able to pick a date that is before departure date.  
          - **Reason for reviving this part**: The reason why we change the requirement of this input date requirement is because (1) we figure out that the actual format of html date object is the `mm/dd/yyyy` rather than `YYYY/MM/DD`. (2) We want to prevent the user from picking the past date they can't change their sleeping schedule in the past (that's why we set the default as today). (3) We set the value of arrival date as two date because 
 
--`Complete:` Users must be able to input their sleeping schedule information, these include:
-    -  `Revised`, `Complete:` Please enter your bed time: `hour:minute AM/PM` 
-    -  `Revised`, `Complete:` Please enter your wake up time: `hour:minute AM/PM`
-        - `Revised`, `Complete:` The input boxes for selecting `hour:minute` will be the html `input` with type `time`.
-        - `Complete:` If user has the same wake up and sleep time, the system will output the error.
-        - `Revised`, `Complete:` The default value of sleeping time will be set to 8:00 AM.
-        - `Revised`, `Complete:` The default value of sleeping time will be set to 10:00 PM.
-        - **reason for reviving**: The reason why we change the requirement of input time in requirement is because (1) The imput time form render by HTML is not a dropdown but the defaut html time object. This time object can help us to get the user input value faster. (2)And this input form can allow us to use AM/PM feature. We think that having AM/PM is more simple for user to pick that's why we change the format of the input (3)
+- `Complete:` Users must be able to input their sleeping schedule information, these include:
+    - `Revised`, `Complete:` Please enter your bed time: `hour:minute AM/PM` 
+    - `Revised`, `Complete:` Please enter your wake up time: `hour:minute AM/PM`
+    - `Revised`, `Complete:` The input boxes for selecting `hour:minute` will be the html `input` with type `time`.
+    - `Complete:` If user has the same wake up and sleep time, the system will output the error.
+    - `Revised`, `Complete:` The default value of sleeping time will be set to 8:00 AM.
+    - `Revised`, `Complete:` The default value of sleeping time will be set to 10:00 PM.
+    - **Reason for reviving this part**: The reason why we change the requirement of input time in requirement is because (1) The imput time form render by HTML is not a dropdown but the defaut html time object. This time object can help us to get the user input value faster. (2)And this input form can allow us to use AM/PM feature. We think that having AM/PM is more simple for user to pick that's why we change the format of the input (3)
 
 - `Complete:` Users must input all the information above in order to get their sleeping schedule.
-- `Complete:` If any input is blank, when users click the “Submit” button, the system will display an  alert pop up window with error message based on which input in not. For example, if user didn't input the bed time, our system will output the alert message "**Please pick a bedtime**". 
-    - **reason for reviving**: We think that showing user which input they are missing is more explicit rather than just telling them they didn't finish the form.
+- `Revised`, `Complete:` If any input is blank, when users click the “Submit” button, the system will display an  alert pop up window with error message based on which input in not. For example, if user didn't input the bed time, our system will output the alert message "**Please pick a bedtime**". 
+    - **Reason for reviving**: We think that showing user which input they are missing is more explicit rather than just telling them they didn't finish the form. So we change the way of giving error message
 
 - When users click the “Submit” button, the waiting animation will be shown in the middle of the page for about 5 second (this is the time when system is generating the sleeping schedule)
-- After those 5 seconds, there will have a green check icon and the message “***Your sleeping schedule has been updated on your google calendar!”*** is displayed.
+
+- `Revised`, `Complete:` After user click the "Submit" button, our page will display the 
+    - **Reason for reviving**: Due to the Google calendar API issue, we change our plan and decided to produce the schedule on our system. The 
 
 - If user's arrival date and departure date is at the same date, there will have a green check icon and the message “***You don't need to change your sleeping schedule!”*** is displayed.
 
@@ -49,10 +51,9 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
     - **reason for reviving**: In order to add event or update event using Google API, we have to get certificate which will cause us 3 weeks. In this case we decided to change the plan and make the actual schedule that will be shown on our system
 
 - `revised` `Complete:` The sleeping schedule produced by the system should be follow the principles in [research](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) over here. In conclusion, how many days user will have for their sechedule is depend on how many time zone difference they have.  
-    - **reason for reviving**: The research above also include the time for getting daylight, which is not what our sechedule will cover. We revised this requirement is to make this requirement more specific so that everybody know what will be the expected output
+    - **reason for reviving**: This is more like make the requirement more specific. The research provided above also includes how user will control when they will get expose under daylight, which is not what our sechedule will cover. We revised this requirement is to make this requirement more specific so that everybody know what will be the expected output
 - `Impossible:` The sleeping schedule produced by the system will be added onto the user’s google calendar with the title “Sleeping time”.
     - **reason why impossible:** At the last two week before dead line we found out that we have to get the cirtification from Google in order to add/ update the event using Google Calendar API and it will spend over 3-5 week to apply cirtification. 
-
 - `Complete:` The sleeping schedule will start on the day depending on user’s flight and sleeping information (again, follow the principles above).
 - `Complete:` The sleeping schedule will end at user’s departure date.
 - If user has used our service before and have an old schedule, if they make a new schedule, the old schedule will be directly updated to the new schedule

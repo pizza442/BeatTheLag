@@ -18,7 +18,6 @@ var Schedule = /** @class */ (function () {
         for (var i = 0; i < this.totalDays; i++) {
             this.calendar.push([]);
         }
-        alert("WRYYYYYYYYYYYYYYYYYYYYYYY");
         // totalDays = DepartureDate - ArriveDate
         // sleepingLength =  NormalWakeTime - NormalSleepTime
         // length of schedule array should be totalDays

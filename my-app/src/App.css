@@ -12,7 +12,7 @@
    text-align: center;
 }
 
-.App-logo, .App-header, .App-description {
+.App-logo, .App-header, .App-description, .content {
     padding: 1em;
 }
 
@@ -47,7 +47,6 @@ body, h2, input {
 }
 
 .content {
-    padding: 4em;
     width: fit-content;
 }
 
@@ -58,9 +57,9 @@ h1 {
     margin: .5em;
 }
 
-h2 {
+h2, label {
+    color: #148184;
     font-weight: 400;
-    color: #007BAF;
 }
 
 strong {

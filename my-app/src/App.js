@@ -3,7 +3,6 @@ import firebase from 'firebase/app';
 import Login from './Login';
 import './App.css';
 import Input from './Input';
-import Calendar from './CalendarComponent';
 
 const logo = require('./logo.png');
 
@@ -47,7 +46,7 @@ class App extends Component {
             var credential = authResult.credential;
 
             // for testing
-            console.log(`Getting redirect result... ${authResult}`);
+            //console.log(`Getting redirect result... ${authResult}`);
 
             if (credential) {
                 // User successfully signed in.
@@ -63,12 +62,12 @@ class App extends Component {
                 thisApp.handleSignIn(accessToken);
 
                 // for testing
-                console.log(credential.accessToken);
+                //console.log(credential.accessToken);
 
                 // Adds new users or updates returning users info on firebase
                 if (isNewUser) {
                     // if the user has not signed in before
-                    console.log('New user: ' + user.email);
+                    //console.log('New user: ' + user.email);
         
                     // store user in firebase
                     firebase.database().ref('users/' + user.uid).set({
@@ -79,8 +78,8 @@ class App extends Component {
                     // Returning user
         
                     // for testing
-                    console.log('Returning user: ' + user.email);
-                    console.log("Updating access token for current user...");
+                    //console.log('Returning user: ' + user.email);
+                    //console.log("Updating access token for current user...");
         
                     // update the access token for the current user
                     let userRef = firebase.database().ref('users').child(user.uid);
@@ -106,7 +105,7 @@ class App extends Component {
 
     // changes the state 
     handleSignIn(accessToken) {
-        console.log('User signed in, changing state...');
+        //console.log('User signed in, changing state...');
 
         this.setState({ signedIn: true, accessToken: accessToken });
     }

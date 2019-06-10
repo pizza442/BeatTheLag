@@ -17,7 +17,7 @@ export class Schedule {
     private totalDays: number;
 
     private calendar: number[][];
-
+    private calendarString: string[][];
 
     constructor (DepartureTimeZone, DepartureDate,
                  ArrivalTimeZone,
@@ -36,8 +36,10 @@ export class Schedule {
 
         //2D array, where [i][0] is start time, [i][1] is end time
         this.calendar = [];
+        this.calendarString = [];
         for (let i = 0; i < this.totalDays; i++) {
             this.calendar.push([]);
+            this.calendarString.push([]);
         }
         // totalDays = DepartureDate - ArriveDate
         // sleepingLength =  NormalWakeTime - NormalSleepTime
@@ -187,8 +189,14 @@ export class Schedule {
                 },
             } ;
             result.push(event);
+            this.calendarString[i][0] = date[i]["sleepDate"] + " " + sleepHourStr + this.NormalSleepTime.substr(2);
+            this.calendarString[i][1] = date[i]["wakeDate"] + " " + wakeHourStr + this.NormalWakeTime.substr(2);
         }
         return result;
+    }
+
+    getCalendar(): any {
+        return this.calendarString;
     }
 }
 

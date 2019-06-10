@@ -132,6 +132,8 @@ class Input extends Component {
       var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,
                                       this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
       let d = testSchedule.packageJSON();
+      console.log(d); // **TEST**
+      console.log(testSchedule.getCalendar()); // **TEST**
       window.alert("Your Schedule has been generated!")
     }
 

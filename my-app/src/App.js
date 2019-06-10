@@ -5,6 +5,8 @@ import './App.css';
 import Input from './Input';
 import Calendar from './CalendarComponent';
 
+const logo = require('./logo.png');
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -143,6 +145,7 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="App-header">
+                    <img className="App-logo" src={logo} alt="BeatTheLag logo"/>
                     <h1>BeatTheLag</h1>
                 </div>
                 <p className="App-description">

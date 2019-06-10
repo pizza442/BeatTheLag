@@ -95,7 +95,7 @@ export class Schedule {
     // return the date that shold be the start date of the sechedule
     calculateStartDate(): any {
         //changed to .getDate() because it was recieving TYPE errors.
-        let startDay = new Date(this.DepartureDate.getDate());
+        let startDay = new Date(this.DepartureDate);
         startDay.setDate(startDay.getDate() - this.totalDays + 1);
         return startDay;
     }

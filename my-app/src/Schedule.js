@@ -18,7 +18,6 @@ var Schedule = /** @class */ (function () {
         for (var i = 0; i < this.totalDays; i++) {
             this.calendar.push([]);
         }
-        alert("WRYYYYYYYYYYYYYYYYYYYYYYY");
         // totalDays = DepartureDate - ArriveDate
         // sleepingLength =  NormalWakeTime - NormalSleepTime
         // length of schedule array should be totalDays
@@ -70,7 +69,7 @@ var Schedule = /** @class */ (function () {
     // return the date that shold be the start date of the sechedule
     Schedule.prototype.calculateStartDate = function () {
         //changed to .getDate() because it was recieving TYPE errors.
-        var startDay = new Date(this.DepartureDate.getDate());
+        var startDay = new Date(this.DepartureDate);
         startDay.setDate(startDay.getDate() - this.totalDays + 1);
         return startDay;
     };

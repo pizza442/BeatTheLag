@@ -15,10 +15,11 @@ var Schedule = /** @class */ (function () {
         this.totalDays = Math.abs(this.totalDaysNoAbs);
         //2D array, where [i][0] is start time, [i][1] is end time
         this.calendar = [];
+        this.calendarString = [];
         for (var i = 0; i < this.totalDays; i++) {
             this.calendar.push([]);
+            this.calendarString.push([]);
         }
-        this.timeZoneMap = new Map();
         // totalDays = DepartureDate - ArriveDate
         // sleepingLength =  NormalWakeTime - NormalSleepTime
         // length of schedule array should be totalDays
@@ -69,6 +70,7 @@ var Schedule = /** @class */ (function () {
     };
     // return the date that shold be the start date of the sechedule
     Schedule.prototype.calculateStartDate = function () {
+        //changed to .getDate() because it was recieving TYPE errors.
         var startDay = new Date(this.DepartureDate);
         startDay.setDate(startDay.getDate() - this.totalDays + 1);
         return startDay;
@@ -151,8 +153,13 @@ var Schedule = /** @class */ (function () {
                 }
             };
             result.push(event);
+            this.calendarString[i][0] = date[i]["sleepDate"] + " " + sleepHourStr + this.NormalSleepTime.substr(2);
+            this.calendarString[i][1] = date[i]["wakeDate"] + " " + wakeHourStr + this.NormalWakeTime.substr(2);
         }
-        return JSON.stringify(result);
+        return result;
+    };
+    Schedule.prototype.getCalendar = function () {
+        return this.calendarString;
     };
     return Schedule;
 }());

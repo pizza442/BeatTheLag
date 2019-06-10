@@ -133,7 +133,8 @@ class Input extends Component {
       var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,
                                       this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
       let d = testSchedule.packageJSON();
-
+      console.log(d); // **TEST**
+      console.log(testSchedule.getCalendar()); // **TEST**
       window.alert("Your Schedule has been generated!")
     }
     
@@ -179,7 +180,7 @@ class Input extends Component {
                 <input type="time" defaultValue="22:00" onChange={this.handleBedTime}></input>
             </label>
             <br />
-            <label>Please enter your wake Up time:
+            <label>Please enter your wake up time:
               <br />
                 <input type="time" defaultValue="08:00" onChange={this.handleWakeTime}></input>
             </label>
@@ -189,7 +190,7 @@ class Input extends Component {
             <input type="date" defaultValue={this.getDATE()} min={this.getDATE()} onChange={this.handleStartDate}></input>
             </label>
             <br />
-            <label>Please enter your trip start end date:  
+            <label>Please enter your trip end date:  
             <br />
             {
                 this.state.clicked === false ? (            

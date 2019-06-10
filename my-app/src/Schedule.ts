@@ -17,8 +17,7 @@ export class Schedule {
     private totalDays: number;
 
     private calendar: number[][];
-    private timeZoneMap: Map<string, any[]>;
-
+    private calendarString: string[][];
 
     constructor (DepartureTimeZone, DepartureDate,
                  ArrivalTimeZone,
@@ -37,11 +36,11 @@ export class Schedule {
 
         //2D array, where [i][0] is start time, [i][1] is end time
         this.calendar = [];
+        this.calendarString = [];
         for (let i = 0; i < this.totalDays; i++) {
             this.calendar.push([]);
+            this.calendarString.push([]);
         }
-        this.timeZoneMap = new Map();
-
         // totalDays = DepartureDate - ArriveDate
         // sleepingLength =  NormalWakeTime - NormalSleepTime
         // length of schedule array should be totalDays
@@ -97,6 +96,7 @@ export class Schedule {
 
     // return the date that shold be the start date of the sechedule
     calculateStartDate(): any {
+        //changed to .getDate() because it was recieving TYPE errors.
         let startDay = new Date(this.DepartureDate);
         startDay.setDate(startDay.getDate() - this.totalDays + 1);
         return startDay;
@@ -189,8 +189,14 @@ export class Schedule {
                 },
             } ;
             result.push(event);
+            this.calendarString[i][0] = date[i]["sleepDate"] + " " + sleepHourStr + this.NormalSleepTime.substr(2);
+            this.calendarString[i][1] = date[i]["wakeDate"] + " " + wakeHourStr + this.NormalWakeTime.substr(2);
         }
-        return JSON.stringify(result);
+        return result;
+    }
+
+    getCalendar(): any {
+        return this.calendarString;
     }
 }
 

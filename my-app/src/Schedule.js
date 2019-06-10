@@ -153,8 +153,8 @@ var Schedule = /** @class */ (function () {
                 }
             };
             result.push(event);
-            this.calendarString[i][0] = date[i]["sleepDate"] + " " + sleepHourStr + this.NormalSleepTime.substr(2);
-            this.calendarString[i][1] = " till " + date[i]["wakeDate"] + " " + wakeHourStr + this.NormalWakeTime.substr(2);
+            this.calendarString[i][0] = "From " + date[i]["sleepDate"] + " at " + sleepHourStr + this.NormalSleepTime.substr(2);
+            this.calendarString[i][1] = " till " + date[i]["wakeDate"] + " at " + wakeHourStr + this.NormalWakeTime.substr(2);
         }
         return result;
     };

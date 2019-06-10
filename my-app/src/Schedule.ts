@@ -27,7 +27,7 @@ export class Schedule {
         this.DepartureDate = DepartureDate;
 
         this.ArrivalTimeZone = ArrivalTimeZone;
-        
+
         this.NormalSleepTime = NormalSleepTime;
         this.NormalWakeTime = NormalWakeTime;
 
@@ -88,10 +88,7 @@ export class Schedule {
                     this.calendar[i][1] = 0;
                 }
             }
-        } else {
-            alert("You don't need this page what are you doing, you ugly");
-        }
-        // Should we return the JSON array?
+        } 
     }
 
     // return the date that shold be the start date of the sechedule

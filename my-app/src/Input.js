@@ -111,6 +111,9 @@ class Input extends Component {
     if(this.state.startDate == ""){
       window.alert("Please pick a start date");
     }
+    else if(this.state.endDate == ""){
+      window.alert("Please pick a end date");
+    }
     //redirect to another page
     else if(this.state.currentZone == this.state.targetZone){
       window.alert("Your current timezone and the abroad timezone cannot be the same");
@@ -132,7 +135,8 @@ class Input extends Component {
     }
     else {
       var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,
-                                      this.state.targetZone, this.state.bedTime, this.state.wakeUpTime);
+                                      this.state.targetZone, 
+                                      this.state.bedTime, this.state.wakeUpTime);
       let d = testSchedule.packageJSON();
       console.log(d); // **TEST**
       var schedz = testSchedule.getCalendar() // **TEST**

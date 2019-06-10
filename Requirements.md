@@ -38,24 +38,24 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
 
 - `Complete:` Users must input all the information above in order to get their sleeping schedule.
 - `Revised`, `Complete:` If any input is blank, when users click the “Submit” button, the system will display an  alert pop up window with error message based on which input in not. For example, if user didn't input the bed time, our system will output the alert message "**Please pick a bedtime**". 
-    - **Reason for reviving**: We think that showing user which input they are missing is more explicit rather than just telling them they didn't finish the form. So we change the way of giving error message
+- **Reason for reviving**: We think that showing user which input they are missing is more explicit rather than just telling them they didn't finish the form. So we change the way of giving error message
 
 - `Impossible:` When users click the “Submit” button, the waiting animation will be shown in the middle of the page for about 5 second (this is the time when system is generating the sleeping schedule)
-    - **Reason for reviving**: The waiting animation suppose to be the time waiting for fetching the Google API's response. Since we are not able to use the Google API, we can't add the animation when producing the schedule on our page since react will just generate the representation of sechedule on the page.  
+- **Reason for reviving**: The waiting animation suppose to be the time waiting for fetching the Google API's response. Since we are not able to fetch from the Google API because of reason above, we can't add the animation when producing the schedule on our page since react will just generate the representation of sechedule on the page.  
 
 - `Revised`, `Complete:` After user click the "Submit" button, our page will display the representation of schedule informing user when will they start the schedule and when should they go to sleep. 
-    - **Reason for reviving**: Due to the Google calendar API issue, we change our plan and decided to produce the schedule on our system rather than Google Calendar.
+- **Reason for reviving**: Due to the Google calendar API issue, we change our plan and decided to produce the schedule on our system rather than Google Calendar.
 
 - `Impossible`: If user's arrival date and departure date is at the same date, there will have a green check icon and the message “***You don't need to change your sleeping schedule!”*** is displayed.
-     - **reason for reviving**: In input form, we have add the feature that won't allow user pick a day before two days after departure date. 
+- **Reason for reviving**: We have add the feature that prevent user from choosing date that is before two days after departure date. So there is no way for them to pick a same date for arrival date and departure date.
 
-- `Revised` The sleeping schedule produced by the system will be shown by the page showing user when they should get to sleep.
-    - **reason for reviving**: In order to add event or update event using Google API, we have to get certificate which will cause us 3 weeks. In this case we decided to change the plan and make the actual schedule that will be shown on our system
+- `Revised` The sleeping schedule produced by the system will be shown by the page showing user when they should get to sleep after user click the submot button.
+- **Reason for reviving**: In order to add event or update event using Google API, we have to get certificate which will cause us 3 weeks. In this case we decided to change the plan and make the actual schedule that will be shown on our system
 
 - `Revised` `Complete:` The sleeping schedule produced by the system should be follow the principles in [research](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2829880/) over here. In conclusion, how many days user will have for their sechedule is depend on how many time zone difference they have.  
-    - **reason for reviving**: This is more like make the requirement more specific. The research provided above also includes how user will control when they will get expose under daylight, which is not what our sechedule will cover. We revised this requirement is to make this requirement more specific so that everybody know what will be the expected output
+    - **Reason for reviving**: This is more like make the requirement more specific. The research provided above also includes how user will control when they will get expose under daylight, which is not what our sechedule will cover. We revised this requirement is to make this requirement more specific so that everybody know what will be the expected output
 - `Impossible:` The sleeping schedule produced by the system will be added onto the user’s google calendar with the title “Sleeping time”.
-    - **reason why impossible:** At the last two week before dead line we found out that we have to get the cirtification from Google in order to add/ update the event using Google Calendar API and it will spend over 3-5 week to apply cirtification. 
+    - **Reason why impossible:** At the last two week before dead line we found out that we have to get the cirtification from Google in order to add/ update the event using Google Calendar API and it will spend over 3-5 week to apply cirtification. 
 - `Complete:` The sleeping schedule will start on the day depending on user’s flight and sleeping information (again, follow the principles above).
 - `Complete:` The sleeping schedule will end at user’s departure date.
-- If user has used our service before and have an old schedule, if they make a new schedule, the old schedule will be directly updated to the new schedule
+-  If user has used our service before and have an old schedule, if they make a new schedule, the old schedule will be directly updated to the new schedule

@@ -58,4 +58,4 @@ This is the design requirement for BeatTheLag. BeatTheLag is the web application
     - **Reason why impossible:** At the last two week before dead line we found out that we have to get the cirtification from Google in order to add/ update the event using Google Calendar API and it will spend over 3-5 week to apply cirtification. 
 - `Complete:` The sleeping schedule will start on the day depending on user’s flight and sleeping information (again, follow the principles above).
 - `Complete:` The sleeping schedule will end at user’s departure date.
--  If user has used our service before and have an old schedule, if they make a new schedule, the old schedule will be directly updated to the new schedule
+- `Complete:` If user has used our service before and have an old schedule, if they make a new schedule, the old schedule will be directly updated to the new schedule

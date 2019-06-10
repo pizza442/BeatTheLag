@@ -43,7 +43,7 @@ class Calendar extends Component {
 
     // Make sure the client is loaded and sign-in is complete before calling this method.
     execute() {
-        return gapi.client.calendar.events.insert({
+        gapi.client.calendar.events.insert({
             "calendarId": "primary",
             "sendNotifications": true,
             "resource": {
@@ -79,6 +79,8 @@ class Calendar extends Component {
          */
         gapi.load("client:auth2", function () {
             gapi.auth2.init({ client_id: "214643886468-gb9th8uf2rdmpmlnrvq8d65c8r6sp3fa.apps.googleusercontent.com" });
+
+            //gapi.auth2.init({ client_id: "214643886468-sgfv4su0p5i39r61n9o1b3e3dpurhkd2.apps.googleusercontent.com" });
         });
 
         //this.authenticate().then(loadClient);

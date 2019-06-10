@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+//import CalendarComponent from './CalendarComponent';
 const { Schedule } = require('./Schedule');
 
 class Input extends Component {
@@ -135,7 +136,7 @@ class Input extends Component {
 
       window.alert("Your Schedule has been generated!")
     }
-
+    
   }  
 
   render() {

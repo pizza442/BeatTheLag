@@ -44,7 +44,6 @@ var Schedule = /** @class */ (function () {
             for (var i = 0; i < this.totalDays; i++) {
                 this.calendar[i][0] = startTime--;
                 this.calendar[i][1] = endTime--;
-                console.log("Start time before ~if~ " + startTime);
                 if (startTime < 0) {
                     startTime = 23;
                 }
@@ -52,12 +51,9 @@ var Schedule = /** @class */ (function () {
                     endTime = 23;
                 }
                 if (this.calendar[i][0] < 0 && startTime < 0) {
-                    console.log(this.calendar[i][0]);
-                    //startTime = 0;
                     this.calendar[i][0] = startTime % 24;
                 }
                 if (this.calendar[i][1] < 0 && endTime < 0) {
-                    //endTime = 0;
                     this.calendar[i][1] = endTime % 24;
                 }
             }
@@ -67,7 +63,6 @@ var Schedule = /** @class */ (function () {
                 this.calendar[i][0] = startTime++;
                 this.calendar[i][1] = endTime++;
                 if (this.calendar[i][0] >= 24) {
-                    console.log(startTime);
                     this.calendar[i][0] = startTime % 24 - 1;
                 }
                 if (this.calendar[i][1] >= 24) {

@@ -1,0 +1,31 @@
+[debug] [2019-06-10T21:45:14.951Z] ----------------------------------------------------------------------
+[debug] [2019-06-10T21:45:14.954Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2019-06-10T21:45:14.954Z] CLI Version:   6.11.0
+[debug] [2019-06-10T21:45:14.954Z] Platform:      darwin
+[debug] [2019-06-10T21:45:14.954Z] Node Version:  v10.16.0
+[debug] [2019-06-10T21:45:14.955Z] Time:          Mon Jun 10 2019 14:45:14 GMT-0700 (Pacific Daylight Time)
+[debug] [2019-06-10T21:45:14.955Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-06-10T21:45:14.966Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-06-10T21:45:14.967Z] > authorizing via signed-in user
+[debug] [2019-06-10T21:45:14.967Z] [iam] checking project beatthelag-info442 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-06-10T21:45:14.968Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/beatthelag-info442:testIamPermissions  
+
+[debug] [2019-06-10T21:45:15.185Z] <<< HTTP RESPONSE 200
+[debug] [2019-06-10T21:45:15.188Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/beatthelag-info442  
+ 
+[debug] [2019-06-10T21:45:15.610Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'beatthelag-info442'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-06-10T21:45:15.616Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/beatthelag-info442/versions  
+
+[debug] [2019-06-10T21:45:16.736Z] <<< HTTP RESPONSE 200
+[info] i  hosting[beatthelag-info442]: beginning deploy...
+[info] i  hosting[beatthelag-info442]: found 8 files in build
+[debug] [2019-06-10T21:45:16.749Z] [hosting] hash cache [YnVpbGQ] load error: lines is not defined
+[debug] [2019-06-10T21:45:17.268Z] [hosting] hash cache [YnVpbGQ] stored for 8 files
+[debug] [2019-06-10T21:45:17.268Z] [hosting][hash queue][FINAL]
+[debug] [2019-06-10T21:45:17.268Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/beatthelag-info442/versions/f888ef39acdc8dcf:populateFiles  
+ <request body omitted>

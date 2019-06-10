@@ -63,10 +63,6 @@ var Schedule = /** @class */ (function () {
                 }
             }
         }
-        else {
-            alert("You don't need this page what are you doing, you ugly");
-        }
-        // Should we return the JSON array?
     };
     // return the date that shold be the start date of the sechedule
     Schedule.prototype.calculateStartDate = function () {

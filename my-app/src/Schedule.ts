@@ -65,15 +65,30 @@ export class Schedule {
         let endTime = parseInt(this.NormalWakeTime.substring(0,2));
 
         if (this.totalDaysNoAbs > 0) {
+            console.log("In the MINUS branch");
             for (let i = 0; i < this.totalDays; i++) {
                 this.calendar[i][0] = startTime--;
                 this.calendar[i][1] = endTime--;
+<<<<<<< HEAD
                 
                 if (this.calendar[i][0] <= 0) {
                     this.calendar[i][0] = startTime + 24;
                 }
                 if (this.calendar[i][1] <= 0) {
                     this.calendar[i][1] = endTime + 24;
+=======
+                if (startTime < 0) {
+                    startTime = 23;
+                }
+                if (endTime < 0) {
+                    endTime = 23;
+                }
+                if (this.calendar[i][0] < 0 && startTime < 0) {
+                    this.calendar[i][0] = startTime % 24;
+                }
+                if (this.calendar[i][1] < 0 && endTime < 0) {
+                    this.calendar[i][1] = endTime % 24;
+>>>>>>> 3973a3e8931ad94543cbffe96af37ea7431decac
                 }
             }
         } else if (this.totalDaysNoAbs < 0) {
@@ -82,10 +97,10 @@ export class Schedule {
                 this.calendar[i][1] = endTime++;
 
                 if (this.calendar[i][0] >= 24) {
-                    this.calendar[i][0] = startTime - 24;
+                    this.calendar[i][0] = startTime % 24 - 1;
                 }
                 if (this.calendar[i][1] >= 24) {
-                    this.calendar[i][1] = endTime - 24;
+                    this.calendar[i][1] = endTime % 24 - 1;
                 }
             }
         } 

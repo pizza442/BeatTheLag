@@ -44,10 +44,10 @@ var Schedule = /** @class */ (function () {
                 this.calendar[i][0] = startTime--;
                 this.calendar[i][1] = endTime--;
                 if (this.calendar[i][0] <= 0) {
-                    this.calendar[i][0] = 24;
+                    this.calendar[i][0] = startTime + 24;
                 }
                 if (this.calendar[i][1] <= 0) {
-                    this.calendar[i][1] = 24;
+                    this.calendar[i][1] = endTime + 24;
                 }
             }
         }

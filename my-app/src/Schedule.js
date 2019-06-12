@@ -25,7 +25,7 @@ var Schedule = /** @class */ (function () {
         // length of schedule array should be totalDays
         // secheduleStartTime = NormalSleepTime
         // if (totalDays > 0) {
-        //    User will sleep earlier and earlier: 11 -> 10 -> 9
+        //    User will sleep earlier and earlier:git oxso 11 -> 10 -> 9
         // } else if (totalDays < 0) {
         //    User will sleep earlier and earlier: 11 -> 12 -> 1
         // } else {
@@ -37,10 +37,12 @@ var Schedule = /** @class */ (function () {
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
+        if (this.ArrivalTimeZone == this.DepartureTimeZone) {
+            window.alert("You can't pick 12 and -12. They are the same time zone!");
+        }
         var startTime = parseInt(this.NormalSleepTime.substring(0, 2));
         var endTime = parseInt(this.NormalWakeTime.substring(0, 2));
         if (this.totalDaysNoAbs > 0) {
-            console.log("In the MINUS branch");
             for (var i = 0; i < this.totalDays; i++) {
                 this.calendar[i][0] = startTime--;
                 this.calendar[i][1] = endTime--;

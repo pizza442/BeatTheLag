@@ -11,26 +11,21 @@ class App extends Component {
         super(props);
 
         this.state = {
-            view: '',
             signedIn: false,
-            accessToken: undefined,
+            accessToken: null,
             loading: true //loading change here
         };
-
-        this.handleSignIn = this.handleSignIn.bind(this);
     }
 
     componentDidMount() {
         this.authUnRegFunc = firebase.auth().onAuthStateChanged((firebaseUser) => {
             if (firebaseUser) {
+                console.log("User signed in");
 
-                console.log("User has logged in: ", firebaseUser);
-
-                this.setState({ user: firebaseUser });
                 this.getRedirectResult();
-                this.setState({ user: firebaseUser, loading: false}); //loading change here
+                this.setState({loading: false}); //loading change here
             } else {
-                console.log("User has logged out");
+                console.log("No user logged in");
 
                 this.setState({ user: null, signedIn: false, loading: false}); //loading change here
             }
@@ -48,23 +43,18 @@ class App extends Component {
             var credential = authResult.credential;
 
             // for testing
-            //console.log(`Getting redirect result... ${authResult}`);
+            //console.log(`Getting redirect result...`);
 
             if (credential) {
-                // User successfully signed in.
-                //this.handleSuccessfulSignIn(authResult);
+                // User successfully signed in
                 var user = authResult.user;
                 var isNewUser = authResult.additionalUserInfo.isNewUser;
 
-                // This gives you a Google Access Token. You can use it to access the Google API.
+                // This gives you a Google Access Token. You can use it to access the Google API
                 var accessToken = credential.accessToken;
-                
-                // set the access token for the current user
-                //this.setState({ signIn: true, accessToken: accessToken });
-                thisApp.handleSignIn(accessToken);
 
-                // for testing
-                //console.log(credential.accessToken);
+                // set the access token for the current user
+                thisApp.handleSignIn(accessToken);
 
                 // Adds new users or updates returning users info on firebase
                 if (isNewUser) {
@@ -79,37 +69,28 @@ class App extends Component {
                 } else {
                     // Returning user
         
-                    // for testing
-                    //console.log('Returning user: ' + user.email);
-                    //console.log("Updating access token for current user...");
-        
                     // update the access token for the current user
                     let userRef = firebase.database().ref('users').child(user.uid);
                     userRef.update({ accessToken: accessToken });
                 }
-                
-                
             }
 
         }).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            
-            console.log(error);
-            //console.log(`${errorCode}:  ${errorMessage} \nemail:${email}\ncredential: ${credential}`);
+            // Handle Errors here
+            console.log("Error in getting redirect result...");
+            this.handleError(error.message);
         });
     }
 
     // changes the state 
     handleSignIn(accessToken) {
-        //console.log('User signed in, changing state...');
+        console.log('Signed in');
 
-        this.setState({ signedIn: true, accessToken: accessToken, loading: false }); //loading change here
+        this.setState({ 
+            signedIn: true, 
+            accessToken: accessToken, 
+            loading: false 
+        }); //loading change here
     }
 
     //A callback function for logging out the current user
@@ -118,33 +99,48 @@ class App extends Component {
 
         firebase.auth().signOut()
             .then(() => {
-                this.setState({signedIn: false});
+                console.log("Signing out...");
+                this.setState({signedIn: false, accessToken: null, loading: false});
             })
-            .catch((err) => {
-                console.log(err);
-                this.setState({ errorMessage: err.message });
+            .catch((error) => {
+                console.log('Error in signing out...');
+                this.handleError(error.message);
             })
     }
 
+    // Changes state to display error message
+    handleError(error) {
+        console.log(error);
+        this.setState({ errorMessage: error });
+    }
+
     render() {
-        console.log(`Signed in: ${this.state.signedIn}\nAccess token: ${this.state.accessToken}`);
+        // For testing
+        //console.log(`Signed in: ${this.state.signedIn}\nAccess token: ${this.state.accessToken}`);
 
         let content = '';
+        let error = null;
 
         if (this.state.loading) { //loading change here
-            content = (<div>
-                <p className="loading">LOADING...</p>
-                </div>);
+            content = (<div className="content loading">LOADING...</div>);
         } else if (this.state.signedIn) {
             // show input form and signout button
-            content = 
-            <div>
-                <Input accessToken={this.state.accessToken} signOutCallback={() => this.handleSignOut()}></Input>
-                
-            </div>;
+            content =   <Input 
+                            accessToken={this.state.accessToken} 
+                            signOutCallback={() => this.handleSignOut()}
+                            errorCallback={(error) => this.handleError(error)}>
+                        </Input>;
         } else {
             // show sign in button
-            content = <Login signInCallback={(token) => this.handleSignIn(token)}></Login>;
+            content =   <Login 
+                            signInCallback={(token) => this.handleSignIn(token)}
+                            errorCallback={(error) => this.handleError(error)}
+                            redirectCallback={() => this.getRedirectResult()}>
+                        </Login>;
+        }
+
+        if (this.state.errorMessage) {
+            error = <div className="error">{this.state.errorMessage}</div>;
         }
 
         return (
@@ -159,6 +155,8 @@ class App extends Component {
                     event abroad, <strong>BeatTheLag</strong> will help optimize your performance, enjoyment, and
                     health when traveling.
                 </p>
+
+                {error}
 
                 {content}
 

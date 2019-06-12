@@ -46,7 +46,7 @@ export class Schedule {
         // length of schedule array should be totalDays
         // secheduleStartTime = NormalSleepTime
         // if (totalDays > 0) {
-        //    User will sleep earlier and earlier: 11 -> 10 -> 9
+        //    User will sleep earlier and earlier:git oxso 11 -> 10 -> 9
         // } else if (totalDays < 0) {
         //    User will sleep earlier and earlier: 11 -> 12 -> 1
         // } else {
@@ -60,6 +60,9 @@ export class Schedule {
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
+        if(this.totalDays > 24) {
+            this.totalDays = 24;
+        }
 
         let startTime = parseInt(this.NormalSleepTime.substring(0,2));
         let endTime = parseInt(this.NormalWakeTime.substring(0,2));

@@ -37,9 +37,6 @@ var Schedule = /** @class */ (function () {
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
-        if (this.ArrivalTimeZone == this.DepartureTimeZone) {
-            window.alert("You can't pick 12 and -12. They are the same time zone!");
-        }
         var startTime = parseInt(this.NormalSleepTime.substring(0, 2));
         var endTime = parseInt(this.NormalWakeTime.substring(0, 2));
         if (this.totalDaysNoAbs > 0) {

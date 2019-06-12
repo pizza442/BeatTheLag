@@ -168,13 +168,10 @@ class Input extends Component {
         if (this.state.generated) {
             content = 
                 <div className="schedule">
-                    {console.log(this.state.schedule)}
                     {this.state.schedule.map(day => {
                         const current = [
                             <p>{day}</p>
                         ];
-                        console.log(current);
-                        console.log(day);
                         return current;
                     })}
                 </div>;

@@ -25,7 +25,7 @@ var Schedule = /** @class */ (function () {
         // length of schedule array should be totalDays
         // secheduleStartTime = NormalSleepTime
         // if (totalDays > 0) {
-        //    User will sleep earlier and earlier: 11 -> 10 -> 9
+        //    User will sleep earlier and earlier:git oxso 11 -> 10 -> 9
         // } else if (totalDays < 0) {
         //    User will sleep earlier and earlier: 11 -> 12 -> 1
         // } else {
@@ -40,7 +40,6 @@ var Schedule = /** @class */ (function () {
         var startTime = parseInt(this.NormalSleepTime.substring(0, 2));
         var endTime = parseInt(this.NormalWakeTime.substring(0, 2));
         if (this.totalDaysNoAbs > 0) {
-            console.log("In the MINUS branch");
             for (var i = 0; i < this.totalDays; i++) {
                 this.calendar[i][0] = startTime--;
                 this.calendar[i][1] = endTime--;

@@ -60,8 +60,8 @@ export class Schedule {
         //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
         //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
-        if(this.totalDays > 24) {
-            this.totalDays = 24;
+        if(this.ArrivalTimeZone == this.DepartureTimeZone) {
+            window.alert("You can't pick 12 and -12. They are the same time zone!");
         }
 
         let startTime = parseInt(this.NormalSleepTime.substring(0,2));

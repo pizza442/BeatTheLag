@@ -141,13 +141,17 @@ class Input extends Component {
             window.alert("Your bed time and wake up time cannot be the same")
         }
         else {
-            var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,
+            var testSchedule = new Schedule(
+                this.state.currentZone, 
+                this.state.startDate,
                 this.state.targetZone,
-                this.state.bedTime, this.state.wakeUpTime);
-            //let d = testSchedule.packageJSON();
-            var schedz = testSchedule.getCalendar()
+                this.state.bedTime, 
+                this.state.wakeUpTime);
+            testSchedule.packageJSON();
+            var schedz = testSchedule.getCalendar();
+            console.log(schedz);
             this.setState({ generated: true, schedule: schedz });
-            window.alert("Your Schedule has been generated!")
+            window.alert("Your Schedule has been generated!");
         }
 
     }
@@ -164,14 +168,18 @@ class Input extends Component {
         if (this.state.generated) {
             content = 
                 <div className="schedule">
+                    {console.log(this.state.schedule)}
                     {this.state.schedule.map(day => {
                         const current = [
                             <p>{day}</p>
                         ];
+                        console.log(current);
+                        console.log(day);
                         return current;
                     })}
                 </div>;
             button = <button className="btn" onClick={() => this.goBack()}>New</button>
+            //return content;
         }
         else {
             content = 

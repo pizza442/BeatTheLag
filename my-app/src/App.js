@@ -78,7 +78,7 @@ class App extends Component {
         }).catch(function (error) {
             // Handle Errors here
             console.log("Error in getting redirect result...");
-            this.handleError(error.message);
+            thisApp.handleError(error.message);
         });
     }
 

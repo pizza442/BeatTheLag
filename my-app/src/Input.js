@@ -149,7 +149,7 @@ class Input extends Component {
                 this.state.wakeUpTime);
             testSchedule.packageJSON();
             var schedz = testSchedule.getCalendar();
-            console.log(schedz);
+            //console.log(schedz);
             this.setState({ generated: true, schedule: schedz });
             window.alert("Your Schedule has been generated!");
         }
@@ -173,8 +173,8 @@ class Input extends Component {
                         const current = [
                             <p>{day}</p>
                         ];
-                        console.log(current);
-                        console.log(day);
+                        //console.log(current);
+                        //console.log(day);
                         return current;
                     })}
                 </div>;

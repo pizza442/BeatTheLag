@@ -109,18 +109,23 @@ class Input extends Component {
   }
 
   sendData() {
+    var start = new Date(this.state.startDate);
+    var end = new Date(this.state.endDate);
+    var today = new Date(this.getDATE());
     if(this.state.startDate == ""){
       window.alert("Please pick a start date");
     }
     else if(this.state.endDate == ""){
       window.alert("Please pick a end date");
     }
-    //redirect to another page
+    else if(start < today || end < today){
+      window.alert("Your dates selected are invalid");
+    }
+    else if(start >= end){
+      window.alert("Start date cannot happen be the same or after your selected end date");
+    }
     else if(this.state.currentZone == this.state.targetZone){
       window.alert("Your current timezone and the abroad timezone cannot be the same");
-    }
-    else if(this.state.bedTime == this.state.wakeUpTime){
-      window.alert("Your bed time and wake up time cannot be the same")
     }
     else if(this.state.currentZone == ""){
       window.alert("Please pick timezone");
@@ -133,6 +138,9 @@ class Input extends Component {
     }
     else if(this.state.wakeUpTime == ""){
       window.alert("Please pick a wake up time");
+    }
+    else if(this.state.bedTime == this.state.wakeUpTime){
+      window.alert("Your bed time and wake up time cannot be the same")
     }
     else {
       var testSchedule = new Schedule(this.state.currentZone, this.state.startDate,

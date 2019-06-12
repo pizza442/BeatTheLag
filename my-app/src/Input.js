@@ -149,7 +149,7 @@ class Input extends Component {
                 this.state.wakeUpTime);
             testSchedule.packageJSON();
             var schedz = testSchedule.getCalendar();
-            console.log(schedz);
+            //console.log(schedz);
             this.setState({ generated: true, schedule: schedz });
             window.alert("Your Schedule has been generated!");
         }
@@ -176,7 +176,6 @@ class Input extends Component {
                     })}
                 </div>;
             button = <button className="btn" onClick={() => this.goBack()}>New</button>
-            //return content;
         }
         else {
             content = 

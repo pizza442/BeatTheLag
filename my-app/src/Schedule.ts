@@ -6,7 +6,7 @@
 export class Schedule {
 
     private DepartureTimeZone: string;
-    private DepartureDate: Date; //Date use .getDate().
+    private DepartureDate: Date;
 
     private ArrivalTimeZone: string;
 
@@ -41,24 +41,11 @@ export class Schedule {
             this.calendar.push([]);
             this.calendarString.push([]);
         }
-        // totalDays = DepartureDate - ArriveDate
-        // sleepingLength =  NormalWakeTime - NormalSleepTime
-        // length of schedule array should be totalDays
-        // secheduleStartTime = NormalSleepTime
-        // if (totalDays > 0) {
-        //    User will sleep earlier and earlier:git oxso 11 -> 10 -> 9
-        // } else if (totalDays < 0) {
-        //    User will sleep earlier and earlier: 11 -> 12 -> 1
-        // } else {
-        //   "You don't need this page what are you doing"
-        // }
 
     }
 
+    //Creates the schedule.
     create() {
-        //let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
-        //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
-        //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
 
         let startTime = parseInt(this.NormalSleepTime.substring(0,2));
@@ -96,19 +83,14 @@ export class Schedule {
         } 
     }
 
-    // return the date that shold be the start date of the sechedule
+    // return the date that should be the start date of the sechedule
     calculateStartDate(): any {
-        //changed to .getDate() because it was recieving TYPE errors.
         let startDay = new Date(this.DepartureDate);
         startDay.setDate(startDay.getDate() - this.totalDays + 1);
         return startDay;
     }
 
-    // return array of object with format:
-    // {
-    //      "sleepDate": "2019-04-02",
-    //      "wakeDate": "2019-04-03"
-    // }
+    //Translates the date to a formatted string 
     translateDatetoString(): any {
         let date = this.calculateStartDate();
         let dateArray = Array();
@@ -136,7 +118,7 @@ export class Schedule {
             date.setDate(date.getDate()+1); 
 
         }
-        return dateArray; // array format: [first date, second date... late date (should be departure date)]
+        return dateArray; 
     }
 
     // return string for number 
@@ -169,7 +151,7 @@ export class Schedule {
         return result;
     }
 
-    //returns JSON... I guess.
+    //returns JSON object that represents the calendar.
     packageJSON(): any {
         let result = Array();
         let date = this.translateDatetoString(); 
@@ -196,12 +178,14 @@ export class Schedule {
         }
         return result;
     }
-
+    
+    //Returns array that contains a readable string representation of the calendar.
     getCalendar(): any {
         return this.calendarString;
     }
 }
 
+//An object that contains an event.
 export class Event {
     private start: Object;
     private end: Object;

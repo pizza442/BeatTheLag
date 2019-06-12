@@ -20,22 +20,9 @@ var Schedule = /** @class */ (function () {
             this.calendar.push([]);
             this.calendarString.push([]);
         }
-        // totalDays = DepartureDate - ArriveDate
-        // sleepingLength =  NormalWakeTime - NormalSleepTime
-        // length of schedule array should be totalDays
-        // secheduleStartTime = NormalSleepTime
-        // if (totalDays > 0) {
-        //    User will sleep earlier and earlier:git oxso 11 -> 10 -> 9
-        // } else if (totalDays < 0) {
-        //    User will sleep earlier and earlier: 11 -> 12 -> 1
-        // } else {
-        //   "You don't need this page what are you doing"
-        // }
     }
+    //Creates the schedule.
     Schedule.prototype.create = function () {
-        //let dayDiff: number = Math.abs(this.DepartureDay - this.ArrivalDay);
-        //let totalDays: number = this.DepartureDate - this.ArriveDate; //Shouldn't this be "time zone difference" instead?
-        //Might want to put this in the constructor depending on how many times
         //this is called after initial construction.
         var startTime = parseInt(this.NormalSleepTime.substring(0, 2));
         var endTime = parseInt(this.NormalWakeTime.substring(0, 2));
@@ -70,18 +57,13 @@ var Schedule = /** @class */ (function () {
             }
         }
     };
-    // return the date that shold be the start date of the sechedule
+    // return the date that should be the start date of the sechedule
     Schedule.prototype.calculateStartDate = function () {
-        //changed to .getDate() because it was recieving TYPE errors.
         var startDay = new Date(this.DepartureDate);
         startDay.setDate(startDay.getDate() - this.totalDays + 1);
         return startDay;
     };
-    // return array of object with format:
-    // {
-    //      "sleepDate": "2019-04-02",
-    //      "wakeDate": "2019-04-03"
-    // }
+    //Translates the date to a formatted string 
     Schedule.prototype.translateDatetoString = function () {
         var date = this.calculateStartDate();
         var dateArray = Array();
@@ -104,7 +86,7 @@ var Schedule = /** @class */ (function () {
             dateArray.push(output);
             date.setDate(date.getDate() + 1);
         }
-        return dateArray; // array format: [first date, second date... late date (should be departure date)]
+        return dateArray;
     };
     // return string for number 
     // if absolute valur of number is smaller than 10, will add a 0 in front of it 
@@ -135,7 +117,7 @@ var Schedule = /** @class */ (function () {
         }
         return result;
     };
-    //returns JSON... I guess.
+    //returns JSON object that represents the calendar.
     Schedule.prototype.packageJSON = function () {
         var result = Array();
         var date = this.translateDatetoString();
@@ -160,12 +142,14 @@ var Schedule = /** @class */ (function () {
         }
         return result;
     };
+    //Returns array that contains a readable string representation of the calendar.
     Schedule.prototype.getCalendar = function () {
         return this.calendarString;
     };
     return Schedule;
 }());
 exports.Schedule = Schedule;
+//An object that contains an event.
 var Event = /** @class */ (function () {
     function Event(startTime, endTime) {
         this.start = {

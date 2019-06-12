@@ -14,6 +14,7 @@ class App extends Component {
             view: '',
             signedIn: false,
             accessToken: undefined,
+            loading: true //loading change here
         };
 
         this.handleSignIn = this.handleSignIn.bind(this);
@@ -27,10 +28,11 @@ class App extends Component {
 
                 this.setState({ user: firebaseUser });
                 this.getRedirectResult();
+                this.setState({ user: firebaseUser, loading: false}); //loading change here
             } else {
                 console.log("User has logged out");
 
-                this.setState({ user: null, signedIn: false});
+                this.setState({ user: null, signedIn: false, loading: false}); //loading change here
             }
         })
     }
@@ -107,7 +109,7 @@ class App extends Component {
     handleSignIn(accessToken) {
         //console.log('User signed in, changing state...');
 
-        this.setState({ signedIn: true, accessToken: accessToken });
+        this.setState({ signedIn: true, accessToken: accessToken, loading: false }); //loading change here
     }
 
     //A callback function for logging out the current user
@@ -129,7 +131,11 @@ class App extends Component {
 
         let content = '';
 
-        if (this.state.signedIn) {
+        if (this.state.loading) { //loading change here
+            content = (<div>
+                <p className="loading">LOADING...</p>
+                </div>);
+        } else if (this.state.signedIn) {
             // show input form and signout button
             content = 
             <div>

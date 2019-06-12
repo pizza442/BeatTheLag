@@ -20,7 +20,9 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
-
+.loading {
+    text-align: center;
+}
 body, .btn {
     font-weight: 300;
     font-size: 1rem;

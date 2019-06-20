@@ -14,5 +14,5 @@ That’s why their ought to be a way that helps people get their sleep by operat
 ## Roles:
 	- Vanely : Leader, Engineering, Design
     	- Ali : Engineering
-    	- Shakeel : Engineering, Support
+    	- Shakeel : Engineering
 	- Sandy : Project management, Marketing, Design
